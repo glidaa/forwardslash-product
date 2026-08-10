@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="forwardslash.ch pricing workbench — cost model, package mixer and offer cascade. Sliders, not boxes.">
+<title>forwardslash.ch — Pricing workbench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap");
+:root{--black:#080808;--ink:#151515;--white:#fff;--paper:#f6f6f3;--line:#deded9;--muted:#686864;--good:#0a7d33;--warn:#b06a00;--bad:#b0331f;--max:1180px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font:14px/1.55 Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}
+a{color:inherit}
+.top{position:sticky;top:0;z-index:30;height:60px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.95);backdrop-filter:blur(12px)}
+.topin{width:min(var(--max),calc(100% - 36px));height:100%;margin:auto;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;font:600 17px Space Grotesk,sans-serif}
+.brand .slash{font-size:26px}
+.brand em{font-style:normal;color:#999}
+.topin .small{color:#999;font-size:11px}
+.topin .curr{margin-left:auto;display:flex;align-items:center;gap:8px;color:#666;font-size:11px}
+h1,h2,h3{margin:0;font-family:Space Grotesk,sans-serif;letter-spacing:-.03em;text-wrap:balance}
+h1{font-size:clamp(30px,4vw,44px);line-height:1.02;font-weight:600}
+h2{font-size:24px;font-weight:600}
+h3{font-size:15px;line-height:1.2}
+.eyebrow{margin-bottom:12px;color:#888;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.wrap{width:min(var(--max),calc(100% - 36px));margin:auto}
+.hero{padding:46px 0 26px}
+.lede{max-width:760px;margin:16px 0 0;color:#666;font-size:16px}
+.tabs{position:sticky;top:60px;z-index:20;display:flex;gap:5px;overflow:auto;padding:11px max(18px,calc((100% - var(--max))/2));border-bottom:1px solid var(--line);background:#fff}
+.tabs button{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:#fff;color:#666;font-size:11px;cursor:pointer}
+.tabs button.active{background:#111;color:#fff;border-color:#111}
+.page{display:none;padding:34px 0 120px}
+.page.active{display:block}
+.section-head{margin-bottom:22px}
+.section-head p{max-width:640px;margin:8px 0 0;color:#6c6c67}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{padding:20px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.card.soft{background:var(--paper)}
+.card h3{margin-bottom:4px}
+.card .sub{color:#888;font-size:11px;margin-bottom:14px}
+.tag{display:inline-flex;padding:3px 7px;border:1px solid var(--line);border-radius:999px;color:#777;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.tag.cost{border-color:#e3c9c2;color:var(--bad);background:#fbf2f0}
+.tag.free{border-color:#c3ddc9;color:var(--good);background:#eef7f0}
+.sl{padding:11px 0;border-bottom:1px solid #eee}
+.sl:last-child{border-bottom:0}
+.sl .row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
+.sl label{font-size:12px;font-weight:500;color:#222}
+.sl .val{font:600 13px Space Grotesk,sans-serif;color:#111;white-space:nowrap}
+.sl .hint{color:#999;font-size:10px;margin-top:4px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:3px;background:#e6e6e2;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:#111;cursor:pointer;border:2px solid #fff;box-shadow:0 0 0 1px #111}
+input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:#111;cursor:pointer;border:2px solid #fff}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:9px}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:12px;vertical-align:top}
+th{background:#111;color:#fff;font-size:9px;letter-spacing:.09em;text-transform:uppercase}
+td:first-child{font-weight:600}
+td.n,th.n{text-align:right;font-family:Space Grotesk,sans-serif}
+tr:last-child td{border-bottom:0}
+.note{padding:14px 16px;border-left:3px solid #111;background:var(--paper);color:#555;font-size:12px;border-radius:0 6px 6px 0;margin-top:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;background:#fff;font-size:11px;cursor:pointer;user-select:none}
+.chip input{margin:0}
+.chip.on{border-color:#111;background:#111;color:#fff}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:#fff;color:#555;padding:7px 12px;font-size:11px;cursor:pointer}
+.seg button.on{background:#111;color:#fff}
+.calc{margin-bottom:12px}
+.calc .price{font:600 26px Space Grotesk,sans-serif;margin:2px 0}
+.calc .price small{font-size:12px;color:#999;font-family:Inter}
+.mbar{height:8px;border-radius:5px;background:#eee;overflow:hidden;margin-top:8px}
+.mbar i{display:block;height:100%;background:var(--good)}
+.mbar i.warn{background:var(--warn)}
+.mbar i.bad{background:var(--bad)}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.phone{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;min-height:330px;display:flex;flex-direction:column}
+.phone .bar{height:26px;background:#111;display:flex;align-items:center;justify-content:center}
+.phone .bar span{width:52px;height:5px;border-radius:3px;background:#555}
+.phone .body{padding:16px;flex:1;display:flex;flex-direction:column;gap:10px}
+.phone h4{margin:0;font:600 14px Space Grotesk,sans-serif}
+.phone p{margin:0;color:#666;font-size:11px}
+.phone .fake{height:32px;border:1px solid var(--line);border-radius:7px;background:#fafafa}
+.phone .cta{margin-top:auto;text-align:center;background:#111;color:#fff;border-radius:8px;padding:10px;font-size:12px;font-weight:600}
+.phone .offer{border:1px dashed #111;border-radius:8px;padding:10px;font-size:11px;background:var(--paper)}
+.phone .lbl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#999;margin-bottom:3px}
+.cascade{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+.step:first-child{border-top:0}
+.step .when{font:600 12px Space Grotesk,sans-serif;color:#111}
+.step .when small{display:block;color:#999;font-weight:400;font-size:10px;margin-top:3px}
+.step .what{color:#555;font-size:12px}
+.step .what b{color:#111}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#111;color:#fff;font-size:10px;font-weight:600;margin-left:6px}
+.foot{color:#999;font-size:11px;margin-top:12px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}.grid3,.flow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+<a class="brand" href="#"><span class="slash">/</span><span>forwardslash<em>.ch</em></span></a>
+<span class="small">Pricing workbench · draft</span>
+<span class="curr">FX USD→AUD <b id="fxread" style="font-family:Space Grotesk">1.52</b></span>
+</div></header>
+
+<div class="wrap hero">
+<div class="eyebrow">Cost model → packages → offers</div>
+<h1>Pricing workbench</h1>
+<p class="lede">Sliders, not boxes. Start from what each capability actually costs us, then mix packages and design the offer cascade on top. Every number is a lever — move it and the margins and offers recompute live. Defaults are seeded from the supplier reference prices in the cost catalogue.</p>
+</div>
+
+<nav class="tabs">
+<button class="tab-btn active" data-tab="cost">1 · Cost model</button>
+<button class="tab-btn" data-tab="mix">2 · Package mixer</button>
+<button class="tab-btn" data-tab="offer">3 · Offer cascade</button>
+<button class="tab-btn" data-tab="flow">4 · Onboarding &amp; offer timing</button>
+</nav>
+
+<!-- TAB 1 -->
+<section class="page active" id="tab-cost"><div class="wrap">
+<div class="section-head">
+<h2>What each part of the product costs us</h2>
+<p>Two rules from the catalogue: never meter reading, notes, tasks, exports or invited collaborators; meter only what creates supplier cost, abuse risk or exceptional load. Move the supplier sliders — every metered capability's per-unit cost updates instantly.</p>
+</div>
+<div class="grid2">
+  <div class="card">
+    <h3>Supplier unit costs</h3>
+    <div class="sub">List-price reference inputs (Twilio AU, SendGrid, Apollo, cloud). USD unless noted; converted at the FX rate.</div>
+    <div id="costSliders"></div>
+  </div>
+  <div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Metered capability</th><th class="n">Our cost</th><th>Basis</th></tr></thead>
+      <tbody id="costTable"></tbody>
+    </table></div>
+    <div class="note" id="costNote"></div>
+  </div>
+</div>
+<div class="section-head" style="margin-top:34px">
+<h2>Costs vs no-cost — the honest split</h2>
+<p>The left column is why "unlimited collaborators" is safe to promise. The right column is why phone, email at scale, AI and enrichment can never be described as simply "free".</p>
+</div>
+<div class="grid2">
+  <div class="card soft"><span class="tag free">No marginal cost — never meter</span><div class="chips" id="freeList"></div></div>
+  <div class="card soft"><span class="tag cost">Real supplier cost — must meter</span><div class="chips" id="costList"></div></div>
+</div>
+</div></section>
+
+<!-- TAB 2 -->
+<section class="page" id="tab-mix"><div class="wrap">
+<div class="section-head">
+<h2>Mix &amp; match the packages</h2>
+<p>Workspace plans pay for shared records, tasks and pooled capacity. Operator licences pay for the expensive jobs. Set prices and allowances with the sliders; margin is computed live against the cost model in tab 1.</p>
+</div>
+<div style="display:flex;gap:12px;align-items:center;margin-bottom:20px;flex-wrap:wrap">
+  <span class="small" style="color:#666">Billing</span>
+  <div class="seg" id="billingSeg"><button data-bill="monthly" class="on">Monthly</button><button data-bill="annual">Annual</button></div>
+  <span class="small" style="color:#999">Annual applies each plan's discount slider.</span>
+</div>
+<div class="grid3" id="planCards"></div>
+<div class="section-head" style="margin-top:34px">
+  <h2>Operator licences &amp; add-ons</h2>
+  <p>Only people doing the expensive job hold a licence. Usage (carrier minutes, managed sends, credits) is still billed on top — never hidden in the licence.</p>
+</div>
+<div class="grid3" id="licenceCards"></div>
+<div class="note" id="mixNote" style="margin-top:22px"></div>
+</div></section>
+
+<!-- TAB 3 -->
+<section class="page" id="tab-offer"><div class="wrap">
+<div class="section-head">
+<h2>The offer cascade</h2>
+<p>What does a free signup get to start? What is the day-one offer? The monthly? Then how does it cascade up? Set each lever and read the resulting ladder.</p>
+</div>
+<div class="grid2">
+  <div class="card">
+    <h3>Offer levers</h3><div class="sub">Move these to reshape the ladder.</div>
+    <div id="offerSliders"></div>
+    <div class="sl"><div class="row"><label>Model: free sending uses…</label></div>
+      <div class="seg" id="sendModeSeg"><button data-send="byo" class="on">Own mailbox (BYO)</button><button data-send="managed">Managed by us</button></div>
+      <div class="hint">BYO = customer pays their provider, we carry no send cost on Free. Managed = we carry SendGrid cost, so it must be paid.</div>
+    </div>
+  </div>
+  <div>
+    <div class="card soft"><h3>Resulting ladder</h3><div class="cascade" id="ladder"></div></div>
+    <div class="note" id="offerNote"></div>
+  </div>
+</div>
+</div></section>
+
+<!-- TAB 4 -->
+<section class="page" id="tab-flow"><div class="wrap">
+<div class="section-head">
+<h2>Signup → load emails → offer</h2>
+<p>The open question: do we present the paid offer <b>right after login</b>, after they've <b>loaded a list / connected a mailbox</b>, or after their <b>first real send</b>? Pick where the offer lands and preview the three screens a new user sees.</p>
+</div>
+<div style="display:flex;gap:10px;align-items:center;margin-bottom:8px;flex-wrap:wrap">
+  <span class="small" style="color:#666">Offer appears</span>
+  <div class="seg" id="timingSeg">
+    <button data-timing="login">Right after login</button>
+    <button data-timing="loaded" class="on">After first list / mailbox</button>
+    <button data-timing="sent">After first send</button>
+  </div>
+</div>
+<div class="foot" id="timingRationale"></div>
+<div class="flow" id="screens"></div>
+<div class="note" style="margin-top:20px">Principle from the trial design: always-free base plus <b>contextual</b> trials — don't spend the whole product on day zero. The locked action that triggers the offer should be the one that just proved value, so the ask feels earned rather than interruptive.</div>
+</div></section>
+
+<script>
+/* ---------- state ---------- */
+const S = {
+  fx: 1.52,
+  cost: { voiceLocal:0.0252, voiceMobile:0.075, number:3.00, recording:0.0025, transcription:0.024,
+    emailPer1k:0.40, enrichCredit:0.03, aiInPer1k:0.003, aiOutPer1k:0.015,
+    storageGb:0.05, pageViews1k:0.02, smsSeg:0.05, domainYear:15, platformAUD:3.0 },
+  bill:'monthly',
+  plans:{
+    Free:{price:0,disc:0,sends:0,storage:0.25,pages:1,records:2500,managedSends:false},
+    Business:{price:249,disc:17,sends:0,storage:25,pages:5,records:100000,managedSends:false},
+    'Business Plus':{price:499,disc:17,sends:0,storage:100,pages:50,records:500000,managedSends:false}
+  },
+  lic:{ Campaign:{price:59,sends:5000}, Calling:{price:89}, 'Research + AI':{price:39,credits:500,ai:5} },
+  offer:{ freeAiCampaigns:1, dayOneDisc:30, dayOneHours:48, otoPrice:99, monthly:249, annualDisc:17 },
+  send:'byo', timing:'loaded'
+};
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const aud=n=>'A$'+Number(n).toLocaleString('en-AU',{maximumFractionDigits:0});
+const aud2=n=>'A$'+Number(n).toLocaleString('en-AU',{minimumFractionDigits:2,maximumFractionDigits:2});
+const audc=n=>'A$'+Number(n).toLocaleString('en-AU',{minimumFractionDigits:2,maximumFractionDigits:4});
+const pct=n=>Math.round(n)+'%';
+const num=n=>Number(n).toLocaleString('en-AU');
+function pget(p){return p.split('.').reduce((a,k)=>a[k],S);}
+function pset(p,v){const k=p.split('.');const last=k.pop();k.reduce((a,x)=>a[x],S)[last]=v;}
+
+/* formatter registry: bind -> fn(v)->string */
+const FMT={};
+function slider(bind,label,min,max,step,fmt,hint){
+  FMT[bind]=fmt; const v=pget(bind);
+  return `<div class="sl">
+    <div class="row"><label>${label}</label><span class="val" data-read="${bind}">${fmt(v)}</span></div>
+    <input type="range" data-bind="${bind}" min="${min}" max="${max}" step="${step}" value="${v}">
+    ${hint?`<div class="hint">${hint}</div>`:''}
+  </div>`;
+}
+
+/* ---------- TAB 1 ---------- */
+function renderCostSliders(){
+  const c=v=>audc(v*S.fx);
+  $('#costSliders').innerHTML=
+    slider('fx','FX rate USD → AUD',1.30,1.80,0.01,v=>v.toFixed(2),'Buffer 15–25% for rate change on telephony/SMS.')+
+    slider('cost.voiceLocal','Voice — local, per min (USD)',0.01,0.08,0.001,c,'Twilio AU ~US$0.0252/min')+
+    slider('cost.voiceMobile','Voice — to mobile, per min (USD)',0.03,0.15,0.001,c,'Twilio AU ~US$0.075/min')+
+    slider('cost.number','Phone number, per month (USD)',1,10,0.5,c,'Local number ~US$3/mo')+
+    slider('cost.recording','Call recording, per min (USD)',0.001,0.01,0.0005,c,'~US$0.0025/min + storage')+
+    slider('cost.transcription','Transcription, per min (USD)',0.005,0.05,0.001,c,'~US$0.024/min')+
+    slider('cost.emailPer1k','Managed email, per 1,000 sends (USD)',0.10,1.50,0.05,c,'SendGrid Essentials ~US$0.40/1k')+
+    slider('cost.enrichCredit','Enrichment, per credit (USD)',0.005,0.10,0.005,c,'Apollo: email 1cr · phone 8cr · research 1cr')+
+    slider('cost.aiInPer1k','AI input, per 1k tokens (USD)',0.0005,0.02,0.0005,c,'model dependent')+
+    slider('cost.aiOutPer1k','AI output, per 1k tokens (USD)',0.002,0.08,0.001,c,'model dependent')+
+    slider('cost.storageGb','Storage, per GB-month (USD)',0.01,0.20,0.005,c,'object storage + egress')+
+    slider('cost.pageViews1k','Pages, per 1,000 views (USD)',0.005,0.10,0.005,c,'CDN/bandwidth, bots filtered')+
+    slider('cost.domainYear','Custom/sending domain, per year (USD)',5,40,1,c,'pass-through registrar')+
+    slider('cost.platformAUD','Platform fixed per active workspace/mo (AUD)',0.5,12,0.5,v=>aud2(v),'Neon + Vercel amortized');
+}
+function costRows(){
+  const c=S.cost,fx=S.fx;
+  return [
+    ['Send 1,000 managed emails', c.emailPer1k*fx, 'SendGrid @ '+audc(c.emailPer1k*fx)+'/1k'],
+    ['One phone number / month', c.number*fx, 'number rental'],
+    ['100 dial minutes (local)', c.voiceLocal*100*fx, '100 × '+audc(c.voiceLocal*fx)],
+    ['100 dial minutes (mobile)', c.voiceMobile*100*fx, '100 × '+audc(c.voiceMobile*fx)],
+    ['Record + transcribe 100 min', (c.recording+c.transcription)*100*fx, 'recording + transcription'],
+    ['Verify 1,000 emails (enrich)', c.enrichCredit*1000*fx, '1,000 credits'],
+    ['Enrich 1,000 phones (enrich)', c.enrichCredit*8*1000*fx, '8 credits each'],
+    ['One AI campaign — draft 50 emails', ((8*c.aiInPer1k)+(4*c.aiOutPer1k))*fx, '~8k in / 4k out tokens'],
+    ['25 GB storage / month', c.storageGb*25*fx, '25 × '+audc(c.storageGb*fx)],
+    ['10,000 page views', c.pageViews1k*10*fx, '10 × '+audc(c.pageViews1k*fx)],
+    ['1 custom domain / year', c.domainYear*fx, 'registrar pass-through'],
+    ['Base platform / workspace / mo', c.platformAUD, 'hosting + DB amortized (AUD)']
+  ];
+}
+function renderCostTable(){
+  $('#costTable').innerHTML=costRows().map(([a,b,d])=>`<tr><td>${a}</td><td class="n">${b<1?audc(b):aud2(b)}</td><td>${d}</td></tr>`).join('');
+  $('#costNote').innerHTML=`At these rates a Business workspace on <b>own-mailbox email</b> carries almost no send cost — that is what makes unlimited collaborators safe. The moment sending is <b>managed by us</b>, 100k emails ≈ <b>${aud2(S.cost.emailPer1k*100*S.fx)}</b>/month of real cost, which is why managed sending sits behind a licence and volume packs.`;
+}
+const FREE=['CRM records (read)','Companies & contacts','Timeline & notes','Tasks & reminders','Lists','Projects','Pipelines','Global search','Saved smart views','Invited collaborators','Guest / approval links','Exports of own data','Comments','Basic reporting','Booking page (1)'];
+const COSTL=['Managed email sends','Sequence enrolments','Voice minutes','Phone numbers','Call recording','Transcription','SMS segments','Enrichment credits','AI inference','Storage beyond base','Page views / bandwidth','Custom / sending domains','Dedicated region / BYODB'];
+function renderLists(){
+  $('#freeList').innerHTML=FREE.map(x=>`<span class="chip on" style="cursor:default">${x}</span>`).join('');
+  $('#costList').innerHTML=COSTL.map(x=>`<span class="chip" style="cursor:default;border-color:#e3c9c2;color:#b0331f">${x}</span>`).join('');
+}
+
+/* ---------- TAB 2 ---------- */
+function planCost(p){
+  const c=S.cost,fx=S.fx; let cost=c.platformAUD;
+  cost+=p.storage*c.storageGb*fx;
+  cost+=p.pages*2*c.pageViews1k*fx;               /* ~2k views/page/mo */
+  if(p.managedSends) cost+=(p.sends/1000)*c.emailPer1k*fx;
+  return cost;
+}
+const effPrice=p=> S.bill==='annual' ? p.price*(1-p.disc/100) : p.price;
+const mCls=m=> m>=85?'':(m>=60?'warn':'bad');
+const mCol=m=> m>=85?'var(--good)':(m>=60?'var(--warn)':'var(--bad)');
+function planCalcHTML(name){
+  const p=S.plans[name], cost=planCost(p), price=effPrice(p);
+  const m= price>0 ? (1-cost/price)*100 : 100;
+  return `<div style="display:flex;justify-content:space-between;align-items:baseline"><h3>${name}</h3><span class="tag">${S.bill==='annual'?'annual eff.':'monthly'}</span></div>
+    <div class="price">${price===0?'A$0':aud(price)}<small> /mo</small></div>
+    <div class="sub" style="margin-bottom:0">Serve cost ≈ <b>${aud2(cost)}</b>/mo · margin <b style="color:${price===0?'#999':mCol(m)}">${price===0?'—':pct(m)}</b></div>
+    <div class="mbar"><i class="${price===0?'':mCls(m)}" style="width:${price===0?0:Math.max(0,Math.min(100,m))}%"></i></div>`;
+}
+function renderPlanCards(){
+  $('#planCards').innerHTML=Object.keys(S.plans).map(name=>{
+    const p=S.plans[name];
+    return `<div class="card" data-plan="${name}">
+      <div class="calc" id="calc-${name.replace(/\s/g,'')}">${planCalcHTML(name)}</div>
+      ${slider('plans.'+name+'.price','Price / mo (AUD)',0,900,1,aud)}
+      ${slider('plans.'+name+'.disc','Annual discount %',0,40,1,v=>v+'%')}
+      ${slider('plans.'+name+'.records','Records pooled',0,1000000,2500,num)}
+      ${slider('plans.'+name+'.storage','Storage GB included',0,1000,5,v=>v+' GB')}
+      ${slider('plans.'+name+'.pages','Pages included',0,100,1,v=>String(v))}
+      <label class="chip ${p.managedSends?'on':''}" style="margin-top:12px" data-mng="${name}"><input type="checkbox" ${p.managedSends?'checked':''}> Managed sending included</label>
+      ${p.managedSends?slider('plans.'+name+'.sends','Managed sends / mo included',0,200000,1000,num):''}
+    </div>`;
+  }).join('');
+}
+function licCalcHTML(name){
+  const l=S.lic[name]; let cost=S.cost.platformAUD*0.3, usage='';
+  if(name==='Campaign'){ cost+=(l.sends/1000)*S.cost.emailPer1k*S.fx; usage=`Includes ${num(l.sends)} managed sends; volume above billed per pack.`; }
+  if(name==='Calling'){ usage='Software only. Numbers, minutes, recording billed as usage.'; }
+  if(name==='Research + AI'){ cost+=l.credits*S.cost.enrichCredit*S.fx + l.ai*(((8*S.cost.aiInPer1k)+(4*S.cost.aiOutPer1k))*S.fx); usage=`Pooled ${num(l.credits)} credits + ${l.ai} AI campaigns, then PAYG.`; }
+  const m=(1-cost/l.price)*100;
+  return `<h3>${name} licence</h3><div class="price" style="font-size:22px">${aud(l.price)}<small> /user/mo</small></div>
+    <div class="sub" style="margin-bottom:0">Serve cost ≈ ${aud2(cost)} · margin <b style="color:${m>=60?'var(--good)':'var(--warn)'}">${pct(m)}</b></div>
+    <div class="foot" style="margin-top:8px">${usage}</div>`;
+}
+function renderLicenceCards(){
+  $('#licenceCards').innerHTML=Object.keys(S.lic).map(name=>`<div class="card soft">
+      <div id="lcalc-${name.replace(/[\s+]/g,'')}">${licCalcHTML(name)}</div>
+      ${slider('lic.'+name+'.price','Licence price / user / mo',0,200,1,aud)}
+      ${name==='Campaign'?slider('lic.Campaign.sends','Included managed sends',0,50000,1000,num):''}
+      ${name==='Research + AI'?slider('lic.Research + AI.credits','Pooled enrichment credits',0,5000,100,num):''}
+      ${name==='Research + AI'?slider('lic.Research + AI.ai','Included AI campaigns',0,30,1,v=>String(v)):''}
+    </div>`).join('');
+}
+function updateMixOutputs(){
+  Object.keys(S.plans).forEach(n=>{const el=document.getElementById('calc-'+n.replace(/\s/g,''));if(el)el.innerHTML=planCalcHTML(n);});
+  Object.keys(S.lic).forEach(n=>{const el=document.getElementById('lcalc-'+n.replace(/[\s+]/g,''));if(el)el.innerHTML=licCalcHTML(n);});
+  const b=S.plans.Business,bc=planCost(b),bp=effPrice(b);
+  $('#mixNote').innerHTML=`Target from the cost rules: software gross margin <b>&gt;85%</b>, managed variable services <b>&gt;60%</b> contribution. Business at ${aud(bp)}/mo against ${aud2(bc)} serve cost lands at <b>${pct((1-bc/bp)*100)}</b>. Green bars clear 85%, amber clears 60%, red is under water — adjust price or allowances.`;
+}
+
+/* ---------- TAB 3 ---------- */
+function renderOfferSliders(){
+  $('#offerSliders').innerHTML=
+    slider('offer.freeAiCampaigns','Free AI campaigns before paying',0,5,1,v=>v==0?'none':v+(v==1?' campaign':' campaigns'),'AI has real cost — first taste free, then pack.')+
+    slider('offer.dayOneDisc','Day-one offer discount %',0,50,1,v=>v+'% off','On the annual plan, shown once.')+
+    slider('offer.dayOneHours','Day-one offer window (hours)',12,96,12,v=>v+' h','Honest countdown, not fake urgency.')+
+    slider('offer.otoPrice','One-time offer (OTO) — AI/data starter pack',0,300,5,aud,'Single upsell at activation.')+
+    slider('offer.monthly','Monthly plan (Business) — AUD',99,499,10,aud)+
+    slider('offer.annualDisc','Annual discount %',0,40,1,v=>v+'%');
+}
+function renderLadder(){
+  const o=S.offer;
+  const annual=Math.round(o.monthly*12*(1-o.annualDisc/100));
+  const dayOne=Math.round(o.monthly*12*(1-o.annualDisc/100)*(1-o.dayOneDisc/100));
+  const sendLine=S.send==='byo'
+    ? 'Send from <b>your own mailbox</b> (50/day). We add nothing to your reputation and carry no send cost.'
+    : 'Send <b>managed by us</b> — a capped free taste, then paid because it costs us real money.';
+  const steps=[
+    ['Free signup','no card',`Full personal workspace: CRM, tasks, projects, 1 pipeline, 1 booking page. ${sendLine} ${o.freeAiCampaigns>0?`<b>${o.freeAiCampaigns}</b> free AI campaign${o.freeAiCampaigns>1?'s':''} to taste.`:'AI is a paid pack.'}`],
+    ['Day-one offer',`first ${o.dayOneHours}h`,`One-time: annual Business at <b>${o.dayOneDisc}% off</b> → <b>${aud(dayOne)}/yr</b> (${aud(Math.round(dayOne/12))}/mo effective).<span class="pill">save ${aud(o.monthly*12-dayOne)}</span>`],
+    ['Activation OTO','at first real value',`Single upsell: AI + data starter pack for <b>${aud(o.otoPrice)}</b> one-time — appears the moment they load a list or send.`],
+    ['Monthly','ongoing',`Business <b>${aud(o.monthly)}/mo</b>, unlimited collaborators. Operator licences (Campaign ${aud(S.lic.Campaign.price)}, Calling ${aud(S.lic.Calling.price)}) added only for people doing the expensive job.`],
+    ['Annual','cascade up',`<b>${aud(annual)}/yr</b> (${aud(Math.round(annual/12))}/mo effective, ${o.annualDisc}% off) once the habit is set. Usage packs (sends, minutes, credits) stack on top.`]
+  ];
+  $('#ladder').innerHTML=steps.map(([w,s,t])=>`<div class="step"><div class="when">${w}<small>${s}</small></div><div class="what">${t}</div></div>`).join('');
+  $('#offerNote').innerHTML=`Free stays useful forever; charging concentrates on <b>domains</b>, <b>managed sending</b>, <b>calls</b> and <b>AI/enrichment</b> — the four things with real supplier cost. The day-one and OTO offers only convert people who already saw value, so they read as a reward, not a toll.`;
+}
+
+/* ---------- TAB 4 ---------- */
+const TIMING={
+  login:{rationale:'Highest reach, lowest intent — the user has proven nothing yet, so the offer interrupts before value. Best only for a soft, dismissible annual teaser.'},
+  loaded:{rationale:'Recommended. The user has imported contacts or connected a mailbox — the workspace now holds their data, so upgrading protects something real. Lands as "keep going", not "pay to try".'},
+  sent:{rationale:'Highest intent, later reach. They have felt the core loop, but you have waited longest to ask — best paired with the OTO (they just hit the value, sell the accelerant).'}
+};
+function renderFlow(){
+  const o=S.offer,t=S.timing;
+  const offerCard=`<div class="offer"><div class="lbl">Offer</div>Annual Business · <b>${o.dayOneDisc}% off</b> for ${o.dayOneHours}h${o.freeAiCampaigns>0?` · ${o.freeAiCampaigns} free AI campaign${o.freeAiCampaigns>1?'s':''}`:''}</div>`;
+  const otoCard=`<div class="offer"><div class="lbl">One-time offer</div>AI + data starter pack — <b>${aud(o.otoPrice)}</b> once</div>`;
+  const screens=[
+    {title:'1 · Sign up',p:'Email + password. No card. Free workspace created.',fake:2,cta:'Create workspace',offer:t==='login'?offerCard:''},
+    {title:'2 · Load your world',p:'Import a CSV or connect a mailbox. First useful list appears.',fake:3,cta:'Import contacts',offer:t==='loaded'?offerCard:''},
+    {title:'3 · Do one real thing',p:S.send==='byo'?'Send one email from your own mailbox, or book a meeting.':'Send your first managed email (capped free taste).',fake:2,cta:'Send / book',offer:t==='sent'?otoCard:''}
+  ];
+  $('#screens').innerHTML=screens.map(s=>`<div class="phone"><div class="bar"><span></span></div><div class="body">
+    <h4>${s.title}</h4><p>${s.p}</p>
+    ${Array.from({length:s.fake}).map(()=>'<div class="fake"></div>').join('')}
+    ${s.offer}
+    <div class="cta">${s.cta}</div></div></div>`).join('');
+  $('#timingRationale').innerHTML=TIMING[t].rationale;
+  document.querySelectorAll('#timingSeg button').forEach(b=>b.classList.toggle('on',b.dataset.timing===t));
+}
+
+/* ---------- single input handler: never rebuilds a panel containing the active slider ---------- */
+document.addEventListener('input',e=>{
+  const t=e.target; if(!t.matches('input[type=range][data-bind]'))return;
+  const bind=t.dataset.bind, v=parseFloat(t.value);
+  pset(bind,v);
+  const read=document.querySelector(`[data-read="${bind}"]`);
+  if(read&&FMT[bind]) read.textContent=FMT[bind](v);
+  if(bind==='fx') $('#fxread').textContent=v.toFixed(2);
+  // update only OUTPUT areas (no sliders inside them)
+  if(bind==='fx'||bind.startsWith('cost.')){ renderCostTable(); updateMixOutputs(); renderLadder(); }
+  else if(bind.startsWith('plans.')||bind.startsWith('lic.')){ updateMixOutputs(); renderLadder(); }
+  else if(bind.startsWith('offer.')){ renderLadder(); renderFlow(); }
+});
+
+/* ---------- clicks ---------- */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button, label.chip'); if(!t)return;
+  if(t.classList.contains('tab-btn')){
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    t.classList.add('active'); $('#tab-'+t.dataset.tab).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'});
+  }
+  if(t.dataset.bill){ S.bill=t.dataset.bill; document.querySelectorAll('#billingSeg button').forEach(b=>b.classList.toggle('on',b.dataset.bill===S.bill)); updateMixOutputs(); }
+  if(t.dataset.send){ S.send=t.dataset.send; document.querySelectorAll('#sendModeSeg button').forEach(b=>b.classList.toggle('on',b.dataset.send===S.send)); renderLadder(); renderFlow(); }
+  if(t.dataset.timing){ S.timing=t.dataset.timing; renderFlow(); }
+  if(t.dataset.mng){ const n=t.dataset.mng; S.plans[n].managedSends=!S.plans[n].managedSends; renderPlanCards(); updateMixOutputs(); }
+});
+
+/* ---------- initial paint ---------- */
+renderCostSliders(); renderCostTable(); renderLists();
+renderPlanCards(); renderLicenceCards(); updateMixOutputs();
+renderOfferSliders(); renderLadder(); renderFlow();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+/* Go-to-market additions (mirrors the style.css block in the repo) */
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:20px 0 10px}
+.calc label{display:flex;flex-direction:column;gap:6px;font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.calc input{padding:9px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:14px;font-family:inherit}
+.calc input:focus{outline:2px solid var(--black);outline-offset:1px}
+.calc-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border:1px solid var(--black);margin:10px 0 14px;background:#fff}
+.calc-out div{padding:14px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.calc-out span{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.calc-out strong{font:600 21px "Space Grotesk",sans-serif}
