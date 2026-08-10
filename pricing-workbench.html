@@ -81,7 +81,7 @@ tr:last-child td{border-bottom:0}
 <button class="tab-btn active" data-tab="cost">1 · What each thing costs</button>
 <button class="tab-btn" data-tab="pkg">2 · Package structures</button>
 <button class="tab-btn" data-tab="free">3 · Free vs trial + card</button>
-<button class="tab-btn" data-tab="offer">4 · Offers &amp; first-day A$1k</button>
+<button class="tab-btn" data-tab="offer">4 · Offer vs ad cost (per customer)
 </nav>
 
 <!-- TAB 1 -->
@@ -141,12 +141,12 @@ tr:last-child td{border-bottom:0}
 
 <!-- TAB 4 -->
 <section class="page" id="tab-offer"><div class="wrap">
-<div class="section-head"><h2>Offers: day-one one-time offer, then monthly &amp; later</h2>
-<p>Can a day-one offer clear <b>A$1,000</b> in the first day? Set your signups, how many take the one-time offer and at what price. Then set the ongoing monthly and a later offer. The bar shows first-day revenue against the A$1,000 goal.</p></div>
+<div class="section-head"><h2>Does one customer's first payment beat the ad cost to acquire them?</h2>
+<p>A paid signup costs roughly <b>A$1–2k</b> in advertising. So per customer: does their day‑one payment (annual upfront + a one‑time offer) cover that acquisition cost on day one — and if not, how many months of monthly does payback take? Set the ad cost and the offer.</p></div>
 <div class="grid2">
   <div class="card"><h3>Levers</h3><div class="sub">Move these.</div><div id="offerSliders"></div></div>
   <div>
-    <div class="card soft"><h3>First day</h3>
+    <div class="card soft"><h3>Day-one payment vs ad cost</h3>
       <div class="big" id="firstDay">A$0</div>
       <div class="foot" id="firstDayCalc"></div>
       <div class="mbar"><i id="goalBar" style="width:0%"></i></div>
@@ -171,7 +171,7 @@ const S={
   lic:{business:249,campaign:59,calling:89,research:39,aiFree:1},
   entry:'forever',card:'none',
   free:{aiFree:1,emailsDay:50,pages:1},
-  offer:{signups:200,otoTake:6,otoPrice:99,monthly:249,annualDisc:17,laterTake:8,laterPrice:149}
+  offer:{cac:1500,otoPrice:199,monthly:249,annualDisc:17}
 };
 const $=s=>document.querySelector(s);
 const aud=n=>'A$'+Number(Math.round(n)).toLocaleString('en-AU');
@@ -344,31 +344,31 @@ function renderEntry(){
 /* ---------- TAB 4 ---------- */
 function renderOfferSliders(){
   $('#offerSliders').innerHTML=
-    slider('offer.signups','Signups in day one',0,2000,10,num,'launch-day new free signups')+
-    slider('offer.otoTake','% who take the day-one offer',0,30,0.5,v=>v+'%','one-time offer conversion')+
-    slider('offer.otoPrice','One-time offer price (AUD)',0,499,5,aud,'annual plan or starter pack, shown once')+
+    slider('offer.cac','Ad cost to acquire 1 paid customer (AUD)',300,3000,50,aud,'typical paid CAC ~A$1–2k')+
     slider('offer.monthly','Monthly plan (AUD)',49,499,10,aud)+
     slider('offer.annualDisc','Annual discount %',0,40,1,v=>v+'%')+
-    slider('offer.laterTake','% who convert later (30d)',0,30,0.5,v=>v+'%')+
-    slider('offer.laterPrice','Later offer price (AUD)',0,499,5,aud);
+    slider('offer.otoPrice','Day-one one-time offer add-on (AUD)',0,999,10,aud,'starter pack sold once at signup');
 }
 function renderOffer(){
   const o=S.offer;
-  const buyers=o.signups*(o.otoTake/100);
-  const first=buyers*o.otoPrice;
-  $('#firstDay').textContent=aud(first);
-  $('#firstDayCalc').innerHTML=`${num(o.signups)} signups × ${o.otoTake}% take × ${aud(o.otoPrice)} = <b>${aud(first)}</b> (~${Math.round(buyers)} buyers day one)`;
-  const gp=Math.min(100,first/1000*100);
-  const bar=$('#goalBar');bar.style.width=gp+'%';bar.className=first>=1000?'':'warn';
-  if(first>=1000){$('#goalNote').innerHTML=`<b style="color:var(--good)">Clears A$1,000.</b> You hit it at these levers.`;}
-  else{const needTake=(1000/(o.signups*o.otoPrice)*100)||0;const needPrice=(1000/(o.signups*(o.otoTake/100)))||0;
-    $('#goalNote').innerHTML=`<b style="color:var(--warn)">A$${Math.round(1000-first)} short.</b> Hit A$1k by: take-rate ≈ <b>${isFinite(needTake)?needTake.toFixed(1):'∞'}%</b>, or price ≈ <b>${isFinite(needPrice)?aud(needPrice):'∞'}</b>, or more signups.`;}
-  const annual=Math.round(o.monthly*12*(1-o.annualDisc/100));
+  const annualUp=Math.round(o.monthly*12*(1-o.annualDisc/100));
+  const dayOne=annualUp+o.otoPrice;
+  $('#firstDay').textContent=aud(dayOne);
+  $('#firstDayCalc').innerHTML=`Annual upfront ${aud(annualUp)} + one-time offer ${aud(o.otoPrice)} = <b>${aud(dayOne)}</b> collected on day one, from one customer.`;
+  const cover=o.cac>0?dayOne/o.cac*100:100;
+  const bar=$('#goalBar');bar.style.width=Math.max(0,Math.min(100,cover))+'%';bar.className=dayOne>=o.cac?'':'warn';
+  const months=o.monthly>0?Math.ceil(o.cac/o.monthly):0;
+  const needMonthly=Math.ceil((o.cac-o.otoPrice)/(12*(1-o.annualDisc/100)));
+  if(dayOne>=o.cac){
+    $('#goalNote').innerHTML=`<b style="color:var(--good)">Day-one payment covers the ${aud(o.cac)} ad cost.</b> Cash-positive on acquisition from day one — the customer's first payment funds the ad that got them.`;
+  } else {
+    $('#goalNote').innerHTML=`<b style="color:var(--warn)">${aud(o.cac-dayOne)} short of the ${aud(o.cac)} ad cost on day one.</b> Either lift the plan so annual upfront + OTO ≥ ${aud(o.cac)} (needs monthly ≈ <b>${aud(needMonthly)}</b>), or accept a <b>${months}-month</b> payback on monthly at ${aud(o.monthly)}/mo.`;
+  }
   $('#ladder').innerHTML=`
-    <div class="foot" style="margin:0"><b>Day 1 · one-time offer</b> — ${aud(o.otoPrice)} once (e.g. annual upfront or AI+data starter). Only ~${o.otoTake}% take it, but it front-loads cash and captures the card.</div>
-    <div class="foot"><b>Day 30 · later offer</b> — ${aud(o.laterPrice)}, ~${o.laterTake}% of the rest, once they've felt value. Adds ${aud(o.signups*(1-o.otoTake/100)*(o.laterTake/100)*o.laterPrice)} .</div>
-    <div class="foot"><b>Monthly</b> — ${aud(o.monthly)}/mo. What they get: unlimited people, CRM, tasks, projects, campaigns to plan; costly execution (bulk send, dialer, AI) via licence/packs.</div>
-    <div class="foot"><b>Annual</b> — ${aud(annual)}/yr (${aud(Math.round(annual/12))}/mo effective, ${o.annualDisc}% off).</div>`;
+    <div class="foot" style="margin:0"><b>Ad cost to acquire</b> — ${aud(o.cac)} per paid customer.</div>
+    <div class="foot"><b>Day 1 best case</b> — annual upfront ${aud(annualUp)} + OTO ${aud(o.otoPrice)} = <b>${aud(dayOne)}</b> ${dayOne>=o.cac?'(beats CAC)':'(below CAC)'}.</div>
+    <div class="foot"><b>Monthly-only payback</b> — ${months} months at ${aud(o.monthly)}/mo to recoup ${aud(o.cac)}.</div>
+    <div class="foot"><b>12-month value</b> — ${aud(annualUp+o.otoPrice)} on annual, or ${aud(o.monthly*12)} on monthly.</div>`;
 }
 
 /* ---------- input ---------- */
