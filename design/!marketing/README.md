@@ -25,6 +25,9 @@ Start free. Do one job.
 | `03-video-outline.md` | 45–75s video outline |
 | `04-free-doors.md` | Six free doors (no signup, ~10 min) |
 | `empty-state-mono.html` | Prism sketch replacing blue/pink .ch empty-state |
+| `05-ads.md` | Search RSA, LinkedIn, 15s cutdown |
+| `06-founder-intake.md` | Michael’s raw brief (journey, old Free/Paid table, questionnaire) |
+| `06-brand-answers.md` | Full answers in locked voice (intake vs SoT) |
 
 ## Rules
 
