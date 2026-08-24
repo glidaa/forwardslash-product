@@ -1,5 +1,9 @@
 # Campaigns
 
+## Lede
+
+One campaign, properly run: list, send, measure.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

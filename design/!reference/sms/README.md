@@ -1,5 +1,9 @@
 # SMS
 
+## Lede
+
+Text as a seam, not a stunt. Same contacts, same book.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

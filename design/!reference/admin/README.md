@@ -1,5 +1,9 @@
 # Admin & settings
 
+## Lede
+
+Settings that stay out of the way. Control, locked.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

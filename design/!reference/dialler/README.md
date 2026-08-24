@@ -1,5 +1,9 @@
 # Voice / dialler
 
+## Lede
+
+Call from your number. Own-channel, not a demo farm.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

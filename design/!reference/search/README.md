@@ -1,5 +1,9 @@
 # Search & smart views
 
+## Lede
+
+Find the people you already have in mind.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

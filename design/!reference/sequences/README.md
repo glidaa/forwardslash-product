@@ -1,5 +1,9 @@
 # Sequences
 
+## Lede
+
+Steps that send, dial, and book. Activation before volume.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

@@ -1,5 +1,9 @@
 # Pages
 
+## Lede
+
+Build a page. Share the link. A free door, about ten minutes.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

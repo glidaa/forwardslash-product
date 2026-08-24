@@ -1,5 +1,9 @@
 # Files
 
+## Lede
+
+Link-share stays free. Serious uploads when you pay.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

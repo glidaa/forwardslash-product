@@ -1,5 +1,9 @@
 # Reports
 
+## Lede
+
+Measure what ran and what booked. Proof over adjectives.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

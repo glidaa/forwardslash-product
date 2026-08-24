@@ -1,5 +1,9 @@
 # AI assistant
 
+## Lede
+
+Assist the work. It does not run the firm.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

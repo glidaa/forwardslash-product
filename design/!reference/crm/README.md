@@ -1,5 +1,9 @@
 # Companies & contacts
 
+## Lede
+
+The people you already know, in one book. No CRM theatre.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

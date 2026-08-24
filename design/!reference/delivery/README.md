@@ -1,5 +1,9 @@
 # Projects / delivery
 
+## Lede
+
+Carry the promise through. Same people, same workspace.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

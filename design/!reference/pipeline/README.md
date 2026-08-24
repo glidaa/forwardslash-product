@@ -1,5 +1,9 @@
 # Pipeline
 
+## Lede
+
+First touch to booked meeting, visible. Opportunities without the noise.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

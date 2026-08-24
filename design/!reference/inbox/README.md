@@ -1,5 +1,9 @@
 # Shared inbox
 
+## Lede
+
+Your mailbox, shared with the firm. Reply from channels you own, not a send farm.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

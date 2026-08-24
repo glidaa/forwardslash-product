@@ -1,5 +1,9 @@
 # Targets
 
+## Lede
+
+Who you are after: named, not a vanity dashboard.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

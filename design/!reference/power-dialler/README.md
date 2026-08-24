@@ -1,5 +1,9 @@
 # Power dialler
 
+## Lede
+
+When the list is long. Escalate seats when this seam is needed.
+
 Smart-view queue, pacing, scripts, compliance wash.
 
 ## Videos / flows

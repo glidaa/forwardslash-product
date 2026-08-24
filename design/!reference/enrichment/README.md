@@ -1,5 +1,9 @@
 # Enrichment
 
+## Lede
+
+Fill the gaps on the list. Keep control.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.

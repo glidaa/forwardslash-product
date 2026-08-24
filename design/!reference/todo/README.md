@@ -1,5 +1,9 @@
 # To-do / work
 
+## Lede
+
+Next actions on the people that matter. No admin hire.
+
 ## Videos / flows
 
 Mobbin flows play like short product videos on mobbin.com.
