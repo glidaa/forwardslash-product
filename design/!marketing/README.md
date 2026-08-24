@@ -28,6 +28,8 @@ Start free. Do one job.
 | `05-ads.md` | Search RSA, LinkedIn, 15s cutdown |
 | `06-founder-intake.md` | Michael’s raw brief (journey, old Free/Paid table, questionnaire) |
 | `06-brand-answers.md` | Full answers in locked voice (intake vs SoT) |
+| `07-scripts-v1-archive.md` | First 13 scripts (task-app era) — do not ship |
+| `08-scripts-v2.md` | Same 13 angles, current product, Prism visuals |
 
 ## Rules
 
