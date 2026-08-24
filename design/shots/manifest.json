@@ -1,0 +1,324 @@
+{
+  "inbox": [
+    {
+      "file": "inbox/intercom-inbox-search-results.jpg",
+      "app": "Intercom",
+      "title": "Intercom inbox conversation search results",
+      "url": "https://mobbin.com/screens/f86259e4-e830-41ce-bb82-5bf6cf7ebfe3"
+    },
+    {
+      "file": "inbox/intercom-inbox-conversation-thread.jpg",
+      "app": "Intercom",
+      "title": "Intercom inbox conversation list and thread with Copilot",
+      "url": "https://mobbin.com/screens/f726bb63-e1da-4583-8ad6-957b90047812"
+    }
+  ],
+  "campaigns": [
+    {
+      "file": "campaigns/hubspot-email-campaign-analyze.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot marketing email analyze dashboard",
+      "url": "https://mobbin.com/screens/f9d18635-470a-4e53-8286-20bddba1fd26"
+    },
+    {
+      "file": "campaigns/hubspot-lead-generation-campaign-steps.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot lead generation campaign steps checklist",
+      "url": "https://mobbin.com/screens/f37edec7-7e6c-4ad5-86fd-32298440e475"
+    }
+  ],
+  "sequences": [
+    {
+      "file": "sequences/hubspot-deals-pipeline-board.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot deals board (sequence search adjacent)",
+      "url": "https://mobbin.com/screens/fedd9c09-b271-46a7-819c-956f51723a30"
+    },
+    {
+      "file": "sequences/hubspot-journey-stage-template.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot journey stage template workflow builder",
+      "url": "https://mobbin.com/screens/f0b56e4b-6fcb-4ad9-8627-e53bbcc172bf"
+    }
+  ],
+  "dialler": [
+    {
+      "file": "dialler/dialpad-call-workspace-ringing.jpg",
+      "app": "Dialpad",
+      "title": "Dialpad call workspace ringing (Close CRM not in Mobbin)",
+      "url": "https://mobbin.com/screens/de94489f-6011-4908-b235-9232e2c6ffcf"
+    },
+    {
+      "file": "dialler/whatsapp-phone-number-dialer.jpg",
+      "app": "WhatsApp",
+      "title": "WhatsApp phone number dialer keypad",
+      "url": "https://mobbin.com/screens/8c24f812-78db-4e67-8daa-9df1197df153"
+    }
+  ],
+  "crm": [
+    {
+      "file": "crm/hubspot-contacts-table-bulk-actions.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot contacts CRM table with bulk actions",
+      "url": "https://mobbin.com/screens/fedf5525-727c-4f83-92d8-9ebc647363d4"
+    },
+    {
+      "file": "crm/hubspot-contacts-table-columns.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot contacts table with custom columns",
+      "url": "https://mobbin.com/screens/fda933f9-54cd-4c36-8a26-e88c6e37a198"
+    }
+  ],
+  "pipeline": [
+    {
+      "file": "pipeline/hubspot-deals-pipeline-board.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot deals pipeline Kanban board",
+      "url": "https://mobbin.com/screens/fedd9c09-b271-46a7-819c-956f51723a30"
+    },
+    {
+      "file": "pipeline/hubspot-deals-list-detail-panel.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot deals list with detail side panel",
+      "url": "https://mobbin.com/screens/fe6fcfe5-0785-4c91-b767-199cfe3c33f8"
+    }
+  ],
+  "meetings": [
+    {
+      "file": "meetings/calcom-booking-appearance-settings.jpg",
+      "app": "Cal.com",
+      "title": "Cal.com booking appearance settings",
+      "url": "https://mobbin.com/screens/fd8c9786-5b82-40c8-9606-65089d8b82e7"
+    },
+    {
+      "file": "meetings/calcom-bookings-dashboard.jpg",
+      "app": "Cal.com",
+      "title": "Cal.com bookings dashboard upcoming list",
+      "url": "https://mobbin.com/screens/fd4c646c-4064-4ce1-8395-ec0142e334a9"
+    }
+  ],
+  "reporting": [
+    {
+      "file": "reporting/intercom-reports-overview.jpg",
+      "app": "Intercom",
+      "title": "Intercom reports overview dashboard",
+      "url": "https://mobbin.com/screens/fe74239a-4feb-4689-833a-f569809d0eb2"
+    },
+    {
+      "file": "reporting/intercom-conversations-report.jpg",
+      "app": "Intercom",
+      "title": "Intercom conversations custom report metrics",
+      "url": "https://mobbin.com/screens/fd34b126-acf8-450e-aecc-9de1a254526c"
+    }
+  ],
+  "todo": [
+    {
+      "file": "todo/linear-issues-backlog-list.jpg",
+      "app": "Linear",
+      "title": "Linear issues backlog list",
+      "url": "https://mobbin.com/screens/fd1b4d88-f021-49a3-98af-4cd3a87e1d29"
+    },
+    {
+      "file": "todo/linear-issues-kanban-board.jpg",
+      "app": "Linear",
+      "title": "Linear issues Kanban board",
+      "url": "https://mobbin.com/screens/fc208a44-dbf9-4f79-b9b0-db57f9840964"
+    }
+  ],
+  "enrichment": [
+    {
+      "file": "enrichment/apollo-people-search-results.jpg",
+      "app": "Apollo",
+      "title": "Apollo people search results table",
+      "url": "https://mobbin.com/screens/d417b6f0-1d04-4105-8eb9-4454ba9f2dd8"
+    },
+    {
+      "file": "enrichment/apollo-people-search-ai-research.jpg",
+      "app": "Apollo",
+      "title": "Apollo people search with AI research panel",
+      "url": "https://mobbin.com/screens/4ff9e289-58d0-43fe-8b73-15fa6e1d2661"
+    }
+  ],
+  "list-building": [
+    {
+      "file": "list-building/apollo-my-lists.jpg",
+      "app": "Apollo",
+      "title": "Apollo My lists saved audiences",
+      "url": "https://mobbin.com/screens/685a187b-ef05-40b4-b4b3-c19ef1ba91f1"
+    },
+    {
+      "file": "list-building/apollo-new-list-create.jpg",
+      "app": "Apollo",
+      "title": "Apollo new list create panel",
+      "url": "https://mobbin.com/screens/39bb09f4-c1cd-4608-95d6-0e5d4b3c5a49"
+    }
+  ],
+  "ai": [
+    {
+      "file": "ai/intercom-ai-compose-copilot.jpg",
+      "app": "Intercom",
+      "title": "Intercom Fin AI Compose copilot menu in inbox",
+      "url": "https://mobbin.com/screens/f34aac0a-8fef-401c-bad6-ee5d584c2d3f"
+    },
+    {
+      "file": "ai/intercom-fin-ai-compose-draft.jpg",
+      "app": "Intercom",
+      "title": "Intercom Fin AI compose draft reply in inbox",
+      "url": "https://mobbin.com/screens/263e8cd0-fe59-4845-b7db-b0b6e957d292"
+    }
+  ],
+  "search": [
+    {
+      "file": "search/linear-search-command-palette.jpg",
+      "app": "Linear",
+      "title": "Linear search command palette empty state",
+      "url": "https://mobbin.com/screens/dba91946-d147-4b2f-ad92-4195eae017fc"
+    },
+    {
+      "file": "search/linear-search-no-results.jpg",
+      "app": "Linear",
+      "title": "Linear search no results state",
+      "url": "https://mobbin.com/screens/d0b98680-66e2-47d4-9dc4-28bc9450c27f"
+    }
+  ],
+  "overview": [
+    {
+      "file": "overview/intercom-overview-dashboard.jpg",
+      "app": "Intercom",
+      "title": "Intercom reports overview dashboard today",
+      "url": "https://mobbin.com/screens/fe74239a-4feb-4689-833a-f569809d0eb2"
+    },
+    {
+      "file": "overview/intercom-conversations-metrics.jpg",
+      "app": "Intercom",
+      "title": "Intercom conversations metrics overview",
+      "url": "https://mobbin.com/screens/fd34b126-acf8-450e-aecc-9de1a254526c"
+    }
+  ],
+  "sms": [
+    {
+      "file": "sms/intercom-inbox-whatsapp-phone-channels.jpg",
+      "app": "Intercom",
+      "title": "Intercom inbox with WhatsApp and Phone SMS channels",
+      "url": "https://mobbin.com/screens/f726bb63-e1da-4583-8ad6-957b90047812"
+    },
+    {
+      "file": "sms/intercom-inbox-channel-views.jpg",
+      "app": "Intercom",
+      "title": "Intercom inbox channel views including WhatsApp Social",
+      "url": "https://mobbin.com/screens/f86259e4-e830-41ce-bb82-5bf6cf7ebfe3"
+    }
+  ],
+  "admin": [
+    {
+      "file": "admin/hubspot-users-and-teams.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot settings Users and Teams list",
+      "url": "https://mobbin.com/screens/5f3b8bde-0ccf-4c4f-b47d-fbf7c133663a"
+    },
+    {
+      "file": "admin/hubspot-review-user-access.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot create user review access step",
+      "url": "https://mobbin.com/screens/7dcdc455-fad7-429b-a533-f4cbbc59a5e8"
+    }
+  ],
+  "integrations": [
+    {
+      "file": "integrations/hubspot-app-marketplace-list.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot App Marketplace connected apps list",
+      "url": "https://mobbin.com/screens/33c0dc66-497b-4265-be00-5d48f1ccfabf"
+    },
+    {
+      "file": "integrations/hubspot-app-marketplace-home.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot App Marketplace home with featured apps",
+      "url": "https://mobbin.com/screens/4b809fcf-23bc-4ea8-abc3-c22e57566c6b"
+    }
+  ],
+  "pages": [
+    {
+      "file": "pages/notion-page-editor-document.jpg",
+      "app": "Notion",
+      "title": "Notion page editor document",
+      "url": "https://mobbin.com/screens/fec09ec2-fba4-45b2-98ad-28e6366bd642"
+    },
+    {
+      "file": "pages/notion-page-icon-emoji-picker.jpg",
+      "app": "Notion",
+      "title": "Notion page editor with icon emoji picker",
+      "url": "https://mobbin.com/screens/fb444dc7-3d55-4361-8c3a-f23d9d285096"
+    }
+  ],
+  "files": [
+    {
+      "file": "files/notion-file-upload-choose.jpg",
+      "app": "Notion",
+      "title": "Notion file attachment upload choose a file",
+      "url": "https://mobbin.com/screens/9af6bf1f-bb50-4c01-8549-51ab74bb263a"
+    },
+    {
+      "file": "files/notion-video-upload-choose.jpg",
+      "app": "Notion",
+      "title": "Notion video upload choose a video",
+      "url": "https://mobbin.com/screens/694c9fac-97d6-4007-8880-18cac3e67d7e"
+    }
+  ],
+  "targets": [
+    {
+      "file": "targets/hubspot-sales-forecast-deals-goals.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot sales forecast deals and goals panel",
+      "url": "https://mobbin.com/screens/a3e75dc0-943c-4042-b268-b2f6dcc282f3"
+    },
+    {
+      "file": "targets/hubspot-sales-forecast-category.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot sales forecast by category with goals",
+      "url": "https://mobbin.com/screens/a48de990-0bbf-4ca8-83c1-768cbfcf2f07"
+    }
+  ],
+  "delivery": [
+    {
+      "file": "delivery/linear-projects-roadmap-timeline.jpg",
+      "app": "Linear",
+      "title": "Linear projects roadmap timeline",
+      "url": "https://mobbin.com/screens/ff10ed29-1def-41a3-9159-78bf0d2214da"
+    },
+    {
+      "file": "delivery/linear-project-milestones-overview.jpg",
+      "app": "Linear",
+      "title": "Linear project milestones overview",
+      "url": "https://mobbin.com/screens/fb59ac32-54a6-4539-8a03-450addb61b6d"
+    }
+  ],
+  "campaign-approval": [
+    {
+      "file": "campaign-approval/hubspot-review-publish-campaign.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot review and publish campaign modal",
+      "url": "https://mobbin.com/screens/fddf4269-c45d-47b3-a0f0-9f59043af833"
+    },
+    {
+      "file": "campaign-approval/hubspot-email-create-task-review.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot campaign email create task review panel",
+      "url": "https://mobbin.com/screens/fdd4bb08-5a20-4440-b584-fa9188761f05"
+    }
+  ],
+  "power-dialler": [
+    {
+      "file": "power-dialler/elevenlabs-batch-calling-queue.jpg",
+      "app": "ElevenLabs",
+      "title": "ElevenLabs batch calling queue (Close power dialer not in Mobbin)",
+      "url": "https://mobbin.com/screens/b832d746-445e-48cf-824c-18aacb14c32c"
+    },
+    {
+      "file": "power-dialler/hubspot-tasks-start-queue.jpg",
+      "app": "HubSpot",
+      "title": "HubSpot tasks start queue for call sequences",
+      "url": "https://mobbin.com/screens/1fb28800-2b47-4956-8782-949d73340cfe"
+    }
+  ]
+}
