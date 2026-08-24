@@ -15,7 +15,7 @@
 
   function load(href, push) {
     if (!href || !frame) return;
-    frame.src = href;
+    frame.src = href.replace(/\.html$/,'');
     setActive(href);
     const next = "#" + encodeURIComponent(href);
     if (push) history.pushState(null, "", next);
