@@ -7,15 +7,33 @@
     return h ? decodeURIComponent(h) : "";
   }
 
+  function stripHtmlExt(href) {
+    return href.replace(/\.html(?=(\?|#|$))/i, "");
+  }
+
+  function toFrameSrc(href) {
+    if (!href) return href;
+    const trimmed = href.trim();
+    if (/^(pages\/)?md(\.html)?(\?|#|$)/i.test(trimmed)) {
+      return stripHtmlExt(trimmed.replace(/^(md)(\.html)?/i, "pages/md$2"));
+    }
+    const pathOnly = trimmed.split("#")[0].split("?")[0];
+    if (/\.md$/i.test(pathOnly)) {
+      return "pages/md?src=" + encodeURIComponent(pathOnly);
+    }
+    return stripHtmlExt(trimmed);
+  }
+
   function setActive(href) {
     rail.querySelectorAll("a").forEach((a) => {
-      a.classList.toggle("active", a.getAttribute("data-src") === href);
+      const src = a.getAttribute("data-src");
+      a.classList.toggle("active", src === href || toFrameSrc(src) === toFrameSrc(href));
     });
   }
 
   function load(href, push) {
     if (!href || !frame) return;
-    frame.src = href.replace(/\.html$/,'');
+    frame.src = toFrameSrc(href);
     setActive(href);
     const next = "#" + encodeURIComponent(href);
     if (push) history.pushState(null, "", next);

@@ -5,38 +5,43 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Features</title>
   <link rel="stylesheet" href="../style.css">
+  <style>
+    a.landing-card { color: inherit; }
+    a.landing-card p { color: #666; margin: 10px 0 0; }
+    a.landing-card .route { margin-top: auto; padding-top: 16px; color: #888; font-size: 11px; }
+  </style>
 </head>
 <body>
   <div class="wrap hero">
     <div class="eyebrow">Product surfaces</div>
     <h1>Features.</h1>
-    <p class="lede">23 surfaces. Each folder has our take plus Mobbin comps. Drop more HTML under pages/ and add a line to menu.html.</p>
+    <p class="lede">23 surfaces. Our take, then the rendered reference page. Cards open the book viewer, not a raw download.</p>
   </div>
   <section class="section">
     <div class="wrap landing-grid">
-<a class="card" href="../design/!reference/overview/README.md"><span class="num">01</span><h3>Overview / Today</h3><p>/overview</p></a>
-<a class="card" href="../design/!reference/inbox/README.md"><span class="num">02</span><h3>Shared inbox</h3><p>/inbox</p></a>
-<a class="card" href="../design/!reference/crm/README.md"><span class="num">03</span><h3>Companies & contacts</h3><p>/companies, /contacts</p></a>
-<a class="card" href="../design/!reference/campaigns/README.md"><span class="num">04</span><h3>Campaigns</h3><p>/campaigns</p></a>
-<a class="card" href="../design/!reference/campaign-approval/README.md"><span class="num">05</span><h3>Campaign approval desk</h3><p>campaign detail / approval UI</p></a>
-<a class="card" href="../design/!reference/sequences/README.md"><span class="num">06</span><h3>Sequences</h3><p>/sequences</p></a>
-<a class="card" href="../design/!reference/pipeline/README.md"><span class="num">07</span><h3>Pipeline</h3><p>/opportunities</p></a>
-<a class="card" href="../design/!reference/targets/README.md"><span class="num">08</span><h3>Targets</h3><p>/targets</p></a>
-<a class="card" href="../design/!reference/todo/README.md"><span class="num">09</span><h3>To-do / work</h3><p>/todo</p></a>
-<a class="card" href="../design/!reference/pages/README.md"><span class="num">10</span><h3>Pages</h3><p>/pages</p></a>
-<a class="card" href="../design/!reference/meetings/README.md"><span class="num">11</span><h3>Meetings & booking</h3><p>meetings / booking pages</p></a>
-<a class="card" href="../design/!reference/dialler/README.md"><span class="num">12</span><h3>Voice / dialler</h3><p>dialler</p></a>
-<a class="card" href="../design/!reference/power-dialler/README.md"><span class="num">13</span><h3>Power dialler</h3><p>power dialler</p></a>
-<a class="card" href="../design/!reference/sms/README.md"><span class="num">14</span><h3>SMS</h3><p>SMS</p></a>
-<a class="card" href="../design/!reference/reporting/README.md"><span class="num">15</span><h3>Reports</h3><p>/reports</p></a>
-<a class="card" href="../design/!reference/search/README.md"><span class="num">16</span><h3>Search & smart views</h3><p>⌘K / smart views</p></a>
-<a class="card" href="../design/!reference/enrichment/README.md"><span class="num">17</span><h3>Enrichment</h3><p>Intelligence</p></a>
-<a class="card" href="../design/!reference/list-building/README.md"><span class="num">18</span><h3>List building</h3><p>lists</p></a>
-<a class="card" href="../design/!reference/ai/README.md"><span class="num">19</span><h3>AI assistant</h3><p>AI / MCP</p></a>
-<a class="card" href="../design/!reference/delivery/README.md"><span class="num">20</span><h3>Projects / delivery</h3><p>projects in To-do</p></a>
-<a class="card" href="../design/!reference/integrations/README.md"><span class="num">21</span><h3>Integrations</h3><p>settings / integrations</p></a>
-<a class="card" href="../design/!reference/files/README.md"><span class="num">22</span><h3>Files</h3><p>files</p></a>
-<a class="card" href="../design/!reference/admin/README.md"><span class="num">23</span><h3>Admin & settings</h3><p>settings</p></a>
+      <a class="landing-card" href="md?src=design/!reference/overview/README.md"><span class="num">01</span><h3>Overview / Today</h3><p>Maps to /overview and TodayPanel.</p><span class="route">/overview</span></a>
+      <a class="landing-card" href="md?src=design/!reference/inbox/README.md"><span class="num">02</span><h3>Shared inbox</h3><p>Strongest inbox comps are Intercom. Close/Outreach rarely indexed for these queries.</p><span class="route">/inbox</span></a>
+      <a class="landing-card" href="md?src=design/!reference/crm/README.md"><span class="num">03</span><h3>Companies &amp; contacts</h3><p>Pipedrive is the strongest CRM list + company timeline set in Mobbin for these queries.</p><span class="route">/companies, /contacts</span></a>
+      <a class="landing-card" href="md?src=design/!reference/campaigns/README.md"><span class="num">04</span><h3>Campaigns</h3><p>HubSpot marketing email is the closest campaign list + overview + pre-send gate.</p><span class="route">/campaigns</span></a>
+      <a class="landing-card" href="md?src=design/!reference/campaign-approval/README.md"><span class="num">05</span><h3>Campaign approval desk</h3><p>Customer.io Approve/Change is the closest three-column approval desk. HubSpot comment mode covers dossier-style review.</p><span class="route">campaign detail / approval UI</span></a>
+      <a class="landing-card" href="md?src=design/!reference/sequences/README.md"><span class="num">06</span><h3>Sequences</h3><p>Apollo + HubSpot cover Outreach-class sequence UX. Juicebox rarely indexed.</p><span class="route">/sequences</span></a>
+      <a class="landing-card" href="md?src=design/!reference/pipeline/README.md"><span class="num">07</span><h3>Pipeline</h3><p>Maps to /opportunities. HubSpot drag + Pipedrive board are the core comps.</p><span class="route">/opportunities</span></a>
+      <a class="landing-card" href="md?src=design/!reference/targets/README.md"><span class="num">08</span><h3>Targets</h3><p>Maps to /targets. HubSpot goals/forecast are the best comps found.</p><span class="route">/targets</span></a>
+      <a class="landing-card" href="md?src=design/!reference/todo/README.md"><span class="num">09</span><h3>To-do / work</h3><p>Linear is the best task/board reference for /todo. Projects live inside To-do in the product.</p><span class="route">/todo</span></a>
+      <a class="landing-card" href="md?src=design/!reference/pages/README.md"><span class="num">10</span><h3>Pages</h3><p>Typeform for forms; Webflow for landing+form. Still light on full landing-page marketing comps.</p><span class="route">/pages</span></a>
+      <a class="landing-card" href="md?src=design/!reference/meetings/README.md"><span class="num">11</span><h3>Meetings &amp; booking</h3><p>Cal.com is the clearest booking/availability reference.</p><span class="route">meetings / booking pages</span></a>
+      <a class="landing-card" href="md?src=design/!reference/dialler/README.md"><span class="num">12</span><h3>Voice / dialler</h3><p>Also mirrors power-dialler queue patterns. Copy strong queue refs into power-dialler later.</p><span class="route">dialler</span></a>
+      <a class="landing-card" href="md?src=design/!reference/power-dialler/README.md"><span class="num">13</span><h3>Power dialler</h3><p>Smart-view queue, pacing, scripts, compliance wash.</p><span class="route">power dialler</span></a>
+      <a class="landing-card" href="md?src=design/!reference/sms/README.md"><span class="num">14</span><h3>SMS</h3><p>Intercom 2-way SMS + WhatsApp chrome as channel messaging comps.</p><span class="route">SMS</span></a>
+      <a class="landing-card" href="md?src=design/!reference/reporting/README.md"><span class="num">15</span><h3>Reports</h3><p>Maps to /reports. Pipedrive Insights + Salesforce widgets are the main comps.</p><span class="route">/reports</span></a>
+      <a class="landing-card" href="md?src=design/!reference/search/README.md"><span class="num">16</span><h3>Search &amp; smart views</h3><p>Maps to CommandPalette / SearchBox / SmartViewsRail in the app shell.</p><span class="route">⌘K / smart views</span></a>
+      <a class="landing-card" href="md?src=design/!reference/enrichment/README.md"><span class="num">17</span><h3>Enrichment</h3><p>Apollo is the primary Intelligence-pack reference.</p><span class="route">Intelligence</span></a>
+      <a class="landing-card" href="md?src=design/!reference/list-building/README.md"><span class="num">18</span><h3>List building</h3><p>Apollo lists + Clay tables are the strongest list-building comps; Optimal Workshop for filter criteria.</p><span class="route">lists</span></a>
+      <a class="landing-card" href="md?src=design/!reference/ai/README.md"><span class="num">19</span><h3>AI assistant</h3><p>Intercom Fin/Copilot is the clearest in-product AI assistant pattern.</p><span class="route">AI / MCP</span></a>
+      <a class="landing-card" href="md?src=design/!reference/delivery/README.md"><span class="num">20</span><h3>Projects / delivery</h3><p>Linear milestones/roadmap for campaign-to-delivery. Lives inside To-do in product language.</p><span class="route">projects in To-do</span></a>
+      <a class="landing-card" href="md?src=design/!reference/integrations/README.md"><span class="num">21</span><h3>Integrations</h3><p>HubSpot Apps/Connected Apps for marketplace + installed integrations.</p><span class="route">settings / integrations</span></a>
+      <a class="landing-card" href="md?src=design/!reference/files/README.md"><span class="num">22</span><h3>Files</h3><p>Notion file blocks as attachment/library comps. Still light on dedicated DAM.</p><span class="route">files</span></a>
+      <a class="landing-card" href="md?src=design/!reference/admin/README.md"><span class="num">23</span><h3>Admin &amp; settings</h3><p>HubSpot settings/roles are the clearest admin comps.</p><span class="route">settings</span></a>
     </div>
   </section>
 </body>
