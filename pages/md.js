@@ -60,7 +60,8 @@
 
   var host = document.getElementById("md-host");
   var el = document.createElement("zero-md");
-  el.setAttribute("src", "../" + clean);
+  var url = "../" + clean.split("/").map(encodeURIComponent).join("/");
+  el.setAttribute("src", url);
 
   var tpl = document.createElement("template");
   tpl.setAttribute("data-append", "");
