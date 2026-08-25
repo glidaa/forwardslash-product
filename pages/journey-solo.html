@@ -5,19 +5,368 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Journey · Solo Sydney</title>
   <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Journey Solo — page frame. Tokens from style.css. Iframe-only (no second site header). */
+    body.js-page {
+      background: var(--paper);
+      color: var(--ink);
+    }
+    body.js-page .wrap {
+      width: min(920px, calc(100% - 40px));
+    }
+    body.js-page .section {
+      padding: 56px 0;
+      border-top: 1px solid var(--line);
+      background: transparent;
+    }
+    body.js-page h1,
+    body.js-page h2,
+    body.js-page h3 {
+      font-family: "Space Grotesk", sans-serif;
+    }
+    body.js-page .lede {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 38em;
+    }
+    body.js-page .eyebrow {
+      color: var(--muted);
+    }
+    body.js-page a {
+      text-underline-offset: 3px;
+    }
+
+    /* Hero: split black / paper. Giant machined slash. */
+    .js-hero {
+      display: grid;
+      grid-template-columns: minmax(132px, 36%) 1fr;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      min-height: min(58vh, 520px);
+    }
+    .js-slash-plate {
+      background: var(--black);
+      color: var(--paper);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .js-slash-plate::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid #2c2c2c;
+      pointer-events: none;
+    }
+    .js-slash {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: clamp(160px, 34vw, 380px);
+      line-height: .68;
+      letter-spacing: -.18em;
+      color: var(--paper);
+      user-select: none;
+      transform: translate(.02em, .04em);
+    }
+    .js-hero-copy {
+      padding: 56px 36px 48px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .js-hero-copy h1 {
+      font-size: clamp(34px, 4.6vw, 58px);
+      line-height: .96;
+      font-weight: 600;
+      letter-spacing: -.035em;
+      color: var(--black);
+      max-width: 9em;
+    }
+    .js-hero-copy .lede {
+      margin-top: 22px;
+      color: var(--ink);
+    }
+
+    /* Hairline plates (not wiki cards). */
+    body.js-page .card {
+      border-radius: 0;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 22px 22px 24px;
+      box-shadow: none;
+    }
+    body.js-page .card h3 {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+    body.js-page .card p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    body.js-page .grid2 {
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    body.js-page .grid2 > .card {
+      border: 0;
+      margin: 0;
+    }
+
+    /* Journey table: iframe-readable, first col as numeral. */
+    .js-journey .tablewrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      background: #fff;
+    }
+    .js-journey table {
+      width: 100%;
+      min-width: 0;
+      table-layout: fixed;
+      border-collapse: collapse;
+    }
+    .js-journey th,
+    .js-journey td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 12px;
+      line-height: 1.45;
+      word-wrap: break-word;
+      overflow-wrap: anywhere;
+    }
+    .js-journey th {
+      background: #fff;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--black);
+    }
+    .js-journey td:first-child,
+    .js-journey th:first-child {
+      width: 52px;
+      padding-left: 16px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -.04em;
+      line-height: 1;
+      color: var(--black);
+      overflow-wrap: normal;
+    }
+    .js-journey th:first-child {
+      font-size: 10px;
+      letter-spacing: .14em;
+    }
+    .js-journey tbody tr:last-child td {
+      border-bottom: 0;
+    }
+    .js-journey td {
+      color: var(--ink);
+    }
+
+    /* Price: one black plate. $108 is the object. Monthly recedes. */
+    .js-price {
+      background: var(--black);
+      color: var(--paper);
+      padding: 36px 32px 40px;
+      margin: 28px 0 16px;
+    }
+    .js-price-kicker {
+      margin: 0 0 18px;
+      color: #8a8a86;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .js-price-object {
+      margin: 0 0 22px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: clamp(72px, 14vw, 128px);
+      letter-spacing: -.06em;
+      line-height: .85;
+      color: var(--paper);
+    }
+    .js-price p {
+      margin: 0 0 12px;
+      max-width: 42em;
+      font-size: 14px;
+      line-height: 1.55;
+      color: #d8d8d2;
+    }
+    .js-price p:last-child {
+      margin-bottom: 0;
+    }
+    .js-price a {
+      color: var(--paper);
+    }
+    .js-price .js-tax {
+      color: #7a7a76;
+      font-size: 13px;
+    }
+    .js-lock {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .js-lock .card {
+      border: 0;
+    }
+    @media (min-width: 720px) {
+      .js-lock {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Letters as physical sheets, not wiki cards. */
+    .js-letters {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .js-letter {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 26px 28px 28px;
+    }
+    .js-letter-id {
+      margin: 0 0 18px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .js-letter-meta {
+      margin: 0 0 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      font-size: 10px;
+      line-height: 1.55;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .js-letter-meta span {
+      display: block;
+      margin: 0 0 2px;
+      color: var(--muted);
+    }
+    .js-letter-meta b {
+      display: block;
+      margin: 0 0 12px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: .1em;
+      text-transform: none;
+      font-size: 10px;
+    }
+    .js-letter-meta b:last-child {
+      margin-bottom: 0;
+    }
+    .js-letter-body {
+      font-family: Inter, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .js-letter-body p {
+      margin: 0 0 12px;
+    }
+    .js-letter-body p:last-child {
+      margin-bottom: 0;
+    }
+    .js-letter .note {
+      margin: 18px 0 0;
+      padding: 14px 0 0;
+      border: 0;
+      border-top: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .js-foot {
+      margin-top: 22px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    body.js-page .actions {
+      margin-top: 28px;
+    }
+    body.js-page .btn {
+      border-radius: 0;
+    }
+
+    @media (max-width: 760px) {
+      .js-hero {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .js-slash-plate {
+        height: 168px;
+      }
+      .js-slash {
+        font-size: 168px;
+      }
+      .js-hero-copy {
+        padding: 36px 22px 40px;
+      }
+      body.js-page .wrap {
+        width: min(100% - 28px, 920px);
+      }
+      .js-letter {
+        padding: 22px 18px 24px;
+      }
+      .js-price {
+        padding: 28px 20px 32px;
+      }
+      .js-journey td:first-child,
+      .js-journey th:first-child {
+        font-size: 22px;
+        width: 40px;
+        padding-left: 10px;
+      }
+    }
+  </style>
 </head>
-<body>
-  <div class="wrap hero">
-    <div class="eyebrow">Journey 01 · Helvetia letters</div>
-    <h1>One person. Sydney. A startup.</h1>
-    <p class="lede">Not a five-seat buy. Hang: <strong>Start free. Do one job.</strong> Free is the membership. Solo annual is the polish (ads off + uploads). Monthly is the flexibility tax — never the letter. Letters below.</p>
-  </div>
+<body class="js-page">
+  <header class="js-hero">
+    <div class="js-slash-plate" aria-hidden="true"><span class="js-slash">/</span></div>
+    <div class="js-hero-copy">
+      <div class="eyebrow">Journey 01 · Helvetia letters</div>
+      <h1>One person.<br>Sydney.<br>A startup.</h1>
+      <p class="lede">Not a five-seat buy. Hang: <strong>Start free. Do one job.</strong> Free is the membership. Solo annual is the polish (ads off + uploads). Monthly is the flexibility tax — never the letter. Letters below.</p>
+    </div>
+  </header>
 
   <section class="section">
     <div class="wrap">
       <div class="eyebrow">Who</div>
       <h2>Solo operator, Sydney</h2>
-      <div class="grid2">
+      <div class="grid2" style="margin-top:28px">
         <article class="card"><h3>Person</h3><p>Founder. One human. Lives in Sydney. The firm is still mostly them. They write from their own mailbox. They call from their phone.</p></article>
         <article class="card"><h3>Not this journey</h3><p>Agency desk. Power dialler. Sequences at volume. Second seat. Paid CAC for Talk to us. That is Essentials / G4, later, if the firm grows.</p></article>
       </div>
@@ -29,7 +378,7 @@
       <div class="eyebrow">Get in</div>
       <h2>The ad</h2>
       <p class="lede">Campaign <strong>G1 Proof</strong> only. Geo Australia. Light budget. Do not scale. Do not buy $1–2k CAC for this person — Solo annual does not recover it. Conversion is a list loaded, not a signup.</p>
-      <div class="grid2">
+      <div class="grid2" style="margin-top:28px">
         <article class="card"><h3>Pin</h3><p>Start free. Do one job.<br>Load a list. Call from it.</p></article>
         <article class="card"><h3>Description</h3><p>No signup. Finish one job in about ten minutes. Load a list. Email. Call from your phone.</p></article>
         <article class="card"><h3>Land</h3><p><a href="../landing/02-upload-a-list.html">Upload a list</a>. Sitelink: <a href="doors.html">Free doors</a>. Never the .ch empty-state. Never gamma until the H1 is visible.</p></article>
@@ -38,11 +387,11 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section js-journey">
     <div class="wrap">
       <div class="eyebrow">Journey</div>
       <h2>One job, then polish</h2>
-      <div class="tablewrap">
+      <div class="tablewrap" style="margin-top:28px">
         <table>
           <thead><tr><th></th><th>They do</th><th>We talk about</th><th>Cash</th><th>Mail</th></tr></thead>
           <tbody>
@@ -61,9 +410,16 @@
     <div class="wrap">
       <div class="eyebrow">Feature · price · special · OTO</div>
       <h2>Locked for this person</h2>
-      <div class="grid2">
+      <article class="js-price">
+        <p class="js-price-kicker">Price</p>
+        <p class="js-price-object">$108</p>
+        <p><strong>Free</strong> is the membership: one job, no signup.</p>
+        <p><strong>Solo annual $9/mo billed yearly = $108</strong> USD, GST exclusive. Close Solo sticker. Checkout defaults to annual.</p>
+        <p class="js-tax"><strong>Solo monthly $19</strong> exists as the flexibility tax — never the hero, never discounted, never a paid-CAC target.</p>
+        <p>Full menu: <a href="pricing.html">Pricing</a>. Ads never lead with the number.</p>
+      </article>
+      <div class="js-lock">
         <article class="card"><h3>Feature (ad + first job)</h3><p>List. Mailbox send. Call from their phone. Booking page if they have meetings. Tasks and name search stay free. Caps: 1 list ≤500 rows, 1 public page, ads on, no file attachments. Not power dialler. Not sequences. Not enrichment at scale. Minutes / SMS metered if they call through us.</p></article>
-        <article class="card"><h3>Price</h3><p><strong>Free</strong> is the membership: one job, no signup.<br><strong>Solo annual $9/mo billed yearly = $108</strong> USD, GST exclusive. Close Solo sticker. Checkout defaults to annual.<br><strong>Solo monthly $19</strong> exists as the flexibility tax — never the hero, never discounted, never a paid-CAC target.<br>Full menu: <a href="pricing.html">Pricing</a>. Ads never lead with the number.</p></article>
         <article class="card"><h3>Special</h3><p>None on the sticker. No cheaper-than-Close. No fake trial countdown. No 24-for-14 (Essentials/Growth team only).<br>The special is endowment: they already did the job before they pay. After they add email, annual is pre-selected for 72h. That is the window. Then full Solo annual.</p></article>
         <article class="card"><h3>OTO / upsell</h3><p><strong>OTO at the wall:</strong> ads off + file uploads = Solo annual $108. One offer. No $990 launch bump on this journey (too heavy for one founder from a G1 click).<br><strong>Not from this ad:</strong> Essentials, Scale, Talk to us, founding team carts, power dialler.<br><strong>If a second seat appears:</strong> leave this page. That is Essentials annual (3–5 seats). Different journey. Do not upsell it from G1.</p></article>
       </div>
@@ -82,46 +438,78 @@
     <div class="wrap">
       <div class="eyebrow">Emails that follow · Helvetia</div>
       <h2>Five letters. Same hang. Stop if they go quiet.</h2>
-      <article class="card">
-        <h3>A1 · Clicked, no list</h3>
-        <p><strong>Subject:</strong> Outbound from your mailbox — not a send farm<br>
-        <strong>Preview:</strong> Load a list. Email. Call from your phone.</p>
-        <p>Most outbound tools send from somewhere you don’t control.</p>
-        <p>Forwardslash runs from your mailbox and your phone. One list. About ten minutes. No signup.</p>
-        <p>Start free. Do one job.</p>
-        <p class="note">Button: Start free → Upload a list. No second CTA.</p>
-      </article>
-      <article class="card">
-        <h3>A2 · Day 3</h3>
-        <p><strong>Subject:</strong> One job. About ten minutes.<br>
-        <strong>Preview:</strong> Load a list. Call from your phone.</p>
-        <p>You don’t need a workspace tour.</p>
-        <p>Load a list. Send or dial from your own number. Keep the artifact.</p>
-        <p>Start free. Do one job.</p>
-      </article>
-      <article class="card">
-        <h3>B1 · List live · same day</h3>
-        <p><strong>Subject:</strong> Your list is live.<br>
-        <strong>Preview:</strong> Ten sends or dials from your number.</p>
-        <p>Next is small: ten emails from your mailbox, or ten calls from your phone.</p>
-        <p>When a reply comes in, it stays on the contact.</p>
-      </article>
-      <article class="card">
-        <h3>B2 / C1 · Booking</h3>
-        <p><strong>Subject:</strong> Share a page with who replied.<br>
-        <strong>Preview:</strong> First touch to a booked meeting.</p>
-        <p>A list that doesn’t book is still a spreadsheet.</p>
-        <p>Build a booking page. Copy the link. Send it from your mailbox. When they pick a slot, the email goes out from you.</p>
-      </article>
-      <article class="card">
-        <h3>G1 · Paywall</h3>
-        <p><strong>Subject:</strong> Keep the work. Pay for polish.<br>
-        <strong>Preview:</strong> Ads off. Files that aren’t a link.</p>
-        <p>You already did the job. Pay when you want clean send — ads off — and uploads that aren’t a shared link.</p>
-        <p>Solo annual is the honest default. Monthly is the flexibility tax, not the offer.</p>
-        <p class="note">Button: Unlock polish → checkout annual. Never headline $19/mo. Never Talk to us on this journey unless they ask. Stickers: Pricing pack (Solo annual $108).</p>
-      </article>
-      <p class="note">A-sequence: stop after A2 if they never load a list (A3 already on Emails: we’ll leave this here). No fourth “just checking in.” No Talk to us from G1. Full library: <a href="emails.html">Emails</a>.</p>
+      <div class="js-letters">
+        <article class="js-letter">
+          <p class="js-letter-id">A1 · Clicked, no list</p>
+          <div class="js-letter-meta">
+            <span>Subject</span>
+            <b>Outbound from your mailbox — not a send farm</b>
+            <span>Preview</span>
+            <b>Load a list. Email. Call from your phone.</b>
+          </div>
+          <div class="js-letter-body">
+            <p>Most outbound tools send from somewhere you don’t control.</p>
+            <p>Forwardslash runs from your mailbox and your phone. One list. About ten minutes. No signup.</p>
+            <p>Start free. Do one job.</p>
+          </div>
+          <p class="note">Button: Start free → Upload a list. No second CTA.</p>
+        </article>
+        <article class="js-letter">
+          <p class="js-letter-id">A2 · Day 3</p>
+          <div class="js-letter-meta">
+            <span>Subject</span>
+            <b>One job. About ten minutes.</b>
+            <span>Preview</span>
+            <b>Load a list. Call from your phone.</b>
+          </div>
+          <div class="js-letter-body">
+            <p>You don’t need a workspace tour.</p>
+            <p>Load a list. Send or dial from your own number. Keep the artifact.</p>
+            <p>Start free. Do one job.</p>
+          </div>
+        </article>
+        <article class="js-letter">
+          <p class="js-letter-id">B1 · List live · same day</p>
+          <div class="js-letter-meta">
+            <span>Subject</span>
+            <b>Your list is live.</b>
+            <span>Preview</span>
+            <b>Ten sends or dials from your number.</b>
+          </div>
+          <div class="js-letter-body">
+            <p>Next is small: ten emails from your mailbox, or ten calls from your phone.</p>
+            <p>When a reply comes in, it stays on the contact.</p>
+          </div>
+        </article>
+        <article class="js-letter">
+          <p class="js-letter-id">B2 / C1 · Booking</p>
+          <div class="js-letter-meta">
+            <span>Subject</span>
+            <b>Share a page with who replied.</b>
+            <span>Preview</span>
+            <b>First touch to a booked meeting.</b>
+          </div>
+          <div class="js-letter-body">
+            <p>A list that doesn’t book is still a spreadsheet.</p>
+            <p>Build a booking page. Copy the link. Send it from your mailbox. When they pick a slot, the email goes out from you.</p>
+          </div>
+        </article>
+        <article class="js-letter">
+          <p class="js-letter-id">G1 · Paywall</p>
+          <div class="js-letter-meta">
+            <span>Subject</span>
+            <b>Keep the work. Pay for polish.</b>
+            <span>Preview</span>
+            <b>Ads off. Files that aren’t a link.</b>
+          </div>
+          <div class="js-letter-body">
+            <p>You already did the job. Pay when you want clean send — ads off — and uploads that aren’t a shared link.</p>
+            <p>Solo annual is the honest default. Monthly is the flexibility tax, not the offer.</p>
+          </div>
+          <p class="note">Button: Unlock polish → checkout annual. Never headline $19/mo. Never Talk to us on this journey unless they ask. Stickers: Pricing pack (Solo annual $108).</p>
+        </article>
+      </div>
+      <p class="note js-foot">A-sequence: stop after A2 if they never load a list (A3 already on Emails: we’ll leave this here). No fourth “just checking in.” No Talk to us from G1. Full library: <a href="emails.html">Emails</a>.</p>
       <div class="actions">
         <a class="btn dark" href="ads-plan.html">Ads plan</a>
         <a class="btn" href="emails.html">Emails</a>
