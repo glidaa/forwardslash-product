@@ -3,477 +3,122 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>forwardslash.ch — Pricing (Close parity)</title>
+  <title>Pricing — forwardslash.ch</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --black: #080808;
-      --ink: #151515;
-      --white: #fff;
-      --paper: #f6f6f3;
-      --line: #deded9;
-      --muted: #686864;
-      --max: 1280px;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--white);
-      color: var(--ink);
-      font: 14px/1.55 Inter, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-
-    /* Sticky top — product book .top */
-    .top {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      height: 64px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, .95);
-      backdrop-filter: blur(12px);
-    }
-    .topin {
-      width: min(var(--max), calc(100% - 36px));
-      height: 100%;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      font: 600 17px Space Grotesk, sans-serif;
-    }
-    .brand .slash { font-size: 28px; }
-    .brand em { font-style: normal; color: #999; }
-    .top-meta {
-      margin-left: auto;
-      color: #888;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .wrap {
-      width: min(1120px, calc(100% - 48px));
-      margin: auto;
-      padding: 56px 0 40px;
-    }
-
-    .eyebrow {
-      margin-bottom: 15px;
-      color: #888;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .17em;
-      text-transform: uppercase;
-    }
-    h1 {
-      margin: 0;
-      font-family: Space Grotesk, sans-serif;
-      font-size: clamp(43px, 6vw, 76px);
-      line-height: .98;
-      font-weight: 600;
-      letter-spacing: -.035em;
-      text-wrap: balance;
-    }
-    .lede {
-      max-width: 740px;
-      margin: 20px 0 0;
-      color: #666;
-      font-size: 17px;
-    }
-
-    /* Billing toggle — pill, black active (book-tabs) */
-    .toggle-wrap {
-      position: sticky;
-      top: 64px;
-      z-index: 20;
-      padding: 18px 0 8px;
-      background: linear-gradient(#fff 70%, rgba(255,255,255,0));
-      margin-top: 28px;
-    }
-    .toggle {
-      display: inline-flex;
-      gap: 4px;
-      padding: 4px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--paper);
-    }
-    .toggle button {
-      border: 0;
-      background: transparent;
-      padding: 8px 16px;
-      border-radius: 999px;
-      cursor: pointer;
-      font: 600 12px Inter, Arial, sans-serif;
-      color: var(--muted);
-      min-height: 36px;
-    }
-    .toggle button.active {
-      background: #111;
-      color: #fff;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .plan {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 100%;
-    }
-    .plan.free { background: var(--paper); }
-    .plan.featured {
-      border-color: #111;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
-    }
-
-    .name {
-      font-family: Space Grotesk, sans-serif;
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: -.02em;
-    }
-    .price .amount { display: inline; }
-    .price {
-      font-family: Space Grotesk, sans-serif;
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: -.035em;
-      line-height: 1.1;
-    }
-    .price small {
-      display: block;
-      margin-top: 4px;
-      font-family: Inter, Arial, sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0;
-    }
-    .price .billed {
-      display: none;
-      margin-top: 2px;
-      font-family: Inter, Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      color: #999;
-      letter-spacing: 0;
-    }
-    body.annual .price .billed { display: block; }
-    body.annual .price[data-a="$0"] .billed { display: none; }
-
-    .who {
-      font-size: 13px;
-      color: var(--muted);
-      min-height: 2.6em;
-      margin: 0;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 8px;
-      flex: 1;
-    }
-    li {
-      font-size: 13px;
-      padding-left: 18px;
-      position: relative;
-      color: #444;
-    }
-    li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #111;
-      font-weight: 700;
-    }
-    li.no::before { content: "–"; color: #aaa; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 39px;
-      padding: 0 15px;
-      border: 1px solid #111;
-      border-radius: 6px;
-      background: #111;
-      color: #fff;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: center;
-    }
-    .plan.free .btn {
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid #111;
-    }
-
-    .tag {
-      display: inline-flex;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: #111;
-      color: #fff;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    /* Enterprise band — .section.black */
-    .section.black {
-      background: #090909;
-      color: #fff;
-      padding: 65px 0;
-      margin-top: 48px;
-      border-top: 1px solid #090909;
-    }
-    .section.black .wrap { padding: 0; }
-    .section.black .eyebrow { color: #999; }
-    .section.black h2 {
-      margin: 0 0 12px;
-      font-family: Space Grotesk, sans-serif;
-      font-size: clamp(28px, 3.5vw, 40px);
-      line-height: 1.05;
-      font-weight: 600;
-      letter-spacing: -.035em;
-    }
-    .enterprise-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 28px;
-    }
-    .enterprise-card {
-      padding: 23px;
-      border: 1px solid #2a2a2a;
-      border-radius: 9px;
-      background: #0f0f0f;
-    }
-    .enterprise-card strong {
-      display: block;
-      font-family: Space Grotesk, sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .enterprise-card p {
-      margin: 0;
-      color: #c6c6c2;
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .page-foot {
-      width: min(1120px, calc(100% - 48px));
-      margin: 0 auto;
-      padding: 28px 0 48px;
-      color: #999;
-      font-size: 11px;
-      letter-spacing: .04em;
-      border-top: 1px solid var(--line);
-    }
-
-    @media (max-width: 980px) {
-      .grid { grid-template-columns: 1fr 1fr; }
-      .enterprise-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 28px, 1120px); padding: 40px 0 28px; }
-      .topin { width: min(100% - 28px, var(--max)); gap: 12px; }
-      .top-meta { font-size: 9px; letter-spacing: .06em; }
-      .grid { grid-template-columns: 1fr; }
-      .toggle-wrap {
-        top: 64px;
-        padding: 12px 0 10px;
-        background: rgba(255, 255, 255, .97);
-        backdrop-filter: blur(8px);
-        border-bottom: 1px solid var(--line);
-        margin-left: -14px;
-        margin-right: -14px;
-        padding-left: 14px;
-        padding-right: 14px;
-      }
-      .toggle { width: 100%; }
-      .toggle button {
-        flex: 1;
-        min-height: 44px;
-        font-size: 13px;
-        padding: 10px 16px;
-      }
-      .btn { min-height: 44px; font-size: 13px; }
-      .section.black { padding: 48px 0; margin-top: 32px; }
-      .page-foot { width: min(100% - 28px, 1120px); }
-    }
+    :root { --ink:#111; --muted:#6d6d68; --line:#deded8; --black:#090909; --max:1280px; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:#fff; font:14px/1.5 Inter,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; } button { font:inherit; }
+    .top { position:sticky; top:0; z-index:10; height:60px; border-bottom:1px solid var(--line); background:rgba(255,255,255,.96); backdrop-filter:blur(10px); }
+    .topin { width:min(var(--max),calc(100% - 36px)); height:100%; margin:auto; display:flex; align-items:center; gap:12px; }
+    .brand { text-decoration:none; display:flex; align-items:center; gap:8px; font:600 17px Space Grotesk,sans-serif; }
+    .slash { font-size:27px; } .brand em { font-style:normal; color:#777; }
+    .top-meta { margin-left:auto; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#777; }
+    .shell { width:min(var(--max),calc(100% - 48px)); margin:auto; display:grid; grid-template-columns:220px minmax(0,1fr); gap:42px; padding:42px 0 72px; }
+    .rail { position:sticky; top:84px; align-self:start; border-right:1px solid var(--line); padding-right:18px; }
+    .rail h2 { margin:0 0 13px; font:600 11px Inter,Arial,sans-serif; color:#777; letter-spacing:.12em; text-transform:uppercase; }
+    .rail button { display:flex; width:100%; align-items:center; justify-content:space-between; padding:10px 9px; border:0; border-radius:4px; color:#555; background:transparent; text-align:left; cursor:pointer; font-size:13px; }
+    .rail button:hover,.rail button[aria-selected="true"] { background:var(--black); color:#fff; } .rail button span { font-size:11px; opacity:.65; }
+    .view { display:none; } .view.active { display:block; }
+    .eyebrow { margin:0 0 12px; color:#777; font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; }
+    h1,h2,h3 { font-family:Space Grotesk,sans-serif; letter-spacing:-.035em; } h1 { max-width:760px; margin:0; font-size:clamp(40px,5.5vw,70px); line-height:.98; } h2 { margin:0; font-size:clamp(28px,3.6vw,42px); line-height:1.02; } h3 { margin:0; font-size:17px; line-height:1.15; }
+    .lede { max-width:760px; margin:18px 0 0; color:var(--muted); font-size:16px; }
+    .actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:26px; }
+    .btn { min-height:40px; display:inline-flex; align-items:center; justify-content:center; padding:0 15px; border:1px solid var(--black); border-radius:4px; background:#fff; color:var(--black); text-decoration:none; font-size:12px; font-weight:600; }
+    .btn:hover,.btn.black { background:var(--black); color:#fff; }
+    .billing { display:inline-flex; gap:4px; margin:38px 0 12px; padding:4px; border:1px solid var(--line); border-radius:4px; }
+    .billing button { border:0; border-radius:3px; padding:8px 13px; background:#fff; color:#666; cursor:pointer; font-size:12px; font-weight:600; } .billing button.active { color:#fff; background:var(--black); }
+    .plans { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border:1px solid var(--line); }
+    .plan { min-height:405px; padding:18px; border-right:1px solid var(--line); display:flex; flex-direction:column; } .plan:last-child { border:0; } .plan.featured { background:var(--black); color:#fff; }
+    .plan-label { min-height:18px; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#777; } .featured .plan-label { color:#bdbdb8; }
+    .plan h3 { margin:5px 0 16px; font-size:18px; } .price { font:600 35px/.95 Space Grotesk,sans-serif; letter-spacing:-.05em; } .price small { display:block; margin-top:6px; color:#777; font:500 11px Inter,Arial,sans-serif; letter-spacing:0; } .featured .price small { color:#c4c4bf; }
+    .plan p { min-height:58px; margin:17px 0; color:#686864; font-size:12px; } .featured p { color:#d2d2cc; }
+    .plan ul { padding:0; margin:0; list-style:none; display:grid; gap:7px; flex:1; } .plan li { padding-left:15px; position:relative; color:#454541; font-size:12px; } .featured li { color:#f0f0ed; } .plan li::before { content:"✓"; position:absolute; left:0; font-weight:700; } .plan li.no::before { content:"–"; } .plan li.no { color:#969690; }
+    .plan .btn { margin-top:18px; } .featured .btn { border-color:#fff; background:#fff; color:#111; } .featured .btn:hover { background:#111; color:#fff; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin:0 0 18px; padding-top:4px; } .section-head p { max-width:420px; margin:0; color:var(--muted); }
+    .table-wrap { overflow:auto; border:1px solid var(--line); } table { width:100%; border-collapse:collapse; min-width:720px; } th,td { padding:15px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); } tr:last-child td { border-bottom:0; } th { color:#777; font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; } td { font-size:12px; } td:first-child { font:600 14px Space Grotesk,sans-serif; }
+    .note { margin-top:15px; padding:13px 15px; border-left:3px solid var(--black); color:#555; font-size:12px; }
+    .extras { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line); } .extra { min-height:180px; padding:19px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); } .extra .cost { margin:17px 0 8px; font:600 25px/1 Space Grotesk,sans-serif; letter-spacing:-.04em; } .extra p { margin:0; color:var(--muted); font-size:12px; } .extra .kind { color:#777; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
+    .offer-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border:1px solid var(--line); } .offer { padding:22px; border-right:1px solid var(--line); } .offer:last-child { border:0; } .offer .label { color:#777; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; } .offer h3 { margin:12px 0 9px; } .offer p { margin:0; color:var(--muted); font-size:13px; } .offer strong { display:block; margin-top:18px; font:600 19px Space Grotesk,sans-serif; }
+    .enterprise { margin-top:34px; padding:27px; background:var(--black); color:#fff; } .enterprise .eyebrow { color:#aaa; } .enterprise p { max-width:650px; color:#d3d3ce; } .enterprise .btn { border-color:#fff; background:#fff; color:#111; } .enterprise .btn:hover { background:#111; color:#fff; }
+    .foot { margin-top:50px; padding-top:18px; border-top:1px solid var(--line); color:#777; font-size:11px; }
+    @media(max-width:1100px){.plans{grid-template-columns:repeat(3,1fr)}.plan:nth-child(3){border-right:0}.plan:nth-child(-n+3){border-bottom:1px solid var(--line)}.extras,.offer-grid{grid-template-columns:repeat(2,1fr)}.extra:nth-child(3n){border-right:1px solid var(--line)}.extra:nth-child(2n),.offer:nth-child(2n){border-right:0}.offer:last-child{border-right:1px solid var(--line)}}
+    @media(max-width:760px){.top-meta{display:none}.shell{width:min(100% - 28px,var(--max));display:block;padding-top:28px}.rail{position:static;display:flex;overflow:auto;gap:6px;border:0;padding:0 0 22px}.rail h2{display:none}.rail button{width:auto;white-space:nowrap;border:1px solid var(--line)}.plans,.extras,.offer-grid{grid-template-columns:1fr}.plan,.extra,.offer{border-right:0;border-bottom:1px solid var(--line)}.plan:last-child,.offer:last-child{border-bottom:0}.plan{min-height:0}.plan p{min-height:0}.section-head{display:block}.section-head p{margin-top:10px}.billing{margin-top:26px}h1{font-size:42px}}
   </style>
 </head>
 <body>
-  <header class="top">
-    <div class="topin">
-      <a class="brand" href="../../index.html">
-        <span class="slash">/</span>
-        <span>forwardslash<em>.ch</em></span>
-      </a>
-      <span class="top-meta">Pricing · Close parity</span>
-    </div>
-  </header>
-
-  <div class="wrap">
-    <div class="eyebrow">design/!pricing · Close parity · 23 Aug 2026</div>
-    <h1>Same prices as Close.<br>Plus a Free plan they won’t offer.</h1>
-    <p class="lede">Close stickers for everyday seats. Free with ads and no uploads. Enterprise is a separate $5k–$20k/year track for procurement buyers — not managed outbound.</p>
-
-    <div class="toggle-wrap">
-      <div class="toggle" role="group" aria-label="Billing period">
-        <button type="button" class="active" data-period="monthly">Monthly</button>
-        <button type="button" data-period="annual">Annual</button>
-      </div>
-    </div>
-
-    <div class="grid">
-      <article class="plan free">
-        <div class="name">Free</div>
-        <div class="price" data-m="$0" data-a="$0"><span class="amount">$0</span><small class="period">/ forever</small><span class="billed">billed yearly</span></div>
-        <p class="who">Close has no free plan. Ads on emails + pages. No uploads.</p>
-        <ul>
-          <li>1 user · 500 records</li>
-          <li>Own-mailbox email</li>
-          <li>1 public page / booking</li>
-          <li><strong>Ads on every email + page</strong></li>
-          <li class="no">No CSV / list upload</li>
-          <li class="no">No sequences / dialler</li>
-        </ul>
-        <a class="btn" href="#">Start free</a>
-      </article>
-
-      <article class="plan">
-        <div class="name">Solo</div>
-        <div class="price" data-m="$19" data-a="$9"><span class="amount">$19</span><small class="period">/ user / mo</small><span class="billed">billed yearly</span></div>
-        <p class="who">= Close Solo. One operator.</p>
-        <ul>
-          <li>1 user · 10k leads</li>
-          <li>CRM + pipeline + tasks</li>
-          <li><strong>Uploads unlocked</strong> · ads off</li>
-          <li>Email sync + templates</li>
-          <li>Light click-to-call (usage)</li>
-          <li class="no">No bulk / Power Dialer</li>
-        </ul>
-        <a class="btn" href="#">Choose Solo</a>
-      </article>
-
-      <article class="plan">
-        <div class="name">Essentials</div>
-        <div class="price" data-m="$49" data-a="$35"><span class="amount">$49</span><small class="period">/ user / mo</small><span class="billed">billed yearly</span></div>
-        <p class="who">= Close Essentials. Small teams.</p>
-        <ul>
-          <li>Team seats</li>
-          <li>Unlimited leads (fair use)</li>
-          <li>Shared inbox + collab</li>
-          <li>Open tracking · reminders</li>
-          <li class="no">No workflows / bulk</li>
-          <li class="no">No Power Dialer</li>
-        </ul>
-        <a class="btn" href="#">Choose Essentials</a>
-      </article>
-
-      <article class="plan featured">
-        <div><span class="tag">Most popular</span></div>
-        <div class="name">Growth</div>
-        <div class="price" data-m="$109" data-a="$99"><span class="amount">$109</span><small class="period">/ user / mo</small><span class="billed">billed yearly</span></div>
-        <p class="who">= Close Growth. Sequences + dialler.</p>
-        <ul>
-          <li>Workflows / sequences</li>
-          <li>Bulk email</li>
-          <li>Power Dialer</li>
-          <li>Custom activities</li>
-          <li>Campaign reporting</li>
-          <li>Higher AI pool</li>
-        </ul>
-        <a class="btn" href="#">Choose Growth</a>
-      </article>
-
-      <article class="plan">
-        <div class="name">Scale</div>
-        <div class="price" data-m="$149" data-a="$139"><span class="amount">$149</span><small class="period">/ user / mo</small><span class="billed">billed yearly</span></div>
-        <p class="who">= Close Scale. High-volume control.</p>
-        <ul>
-          <li>Everything in Growth</li>
-          <li>Predictive Dialer</li>
-          <li>Roles + lead visibility</li>
-          <li>Unlimited recording retention</li>
-          <li>Live call coaching</li>
-          <li>Admin / field controls</li>
-        </ul>
-        <a class="btn" href="#">Choose Scale</a>
-      </article>
-    </div>
-  </div>
-
-  <section class="section black" aria-label="Enterprise">
-    <div class="wrap">
-      <div class="eyebrow">Enterprise</div>
-      <h2>Procurement track · $5k–$20k / year</h2>
-      <div class="enterprise-grid">
-        <div class="enterprise-card">
-          <strong>Enterprise from $5,000 / year</strong>
-          <p>Plus from $10,000 · Premier $15–20,000. Talk-to-us only. Snaps to clean bands; never below $5k once procurement/SSO/DPA is in scope.</p>
+  <header class="top"><div class="topin"><a class="brand" href="../index.html"><span class="slash">/</span><span>forwardslash<em>.ch</em></span></a><span class="top-meta">Pricing</span></div></header>
+  <main class="shell">
+    <nav class="rail" aria-label="Pricing sections">
+      <h2>Pricing</h2>
+      <button type="button" data-view="plans" aria-selected="true">Current prices <span>01</span></button>
+      <button type="button" data-view="compare">Compare plans <span>02</span></button>
+      <button type="button" data-view="extras">Extras &amp; usage <span>03</span></button>
+      <button type="button" data-view="offers">Special offers <span>04</span></button>
+      <button type="button" data-view="enterprise">Enterprise <span>05</span></button>
+    </nav>
+    <div>
+      <section class="view active" id="plans">
+        <p class="eyebrow">Current pricing · USD · taxes excluded</p>
+        <h1>One clear price for the work you need to do.</h1>
+        <p class="lede">Start with a useful workspace, then pay when you need clean sending, more capacity, active campaign work or calling. Your team can see the whole relationship; only the people doing specialist work need specialist access.</p>
+        <div class="actions"><a class="btn black" href="https://forwardslash.ch">Start free</a><a class="btn" href="#enterprise" data-open="enterprise">Talk to us</a></div>
+        <div class="billing" role="group" aria-label="Billing period"><button type="button" class="active" data-period="monthly">Monthly</button><button type="button" data-period="annual">Annual</button></div>
+        <div class="plans">
+          <article class="plan"><div class="plan-label">Start here</div><h3>Free</h3><div class="price" data-monthly="$0" data-annual="$0">$0<small>forever</small></div><p>Try the core workspace before you commit.</p><ul><li>1 person · 500 records</li><li>Tasks, contacts and one page</li><li>1 list up to 500 rows</li><li>Link sharing</li><li class="no">No file attachments or repeat imports</li></ul><a class="btn" href="https://forwardslash.ch">Start free</a></article>
+          <article class="plan"><div class="plan-label">For one person</div><h3>Solo</h3><div class="price" data-monthly="$19" data-annual="$9">$19<small>per user / month</small></div><p>For a person ready to work from their own mailbox.</p><ul><li>1 person · 10k leads</li><li>CRM, pipeline and tasks</li><li>Uploads and files</li><li>Email sync and templates</li><li>5 public pages</li></ul><a class="btn" href="https://forwardslash.ch">Choose Solo</a></article>
+          <article class="plan"><div class="plan-label">For teams</div><h3>Essentials</h3><div class="price" data-monthly="$49" data-annual="$35">$49<small>per user / month</small></div><p>Shared context and a clear team desk.</p><ul><li>Shared inbox and collaboration</li><li>15 pages · 50k monthly views</li><li>5k own-mailbox emails / user</li><li>10 GB files</li><li>Team reporting</li></ul><a class="btn" href="https://forwardslash.ch">Choose Essentials</a></article>
+          <article class="plan featured"><div class="plan-label">For active outreach</div><h3>Growth</h3><div class="price" data-monthly="$109" data-annual="$99">$109<small>per user / month</small></div><p>Campaign work with controls, review and a dialler.</p><ul><li>Sequences and bulk email</li><li>Power Dialer</li><li>50 pages · 200k monthly views</li><li>50 GB files</li><li>Campaign reporting and approvals</li></ul><a class="btn" href="https://forwardslash.ch">Choose Growth</a></article>
+          <article class="plan"><div class="plan-label">For scale</div><h3>Scale</h3><div class="price" data-monthly="$149" data-annual="$139">$149<small>per user / month</small></div><p>More control for high-volume, multi-person work.</p><ul><li>Everything in Growth</li><li>Predictive calling path</li><li>Roles and lead visibility</li><li>200 GB files</li><li>Advanced reporting and controls</li></ul><a class="btn" href="https://forwardslash.ch">Choose Scale</a></article>
         </div>
-        <div class="enterprise-card">
-          <strong>Self-serve matches Close</strong>
-          <p>Enterprise is from $5,000/yr (then $10k / $15–20k) for invoice, DPA, SSO, volume — software terms, not us running campaigns. Free = ads on, uploads off. Managed outbound rejected.</p>
-        </div>
-      </div>
+        <p class="foot">Annual prices are per user per month, billed yearly. Actual metered usage is always visible before it becomes a charge.</p>
+      </section>
+      <section class="view" id="compare">
+        <p class="eyebrow">Plan comparison</p><div class="section-head"><h2>See what changes as your work grows.</h2><p>Keep the calm workspace; add only the capacity and specialist tools you actually use.</p></div>
+        <div class="table-wrap"><table><thead><tr><th>Capability</th><th>Free</th><th>Solo</th><th>Essentials</th><th>Growth</th><th>Scale</th></tr></thead><tbody>
+          <tr><td>People and records</td><td>1 · 500</td><td>1 · 10k</td><td>Team · fair use</td><td>Team · fair use</td><td>Team · fair use</td></tr>
+          <tr><td>Shared inbox</td><td>—</td><td>Own mailbox</td><td>Shared</td><td>Shared</td><td>Shared</td></tr>
+          <tr><td>Public pages</td><td>1</td><td>5</td><td>15</td><td>50</td><td>100+</td></tr>
+          <tr><td>Files</td><td>—</td><td>2 GB</td><td>10 GB</td><td>50 GB</td><td>200 GB</td></tr>
+          <tr><td>Own-mailbox email</td><td>Limited trial</td><td>1k / month</td><td>5k / user</td><td>20k / user</td><td>High / custom</td></tr>
+          <tr><td>Campaigns and sequences</td><td>—</td><td>Templates</td><td>Campaign desk</td><td>Sequences + bulk</td><td>Advanced controls</td></tr>
+          <tr><td>Calling</td><td>—</td><td>Click-to-call</td><td>Metered calling</td><td>Power Dialer</td><td>Predictive path</td></tr>
+          <tr><td>AI and enrichment</td><td>Small demo</td><td>500 credits</td><td>1k credits</td><td>1.5k credits</td><td>2k+ / custom</td></tr>
+        </tbody></table></div><p class="note">Calls, SMS, phone numbers, enrichment and AI above the included pool are shown as usage, not hidden inside the seat price.</p>
+      </section>
+      <section class="view" id="extras">
+        <p class="eyebrow">Extras and usage</p><div class="section-head"><h2>Pay separately when a supplier cost is real.</h2><p>Seats cover the software. Carrier, delivery and model costs remain visible and can be increased only when you choose.</p></div>
+        <div class="extras">
+          <article class="extra"><div class="kind">Extra people</div><h3>Another team member</h3><div class="cost">Plan rate</div><p>Add a person at the current Solo, Essentials, Growth or Scale seat price. Viewers and collaborators do not need a specialist operator licence.</p></article>
+          <article class="extra"><div class="kind">Calling</div><h3>Phone number</h3><div class="cost">From $19/mo</div><p>One local number, subject to country availability. Call minutes are charged separately and shown in the dialler.</p></article>
+          <article class="extra"><div class="kind">Calling</div><h3>Voice minutes</h3><div class="cost">From 3¢ / min</div><p>Usage varies by destination and number type. The current rate is shown before a dial session begins.</p></article>
+          <article class="extra"><div class="kind">Messaging</div><h3>SMS</h3><div class="cost">From 5¢ / msg</div><p>Carrier and territory dependent. You see the destination rate and remaining balance before sending.</p></article>
+          <article class="extra"><div class="kind">Email and domains</div><h3>Extra email capacity</h3><div class="cost">At checkout</div><p>Use the included own-mailbox allowance first. Higher sending capacity, additional domains and relay email are priced against the connected provider before activation.</p></article>
+          <article class="extra"><div class="kind">AI and data</div><h3>AI or enrichment</h3><div class="cost">Usage pool</div><p>Each paid plan includes a pool. You can add more only after seeing the available credit pack and its price.</p></article>
+        </div><p class="note">“From” prices are a starting point, not a hidden commitment. The final price must show in-product before the extra service is turned on or used.</p>
+      </section>
+      <section class="view" id="offers">
+        <p class="eyebrow">One-time offers</p><div class="section-head"><h2>Useful offers, not permanent fake urgency.</h2><p>Each offer has a clear trigger, a real limit and a single purpose: help a customer get useful work running.</p></div>
+        <div class="offer-grid"><article class="offer"><div class="label">After first email</div><h3>Founding annual</h3><p>For an Essentials or Growth team that activates within 72 hours of connecting email. Available only to the first defined number of qualifying workspaces.</p><strong>24 months for the price of 14</strong></article><article class="offer"><div class="label">Optional setup</div><h3>Launch setup</h3><p>Import the first list, publish the first page or campaign, and leave the customer with an editable workspace—not managed outbound.</p><strong>$990 once</strong></article><article class="offer"><div class="label">Sales-assisted</div><h3>Pilot credit</h3><p>For a team that needs a short proof before annual commitment. Applied to an eligible Essentials or Growth annual plan.</p><strong>$990 credited</strong></article></div><p class="note">No monthly-plan discount, countdown that restarts, or offer that appears before a person has taken a real action.</p>
+      </section>
+      <section class="view" id="enterprise">
+        <p class="eyebrow">Enterprise</p><h2>For organisations that need commercial terms as well as software.</h2><p class="lede">Enterprise is for invoices, security review, SSO, residency, higher capacity and multi-workspace work. It is not a managed-outbound service.</p><div class="enterprise"><p class="eyebrow">Annual contracts</p><h2>$5,000–$20,000 / year</h2><p><strong>Entry $5k:</strong> invoice, DPA and basic SSO. <strong>Plus $10k:</strong> multi-team controls, higher allowances and priority support. <strong>Premier $15–20k:</strong> residency, multi-workspace, onboarding and an agreed service level.</p><div class="actions"><a class="btn" href="https://forwardslash.ch">Talk to us</a></div></div><p class="foot">Migration or training is a separate, fixed professional-services line when needed. We do not sell indefinite campaign-running hours as a product plan.</p>
+      </section>
     </div>
-  </section>
-
-  <footer class="page-foot">Canonical gut: design/!pricing · forwardslash-product</footer>
-
+  </main>
   <script>
-    const buttons = document.querySelectorAll('.toggle button');
-    const prices = document.querySelectorAll('.price');
-    function applyPeriod(annual) {
-      document.body.classList.toggle('annual', annual);
-      prices.forEach(p => {
-        const v = annual ? p.dataset.a : p.dataset.m;
-        const amount = p.querySelector('.amount');
-        const period = p.querySelector('.period');
-        if (amount) amount.textContent = v;
-        if (period) period.textContent = (v === '$0' ? '/ forever' : '/ user / mo');
-      });
-    }
-    buttons.forEach(btn => btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyPeriod(btn.dataset.period === 'annual');
-    }));
-    applyPeriod(false);
+    const viewButtons = document.querySelectorAll('[data-view]');
+    const views = document.querySelectorAll('.view');
+    function showView(id) { views.forEach(view => view.classList.toggle('active', view.id === id)); viewButtons.forEach(button => button.setAttribute('aria-selected', button.dataset.view === id)); history.replaceState(null, '', '#' + id); }
+    viewButtons.forEach(button => button.addEventListener('click', () => showView(button.dataset.view)));
+    document.querySelectorAll('[data-open]').forEach(link => link.addEventListener('click', event => { event.preventDefault(); showView(link.dataset.open); }));
+    const billingButtons = document.querySelectorAll('[data-period]');
+    function setBilling(period) { document.querySelectorAll('.price').forEach(price => { price.childNodes[0].nodeValue = price.dataset[period]; const small = price.querySelector('small'); small.textContent = price.dataset[period] === '$0' ? 'forever' : period === 'annual' ? 'per user / month · billed yearly' : 'per user / month'; }); billingButtons.forEach(button => button.classList.toggle('active', button.dataset.period === period)); }
+    billingButtons.forEach(button => button.addEventListener('click', () => setBilling(button.dataset.period)));
+    if (location.hash && document.querySelector(location.hash)) showView(location.hash.slice(1));
   </script>
 </body>
 </html>
