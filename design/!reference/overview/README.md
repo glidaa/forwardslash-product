@@ -1,8 +1,21 @@
 # Overview / Today
 
-## Lede
+## What Forwardslash is
 
-See today: lists, sends, dials, bookings. One quiet start.
+Forwardslash is one workspace for helping a business grow through better customer conversations. It brings together the people and companies you know, the outreach you are planning, the messages and calls coming back, and the pages and booking links that turn interest into a next step.
+
+Instead of moving between a contact list, inbox, campaign tool, phone, calendar and reporting screen, a person can start with what matters today, act on it, and keep the context with the customer all the way through.
+
+## What this gives the user
+
+The Overview is the quiet starting point for that work. It shows what has arrived, what needs a response, what is running, and the next useful action—so the user can move from an incoming message or a planned campaign to a conversation, booking or follow-up without losing the thread.
+
+## User journey
+
+1. Open Forwardslash and see the work that needs attention today.
+2. Choose a customer conversation, a campaign, a call list, a page or a booking task.
+3. Take the next action with the relevant person, company and history already present.
+4. Return to Overview to see what changed and what needs attention next.
 
 ## Videos / flows
 
