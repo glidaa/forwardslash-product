@@ -8,10 +8,21 @@
   <style>
     :root { --feature-line: #deded9; }
     body { overflow: hidden; }
-    .feature-browser { display:grid; grid-template-columns:245px minmax(360px,1fr) minmax(250px,340px); height:100vh; background:#fff; }
+    .feature-browser { --feature-list-width:245px; --feature-reference-width:300px; display:grid; grid-template-columns:var(--feature-list-width) 8px minmax(360px,1fr) 8px var(--feature-reference-width); height:100vh; background:#fff; }
     .feature-col { min-width:0; border-right:1px solid var(--feature-line); overflow:auto; }
     .feature-col:last-child { border-right:0; }
     .feature-title { position:sticky; top:0; z-index:2; display:flex; align-items:center; justify-content:space-between; min-height:56px; padding:0 16px; border-bottom:1px solid var(--feature-line); background:rgba(255,255,255,.96); backdrop-filter:blur(8px); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+    .feature-collapse { width:28px; height:28px; border:0; border-radius:4px; background:#fff; color:#111; cursor:pointer; font-size:15px; }
+    .feature-collapse:hover, .feature-collapse:focus-visible { background:#111; color:#fff; outline:0; }
+    .feature-divider { position:relative; cursor:col-resize; background:#fff; border-right:1px solid var(--feature-line); }
+    .feature-divider::after { content:""; position:absolute; inset:0 -3px; }
+    .feature-divider:hover, .feature-divider:focus-visible { background:#111; outline:0; }
+    .feature-divider:hover::after, .feature-divider:focus-visible::after { background:#111; }
+    .feature-browser.is-resizing { user-select:none; cursor:col-resize; }
+    .feature-browser.is-resizing iframe { pointer-events:none; }
+    .feature-browser.is-list-collapsed { --feature-list-width:44px; }
+    .feature-browser.is-list-collapsed .feature-list, .feature-browser.is-list-collapsed .feature-title > span { display:none; }
+    .feature-browser.is-list-collapsed .feature-title { padding:0 8px; justify-content:center; }
     .feature-list { padding:10px; }
     .feature-list button { width:100%; border:0; border-radius:4px; background:#fff; color:#4e4e49; text-align:left; cursor:pointer; }
     .feature-list button:hover, .feature-list button:focus-visible { background:#111; color:#fff; outline:0; }
@@ -34,23 +45,27 @@
     .reference-links a:hover, .reference-links a:focus-visible { background:#111; color:#fff; outline:0; }
     .reference-shots { display:grid; gap:10px; margin-top:16px; }
     .reference-shots figure { margin:0; border:1px solid var(--feature-line); background:#fff; }
+    .reference-shots a { display:block; color:inherit; text-decoration:none; }
+    .reference-shots a:hover figure, .reference-shots a:focus-visible figure { border-color:#111; box-shadow:0 10px 24px rgba(0,0,0,.14); transform:translateY(-2px); outline:0; transition:transform 220ms ease-out,box-shadow 220ms ease-out,border-color 220ms ease-out; }
     .reference-shots img { display:block; width:100%; height:auto; }
     .reference-shots figcaption { padding:8px 9px; color:#666; font-size:10px; }
     .reference-empty { padding:15px 0; color:#777; font-size:12px; }
-    @media (max-width:1050px) { .feature-browser { grid-template-columns:215px minmax(340px,1fr); } .feature-reference { display:none; } }
-    @media (max-width:720px) { body { overflow:auto; } .feature-browser { display:block; height:auto; } .feature-col { overflow:visible; border-right:0; border-bottom:1px solid var(--feature-line); } .feature-list { display:flex; gap:5px; overflow:auto; } .feature-list button { min-width:170px; border:1px solid var(--feature-line); } .feature-document { height:70vh; } }
+    @media (max-width:1050px) { .feature-browser { grid-template-columns:215px 8px minmax(340px,1fr); } .feature-reference, .feature-divider:last-of-type { display:none; } }
+    @media (max-width:720px) { body { overflow:auto; } .feature-browser { display:block; height:auto; } .feature-col { overflow:visible; border-right:0; border-bottom:1px solid var(--feature-line); } .feature-divider { display:none; } .feature-list { display:flex; gap:5px; overflow:auto; } .feature-list button { min-width:170px; border:1px solid var(--feature-line); } .feature-document { height:70vh; } }
   </style>
 </head>
 <body>
   <main class="feature-browser" aria-label="Feature reference browser">
     <section class="feature-col" aria-label="Features">
-      <div class="feature-title"><span>Features</span><span id="feature-count"></span></div>
+      <div class="feature-title"><span>Features</span><span id="feature-count"></span><button class="feature-collapse" id="feature-collapse" type="button" aria-label="Collapse features" aria-expanded="true">‹</button></div>
       <div class="feature-list" id="feature-list"></div>
     </section>
+    <div class="feature-divider" data-divider="list" role="separator" aria-label="Resize features column" aria-orientation="vertical" tabindex="0"></div>
     <section class="feature-col feature-document" aria-label="Feature document">
       <div class="feature-meta"><strong id="feature-name"></strong><span id="feature-path"></span><a id="open-document" target="_blank" rel="noopener">Open page ↗</a></div>
       <iframe id="feature-document" title="Selected feature document"></iframe>
     </section>
+    <div class="feature-divider" data-divider="reference" role="separator" aria-label="Resize references column" aria-orientation="vertical" tabindex="0"></div>
     <aside class="feature-col feature-reference" aria-label="Feature references">
       <div class="feature-title"><span>References</span></div>
       <div class="reference-body"><p class="reference-note">Visual and product references for the selected feature.</p><div class="reference-links" id="reference-links"></div><div class="reference-shots" id="reference-shots"></div></div>
@@ -61,7 +76,7 @@
       var features = [
         ["overview", "Overview / Today", "See today: lists, sends, dials, bookings."], ["inbox", "Shared inbox", "A clear work queue for new conversations."], ["crm", "Companies & contacts", "The people and companies you already know."], ["campaigns", "Campaigns", "List, send and measure one campaign."], ["campaign-approval", "Campaign approval desk", "Check work before it leaves."], ["sequences", "Sequences", "Steps that send, dial and book."], ["pipeline", "Pipeline", "First touch to booked meeting."], ["targets", "Targets", "Named people and companies worth pursuing."], ["todo", "To-do / work", "Next actions on the people that matter."], ["pages", "Pages", "Build a page and share the link."], ["meetings", "Meetings & booking", "Calendar pages that make booking easy."], ["dialler", "Voice / dialler", "Call with the right context."], ["power-dialler", "Power dialler", "A focused queue when the list is long."], ["sms", "SMS", "Text from the same contact history."], ["reporting", "Reports", "Measure work that ran and booked."], ["search", "Search & smart views", "Find and reuse the right list."], ["enrichment", "Enrichment", "Fill gaps while keeping control."], ["list-building", "List building", "Bring a list in and make it useful."], ["ai", "AI assistant", "Assist work without running the firm."], ["delivery", "Projects / delivery", "Carry the promise through."], ["integrations", "Integrations", "Connect the rest of the stack."], ["files", "Files", "Keep the supporting work together."], ["admin", "Admin & settings", "Control that stays out of the way."]
       ];
-      var list = document.getElementById("feature-list"), current = new URLSearchParams(location.search).get("feature") || "overview", manifest = {};
+      var browser = document.querySelector(".feature-browser"), list = document.getElementById("feature-list"), current = new URLSearchParams(location.search).get("feature") || "overview", manifest = {};
       document.getElementById("feature-count").textContent = features.length;
       function pathFor(slug) { return "design/!reference/" + slug + "/README.md"; }
       function refsFor(slug) { return "design/!reference/" + slug + "/refs.md"; }
@@ -70,7 +85,7 @@
         [["Feature references ↗", "md?src=" + encodeURIComponent(refsFor(slug))], ["Feature brief ↗", "md?src=" + encodeURIComponent(pathFor(slug))]].forEach(function (item) { var a = document.createElement("a"); a.href = item[1]; a.target = "_blank"; a.rel = "noopener"; a.textContent = item[0]; links.appendChild(a); });
         var items = manifest[slug] || [];
         if (!items.length) { shots.innerHTML = '<p class="reference-empty">No saved screenshots yet. Add visual references to this feature folder.</p>'; return; }
-        items.slice(0, 4).forEach(function (shot) { if (!/\.(png|jpe?g|webp)$/i.test(shot.file || "")) return; var figure = document.createElement("figure"), image = document.createElement("img"), caption = document.createElement("figcaption"); image.src = "../design/shots/" + shot.file; image.alt = shot.title || shot.app || "Feature reference"; caption.textContent = [shot.app, shot.title].filter(Boolean).join(" — ") || shot.file; figure.appendChild(image); figure.appendChild(caption); shots.appendChild(figure); });
+        items.slice(0, 4).forEach(function (shot) { if (!/\.(png|jpe?g|webp)$/i.test(shot.file || "")) return; var figure = document.createElement("figure"), image = document.createElement("img"), caption = document.createElement("figcaption"), link = document.createElement("a"); image.src = "../design/shots/" + shot.file; image.alt = shot.title || shot.app || "Feature reference"; caption.textContent = ([shot.app, shot.title].filter(Boolean).join(" — ") || shot.file) + (shot.url ? " ↗" : ""); figure.appendChild(image); figure.appendChild(caption); link.href = shot.url || image.src; link.target = "_blank"; link.rel = "noopener"; link.setAttribute("aria-label", "Open full reference: " + (shot.title || shot.app || shot.file)); link.appendChild(figure); shots.appendChild(link); });
       }
       function render(slug) {
         var feature = features.filter(function (item) { return item[0] === slug; })[0] || features[0], path = pathFor(feature[0]); current = feature[0];
@@ -78,6 +93,11 @@
         Array.prototype.forEach.call(list.querySelectorAll("button"), function (button) { button.setAttribute("aria-selected", button.dataset.slug === current ? "true" : "false"); }); renderReferences(current);
       }
       features.forEach(function (feature) { var button = document.createElement("button"); button.type = "button"; button.dataset.slug = feature[0]; button.innerHTML = "<b>" + feature[1] + "</b><span>" + feature[2] + "</span>"; button.addEventListener("click", function () { render(feature[0]); }); list.appendChild(button); });
+      var collapse = document.getElementById("feature-collapse");
+      collapse.addEventListener("click", function () { var collapsed = browser.classList.toggle("is-list-collapsed"); collapse.setAttribute("aria-expanded", String(!collapsed)); collapse.setAttribute("aria-label", collapsed ? "Expand features" : "Collapse features"); collapse.textContent = collapsed ? "›" : "‹"; });
+      function setWidth(name, value) { var minimum = name === "list" ? 180 : 220; var maximum = name === "list" ? 440 : Math.max(280, window.innerWidth - 620); var width = Math.max(minimum, Math.min(maximum, value)); browser.style.setProperty(name === "list" ? "--feature-list-width" : "--feature-reference-width", width + "px"); try { localStorage.setItem("forwardslash-feature-" + name + "-width", String(width)); } catch (error) {} }
+      ["list", "reference"].forEach(function (name) { try { var stored = Number(localStorage.getItem("forwardslash-feature-" + name + "-width")); if (stored) setWidth(name, stored); } catch (error) {} });
+      Array.prototype.forEach.call(document.querySelectorAll(".feature-divider"), function (divider) { divider.addEventListener("pointerdown", function (event) { if (window.matchMedia("(max-width: 1050px)").matches && divider.dataset.divider === "reference") return; event.preventDefault(); browser.classList.add("is-resizing"); divider.setPointerCapture(event.pointerId); function move(next) { var rect = browser.getBoundingClientRect(); setWidth(divider.dataset.divider, divider.dataset.divider === "list" ? next.clientX - rect.left : rect.right - next.clientX); } function end() { browser.classList.remove("is-resizing"); divider.removeEventListener("pointermove", move); divider.removeEventListener("pointerup", end); divider.removeEventListener("pointercancel", end); } divider.addEventListener("pointermove", move); divider.addEventListener("pointerup", end); divider.addEventListener("pointercancel", end); }); });
       fetch("../design/shots/manifest.json").then(function (response) { return response.ok ? response.json() : {}; }).then(function (data) { manifest = data || {}; render(current); }).catch(function () { render(current); });
     })();
   </script>
