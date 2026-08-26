@@ -1,8 +1,26 @@
 # Shared inbox
 
-## Lede
+## What it gives the user
 
-Your mailbox, shared with the firm. Reply from channels you own, not a send farm.
+The Shared Inbox is the working desk for inbound and outbound communication. It brings together the conversations and actions a person or team needs to move forward: emails, calls, SMS, form submissions, planned follow-ups and campaign activity.
+
+It is where a solo operator can start the day, decide what deserves a reply, launch the next campaign action, plan the week, and see what is next. For a team, it makes the same work visible without losing who owns a response or the history behind it.
+
+The inbox is linked to tasks, but it is not just a task list. It is the place where communication becomes visible work: a message arrives, the right person responds or creates a follow-up, and the outcome remains connected to the company, contact, campaign and team.
+
+## User journey
+
+1. Open the Inbox and see new communication, planned work and the most useful next action.
+2. Filter by the kind of work that matters now: email, call, SMS, form submission, campaign activity or task.
+3. Read the full relationship history, respond from an owned channel, or turn the message into a clear follow-up.
+4. Review completed, current and future work to plan the day or week and understand the team's load.
+
+## Product principles
+
+- A person is always in control of a send; the product must not surprise-send messages.
+- Every row keeps enough context to act without hunting through another system.
+- The same calm desk works for one person and for a team.
+- Inbox activity stays connected to the relevant contact, company, campaign and task.
 
 ## Videos / flows
 

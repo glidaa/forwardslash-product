@@ -2,13 +2,15 @@
 
 ## What Forwardslash is
 
-Forwardslash is one workspace for helping a business grow through better customer conversations. It brings together the people and companies you know, the outreach you are planning, the messages and calls coming back, and the pages and booking links that turn interest into a next step.
+Forwardslash is a calm work and relationship platform for individuals, small teams and agencies. It keeps companies, people, correspondence, campaigns, bookings, projects, tasks and delivery in one place, so a promise made in an email becomes visible work and then a finished result.
 
-Instead of moving between a contact list, inbox, campaign tool, phone, calendar and reporting screen, a person can start with what matters today, act on it, and keep the context with the customer all the way through.
+It is not an inbox client, a marketing-automation machine or a general workflow engine. It is the small, dependable place where a person or team can understand their relationships, make the next promise carefully, and see it through without losing the context.
 
 ## What this gives the user
 
-The Overview is the quiet starting point for that work. It shows what has arrived, what needs a response, what is running, and the next useful action—so the user can move from an incoming message or a planned campaign to a conversation, booking or follow-up without losing the thread.
+The Overview is the quiet starting point for that work. It shows what has arrived, what needs a response, what is running, and the next useful action—so the user can move from an incoming message or a planned campaign to a conversation, booking, task or finished delivery without losing the thread.
+
+It should feel calm, private, portable and under the user's control: no surprise sends, no hidden automation, and no need to reconstruct the story across separate tools.
 
 ## User journey
 
