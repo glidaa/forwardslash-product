@@ -6,44 +6,90 @@
   <title>Features</title>
   <link rel="stylesheet" href="../style.css">
   <style>
-    a.landing-card { color: inherit; }
-    a.landing-card p { color: #666; margin: 10px 0 0; }
-    a.landing-card .cost { display: block; margin-top: 10px; font-size: 11px; color: #111; }
-    a.landing-card .route { margin-top: auto; padding-top: 16px; color: #888; font-size: 11px; }
+    :root { --feature-line: #deded9; }
+    body { overflow: hidden; }
+    .feature-browser { display:grid; grid-template-columns:190px 245px minmax(360px,1fr) minmax(250px,340px); height:100vh; background:#fff; }
+    .feature-col { min-width:0; border-right:1px solid var(--feature-line); overflow:auto; }
+    .feature-col:last-child { border-right:0; }
+    .feature-title { position:sticky; top:0; z-index:2; display:flex; align-items:center; justify-content:space-between; min-height:56px; padding:0 16px; border-bottom:1px solid var(--feature-line); background:rgba(255,255,255,.96); backdrop-filter:blur(8px); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+    .feature-menu, .feature-list { padding:10px; }
+    .feature-menu button, .feature-list button { width:100%; border:0; border-radius:4px; background:#fff; color:#4e4e49; text-align:left; cursor:pointer; }
+    .feature-menu button { padding:10px; font-size:12px; }
+    .feature-menu button:hover, .feature-menu button:focus-visible, .feature-list button:hover, .feature-list button:focus-visible { background:#111; color:#fff; outline:0; }
+    .feature-menu button[aria-current="page"] { background:#111; color:#fff; }
+    .feature-menu hr { border:0; border-top:1px solid var(--feature-line); margin:12px 0; }
+    .feature-list button { display:block; padding:12px 11px; border-bottom:1px solid #eee; }
+    .feature-list button:hover, .feature-list button:focus-visible { border-bottom-color:#111; }
+    .feature-list button[aria-selected="true"] { background:#111; color:#fff; border-bottom-color:#111; }
+    .feature-list b, .feature-list span { display:block; }
+    .feature-list b { font-size:12px; font-weight:600; }
+    .feature-list span { margin-top:3px; font-size:10px; opacity:.72; }
+    .feature-document { display:flex; flex-direction:column; min-width:0; }
+    .feature-meta { min-height:56px; display:flex; align-items:center; gap:9px; padding:0 16px; border-bottom:1px solid var(--feature-line); font-size:11px; }
+    .feature-meta span { color:#777; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .feature-meta a { margin-left:auto; white-space:nowrap; color:#111; font-weight:600; }
+    .feature-document iframe { width:100%; flex:1; border:0; }
+    .feature-reference { background:#fafaf8; }
+    .reference-body { padding:14px; }
+    .reference-note { margin:0 0 14px; color:#666; font-size:12px; }
+    .reference-links { display:grid; gap:7px; }
+    .reference-links a { padding:10px; border:1px solid var(--feature-line); border-radius:4px; background:#fff; text-decoration:none; font-size:11px; }
+    .reference-links a:hover, .reference-links a:focus-visible { background:#111; color:#fff; outline:0; }
+    .reference-shots { display:grid; gap:10px; margin-top:16px; }
+    .reference-shots figure { margin:0; border:1px solid var(--feature-line); background:#fff; }
+    .reference-shots img { display:block; width:100%; height:auto; }
+    .reference-shots figcaption { padding:8px 9px; color:#666; font-size:10px; }
+    .reference-empty { padding:15px 0; color:#777; font-size:12px; }
+    @media (max-width:1050px) { .feature-browser { grid-template-columns:175px 215px minmax(340px,1fr); } .feature-reference { display:none; } }
+    @media (max-width:720px) { body { overflow:auto; } .feature-browser { display:block; height:auto; } .feature-col { overflow:visible; border-right:0; border-bottom:1px solid var(--feature-line); } .feature-menu { display:flex; gap:5px; overflow:auto; } .feature-menu button { width:auto; white-space:nowrap; } .feature-menu hr { display:none; } .feature-list { display:flex; gap:5px; overflow:auto; } .feature-list button { min-width:170px; border:1px solid var(--feature-line); } .feature-document { height:70vh; } }
   </style>
 </head>
 <body>
-  <div class="wrap hero">
-    <div class="eyebrow">Product surfaces</div>
-    <h1>Features.</h1>
-    <p class="lede">23 surfaces. One job each. Start free. Do one job. Cost and Free caps on each card.</p>
-  </div>
-  <section class="section">
-    <div class="wrap landing-grid">
-      <a class="landing-card" href="md?src=design/!reference/overview/README.md"><span class="num">01</span><h3>Overview / Today</h3><p>See today: lists, sends, dials, bookings. One quiet start.</p><span class="cost">Free · fair use · ~$0</span><span class="route">/overview</span></a>
-      <a class="landing-card" href="md?src=design/!reference/inbox/README.md"><span class="num">02</span><h3>Shared inbox</h3><p>Your mailbox, shared with the firm. Reply from channels you own, not a send farm.</p><span class="cost">Free: ads or blocked send · clean send Solo+ · ESP ~$0.0003–0.001/send</span><span class="route">/inbox</span></a>
-      <a class="landing-card" href="md?src=design/!reference/crm/README.md"><span class="num">03</span><h3>Companies &amp; contacts</h3><p>The people you already know, in one book. No CRM theatre.</p><span class="cost">Free ~500 records · Solo 10k · DB ~$0</span><span class="route">/companies, /contacts</span></a>
-      <a class="landing-card" href="md?src=design/!reference/campaigns/README.md"><span class="num">04</span><h3>Campaigns</h3><p>One campaign, properly run: list, send, measure.</p><span class="cost">Free: tiny taste · bulk/sequences Growth · sends metered</span><span class="route">/campaigns</span></a>
-      <a class="landing-card" href="md?src=design/!reference/campaign-approval/README.md"><span class="num">05</span><h3>Campaign approval desk</h3><p>Check the work before it leaves. Quiet enough for an agency desk.</p><span class="cost">Team paid · ~$0 until a send fires</span><span class="route">campaign detail / approval UI</span></a>
-      <a class="landing-card" href="md?src=design/!reference/sequences/README.md"><span class="num">06</span><h3>Sequences</h3><p>Steps that send, dial, and book. Activation before volume.</p><span class="cost">Growth · no Free volume · sends + enrolments</span><span class="route">/sequences</span></a>
-      <a class="landing-card" href="md?src=design/!reference/pipeline/README.md"><span class="num">07</span><h3>Pipeline</h3><p>First touch to booked meeting, visible. Opportunities without the noise.</p><span class="cost">Free · fair use · ~$0</span><span class="route">/opportunities</span></a>
-      <a class="landing-card" href="md?src=design/!reference/targets/README.md"><span class="num">08</span><h3>Targets</h3><p>Who you are after: named, not a vanity dashboard.</p><span class="cost">Free · fair use · ~$0</span><span class="route">/targets</span></a>
-      <a class="landing-card" href="md?src=design/!reference/todo/README.md"><span class="num">09</span><h3>To-do / work</h3><p>Next actions on the people that matter. No admin hire.</p><span class="cost">Free unlimited light · ~$0 · keep open</span><span class="route">/todo</span></a>
-      <a class="landing-card" href="md?src=design/!reference/pages/README.md"><span class="num">10</span><h3>Pages</h3><p>Build a page. Share the link. A free door, about ten minutes.</p><span class="cost">Free: 1 page · ads · ≤1–2k views/mo · no attachments · no custom domain</span><span class="route">/pages</span></a>
-      <a class="landing-card" href="md?src=design/!reference/meetings/README.md"><span class="num">11</span><h3>Meetings &amp; booking</h3><p>A calendar page that books and emails. First touch to a slot.</p><span class="cost">Free: 1 booking page · reminder email cost · team Essentials+</span><span class="route">meetings / booking pages</span></a>
-      <a class="landing-card" href="md?src=design/!reference/dialler/README.md"><span class="num">12</span><h3>Voice / dialler</h3><p>Call from your number. Own-channel, not a demo farm.</p><span class="cost">No Free trunk · ~$0.01–0.03/min · card/BYO or metered Solo+</span><span class="route">dialler</span></a>
-      <a class="landing-card" href="md?src=design/!reference/power-dialler/README.md"><span class="num">13</span><h3>Power dialler</h3><p>When the list is long. Escalate seats when this seam is needed.</p><span class="cost">Growth/Scale only · same minutes · velocity caps</span><span class="route">power dialler</span></a>
-      <a class="landing-card" href="md?src=design/!reference/sms/README.md"><span class="num">14</span><h3>SMS</h3><p>Text as a seam, not a stunt. Same contacts, same book.</p><span class="cost">No Free SMS · ~$0.01–0.05/msg · paid metered</span><span class="route">SMS</span></a>
-      <a class="landing-card" href="md?src=design/!reference/reporting/README.md"><span class="num">15</span><h3>Reports</h3><p>Measure what ran and what booked. Proof over adjectives.</p><span class="cost">Basic Free · query cheap</span><span class="route">/reports</span></a>
-      <a class="landing-card" href="md?src=design/!reference/search/README.md"><span class="num">16</span><h3>Search &amp; smart views</h3><p>Find the people you already have in mind.</p><span class="cost">Free: soft rate (scrape risk) · ~$0.0001–0.002/query</span><span class="route">⌘K / smart views</span></a>
-      <a class="landing-card" href="md?src=design/!reference/enrichment/README.md"><span class="num">17</span><h3>Enrichment</h3><p>Fill the gaps on the list. Keep control.</p><span class="cost">Tiny demo / BYOK · ~$0.02–0.15/credit · paid pool</span><span class="route">Intelligence</span></a>
-      <a class="landing-card" href="md?src=design/!reference/list-building/README.md"><span class="num">18</span><h3>List building</h3><p>Load a list. Email and call from your phone. Start free. Do one job.</p><span class="cost">Free: 1 list ≤500 rows · link-share · big CSV/files Solo+</span><span class="route">lists</span></a>
-      <a class="landing-card" href="md?src=design/!reference/ai/README.md"><span class="num">19</span><h3>AI assistant</h3><p>Assist the work. It does not run the firm.</p><span class="cost">Tiny Free pool · token drain · Solo+ / PAYG</span><span class="route">AI / MCP</span></a>
-      <a class="landing-card" href="md?src=design/!reference/delivery/README.md"><span class="num">20</span><h3>Projects / delivery</h3><p>Carry the promise through. Same people, same workspace.</p><span class="cost">Free · fair use · ~$0</span><span class="route">projects in To-do</span></a>
-      <a class="landing-card" href="md?src=design/!reference/integrations/README.md"><span class="num">21</span><h3>Integrations</h3><p>Keep the rest of the stack until you are ready.</p><span class="cost">Paid connectors · rate webhooks</span><span class="route">settings / integrations</span></a>
-      <a class="landing-card" href="md?src=design/!reference/files/README.md"><span class="num">22</span><h3>Files</h3><p>Link-share stays free. Serious uploads when you pay.</p><span class="cost">Paywall Free · ~$0.02–0.03/GB-mo + egress · Solo+</span><span class="route">files</span></a>
-      <a class="landing-card" href="md?src=design/!reference/admin/README.md"><span class="num">23</span><h3>Admin &amp; settings</h3><p>Settings that stay out of the way. Control, locked.</p><span class="cost">Owner only on Free · SSO is Enterprise</span><span class="route">settings</span></a>
-    </div>
-  </section>
+  <main class="feature-browser" aria-label="Feature reference browser">
+    <nav class="feature-col" aria-label="Product book sections">
+      <div class="feature-title"><span>Product book</span></div>
+      <div class="feature-menu">
+        <button type="button">Overview</button><button type="button">Pricing</button><button type="button" aria-current="page">Features</button><button type="button">Free doors</button><hr>
+        <button type="button">Journeys</button><button type="button">Marketing</button><button type="button">Landings</button>
+      </div>
+    </nav>
+    <section class="feature-col" aria-label="Features">
+      <div class="feature-title"><span>Features</span><span id="feature-count"></span></div>
+      <div class="feature-list" id="feature-list"></div>
+    </section>
+    <section class="feature-col feature-document" aria-label="Feature document">
+      <div class="feature-meta"><strong id="feature-name"></strong><span id="feature-path"></span><a id="open-document" target="_blank" rel="noopener">Open page ↗</a></div>
+      <iframe id="feature-document" title="Selected feature document"></iframe>
+    </section>
+    <aside class="feature-col feature-reference" aria-label="Feature references">
+      <div class="feature-title"><span>References</span></div>
+      <div class="reference-body"><p class="reference-note">Visual and product references for the selected feature.</p><div class="reference-links" id="reference-links"></div><div class="reference-shots" id="reference-shots"></div></div>
+    </aside>
+  </main>
+  <script>
+    (function () {
+      var features = [
+        ["overview", "Overview / Today", "See today: lists, sends, dials, bookings."], ["inbox", "Shared inbox", "A clear work queue for new conversations."], ["crm", "Companies & contacts", "The people and companies you already know."], ["campaigns", "Campaigns", "List, send and measure one campaign."], ["campaign-approval", "Campaign approval desk", "Check work before it leaves."], ["sequences", "Sequences", "Steps that send, dial and book."], ["pipeline", "Pipeline", "First touch to booked meeting."], ["targets", "Targets", "Named people and companies worth pursuing."], ["todo", "To-do / work", "Next actions on the people that matter."], ["pages", "Pages", "Build a page and share the link."], ["meetings", "Meetings & booking", "Calendar pages that make booking easy."], ["dialler", "Voice / dialler", "Call with the right context."], ["power-dialler", "Power dialler", "A focused queue when the list is long."], ["sms", "SMS", "Text from the same contact history."], ["reporting", "Reports", "Measure work that ran and booked."], ["search", "Search & smart views", "Find and reuse the right list."], ["enrichment", "Enrichment", "Fill gaps while keeping control."], ["list-building", "List building", "Bring a list in and make it useful."], ["ai", "AI assistant", "Assist work without running the firm."], ["delivery", "Projects / delivery", "Carry the promise through."], ["integrations", "Integrations", "Connect the rest of the stack."], ["files", "Files", "Keep the supporting work together."], ["admin", "Admin & settings", "Control that stays out of the way."]
+      ];
+      var list = document.getElementById("feature-list"), current = new URLSearchParams(location.search).get("feature") || "overview", manifest = {};
+      document.getElementById("feature-count").textContent = features.length;
+      function pathFor(slug) { return "design/!reference/" + slug + "/README.md"; }
+      function refsFor(slug) { return "design/!reference/" + slug + "/refs.md"; }
+      function renderReferences(slug) {
+        var links = document.getElementById("reference-links"), shots = document.getElementById("reference-shots"); links.innerHTML = ""; shots.innerHTML = "";
+        [["Feature references ↗", "md?src=" + encodeURIComponent(refsFor(slug))], ["Feature brief ↗", "md?src=" + encodeURIComponent(pathFor(slug))]].forEach(function (item) { var a = document.createElement("a"); a.href = item[1]; a.target = "_blank"; a.rel = "noopener"; a.textContent = item[0]; links.appendChild(a); });
+        var items = manifest[slug] || [];
+        if (!items.length) { shots.innerHTML = '<p class="reference-empty">No saved screenshots yet. Add visual references to this feature folder.</p>'; return; }
+        items.slice(0, 4).forEach(function (shot) { if (!/\.(png|jpe?g|webp)$/i.test(shot.file || "")) return; var figure = document.createElement("figure"), image = document.createElement("img"), caption = document.createElement("figcaption"); image.src = "../design/shots/" + shot.file; image.alt = shot.title || shot.app || "Feature reference"; caption.textContent = [shot.app, shot.title].filter(Boolean).join(" — ") || shot.file; figure.appendChild(image); figure.appendChild(caption); shots.appendChild(figure); });
+      }
+      function render(slug) {
+        var feature = features.filter(function (item) { return item[0] === slug; })[0] || features[0], path = pathFor(feature[0]); current = feature[0];
+        document.getElementById("feature-name").textContent = feature[1]; document.getElementById("feature-path").textContent = path; document.getElementById("feature-document").src = "md?src=" + encodeURIComponent(path); document.getElementById("open-document").href = "md?src=" + encodeURIComponent(path); history.replaceState(null, "", "?feature=" + encodeURIComponent(current));
+        Array.prototype.forEach.call(list.querySelectorAll("button"), function (button) { button.setAttribute("aria-selected", button.dataset.slug === current ? "true" : "false"); }); renderReferences(current);
+      }
+      features.forEach(function (feature) { var button = document.createElement("button"); button.type = "button"; button.dataset.slug = feature[0]; button.innerHTML = "<b>" + feature[1] + "</b><span>" + feature[2] + "</span>"; button.addEventListener("click", function () { render(feature[0]); }); list.appendChild(button); });
+      fetch("../design/shots/manifest.json").then(function (response) { return response.ok ? response.json() : {}; }).then(function (data) { manifest = data || {}; render(current); }).catch(function () { render(current); });
+    })();
+  </script>
 </body>
 </html>
