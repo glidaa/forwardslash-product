@@ -8,16 +8,13 @@
   <style>
     :root { --feature-line: #deded9; }
     body { overflow: hidden; }
-    .feature-browser { display:grid; grid-template-columns:190px 245px minmax(360px,1fr) minmax(250px,340px); height:100vh; background:#fff; }
+    .feature-browser { display:grid; grid-template-columns:245px minmax(360px,1fr) minmax(250px,340px); height:100vh; background:#fff; }
     .feature-col { min-width:0; border-right:1px solid var(--feature-line); overflow:auto; }
     .feature-col:last-child { border-right:0; }
     .feature-title { position:sticky; top:0; z-index:2; display:flex; align-items:center; justify-content:space-between; min-height:56px; padding:0 16px; border-bottom:1px solid var(--feature-line); background:rgba(255,255,255,.96); backdrop-filter:blur(8px); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
-    .feature-menu, .feature-list { padding:10px; }
-    .feature-menu button, .feature-list button { width:100%; border:0; border-radius:4px; background:#fff; color:#4e4e49; text-align:left; cursor:pointer; }
-    .feature-menu button { padding:10px; font-size:12px; }
-    .feature-menu button:hover, .feature-menu button:focus-visible, .feature-list button:hover, .feature-list button:focus-visible { background:#111; color:#fff; outline:0; }
-    .feature-menu button[aria-current="page"] { background:#111; color:#fff; }
-    .feature-menu hr { border:0; border-top:1px solid var(--feature-line); margin:12px 0; }
+    .feature-list { padding:10px; }
+    .feature-list button { width:100%; border:0; border-radius:4px; background:#fff; color:#4e4e49; text-align:left; cursor:pointer; }
+    .feature-list button:hover, .feature-list button:focus-visible { background:#111; color:#fff; outline:0; }
     .feature-list button { display:block; padding:12px 11px; border-bottom:1px solid #eee; }
     .feature-list button:hover, .feature-list button:focus-visible { border-bottom-color:#111; }
     .feature-list button[aria-selected="true"] { background:#111; color:#fff; border-bottom-color:#111; }
@@ -40,19 +37,12 @@
     .reference-shots img { display:block; width:100%; height:auto; }
     .reference-shots figcaption { padding:8px 9px; color:#666; font-size:10px; }
     .reference-empty { padding:15px 0; color:#777; font-size:12px; }
-    @media (max-width:1050px) { .feature-browser { grid-template-columns:175px 215px minmax(340px,1fr); } .feature-reference { display:none; } }
-    @media (max-width:720px) { body { overflow:auto; } .feature-browser { display:block; height:auto; } .feature-col { overflow:visible; border-right:0; border-bottom:1px solid var(--feature-line); } .feature-menu { display:flex; gap:5px; overflow:auto; } .feature-menu button { width:auto; white-space:nowrap; } .feature-menu hr { display:none; } .feature-list { display:flex; gap:5px; overflow:auto; } .feature-list button { min-width:170px; border:1px solid var(--feature-line); } .feature-document { height:70vh; } }
+    @media (max-width:1050px) { .feature-browser { grid-template-columns:215px minmax(340px,1fr); } .feature-reference { display:none; } }
+    @media (max-width:720px) { body { overflow:auto; } .feature-browser { display:block; height:auto; } .feature-col { overflow:visible; border-right:0; border-bottom:1px solid var(--feature-line); } .feature-list { display:flex; gap:5px; overflow:auto; } .feature-list button { min-width:170px; border:1px solid var(--feature-line); } .feature-document { height:70vh; } }
   </style>
 </head>
 <body>
   <main class="feature-browser" aria-label="Feature reference browser">
-    <nav class="feature-col" aria-label="Product book sections">
-      <div class="feature-title"><span>Product book</span></div>
-      <div class="feature-menu">
-        <button type="button">Overview</button><button type="button">Pricing</button><button type="button" aria-current="page">Features</button><button type="button">Free doors</button><hr>
-        <button type="button">Journeys</button><button type="button">Marketing</button><button type="button">Landings</button>
-      </div>
-    </nav>
     <section class="feature-col" aria-label="Features">
       <div class="feature-title"><span>Features</span><span id="feature-count"></span></div>
       <div class="feature-list" id="feature-list"></div>
