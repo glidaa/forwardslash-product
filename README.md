@@ -16,3 +16,13 @@ Features (pages/features.html) is the 23-surface index. Each card opens the rend
 Example wrapper: pages/md?src=design/!reference/inbox/README.md
 Menu line: <a href="design/!reference/inbox/README.md">Inbox</a>  (menu.js routes .md clicks to the wrapper).
 
+## Competition note sync
+
+`Competition → Landing & pricing` saves every note to the browser immediately. The `/api/competition-notes` Vercel function also syncs notes between devices when either a Vercel KV or Upstash Redis REST store is connected.
+
+Supported environment-variable pairs:
+
+- `KV_REST_API_URL` and `KV_REST_API_TOKEN`
+- `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`
+
+Without one of those pairs, the workbench stays fully usable and reports `Saved locally`.

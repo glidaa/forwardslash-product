@@ -1,0 +1,32 @@
+(function () {
+  window.COMPETITION_DATA = [
+    { id:"aircall", name:"Aircall", category:"Diallers", landing:"https://aircall.io/", pricing:"https://aircall.io/pricing/" },
+    { id:"cloudtalk", name:"CloudTalk", category:"Diallers", landing:"https://www.cloudtalk.io/", pricing:"https://www.cloudtalk.io/pricing/" },
+    { id:"justcall", name:"JustCall", category:"Diallers", landing:"https://justcall.io/", pricing:"https://justcall.io/pricing/" },
+    { id:"ringover", name:"Ringover", category:"Diallers", landing:"https://www.ringover.com/", pricing:"https://www.ringover.com/pricing" },
+    { id:"dialpad", name:"Dialpad", category:"Diallers", landing:"https://www.dialpad.com/", pricing:"https://www.dialpad.com/pricing/" },
+    { id:"instantly", name:"Instantly", category:"Outbound email", landing:"https://instantly.ai/", pricing:"https://instantly.ai/pricing" },
+    { id:"smartlead", name:"Smartlead", category:"Outbound email", landing:"https://www.smartlead.ai/", pricing:"https://www.smartlead.ai/pricing" },
+    { id:"lemlist", name:"lemlist", category:"Outbound email", landing:"https://www.lemlist.com/", pricing:"https://www.lemlist.com/pricing?lang=en" },
+    { id:"woodpecker", name:"Woodpecker", category:"Outbound email", landing:"https://woodpecker.co/", pricing:"https://woodpecker.co/pricing/" },
+    { id:"mailshake", name:"Mailshake", category:"Outbound email", landing:"https://mailshake.com/", pricing:"https://mailshake.com/pricing/" },
+    { id:"brevo", name:"Brevo", category:"Marketing", landing:"https://www.brevo.com/", pricing:"https://www.brevo.com/pricing/" },
+    { id:"mailchimp", name:"Mailchimp", category:"Marketing", landing:"https://mailchimp.com/", pricing:"https://mailchimp.com/pricing/marketing/", mobbinLanding:{ image:"../design/shots/competition/mobbin-exact/mailchimp-landing.jpg", url:"https://mobbin.com/sites/sections/d27aa5d6-7e46-431d-80ff-28bf58d5c92d" }, mobbinPricing:{ image:"../design/shots/competition/mobbin-exact/mailchimp-pricing.jpg", url:"https://mobbin.com/sites/sections/c287ff54-620f-4c45-875c-5b77fe0cc7e8" } },
+    { id:"hubspot-marketing", name:"HubSpot Marketing Hub", category:"Marketing", landing:"https://www.hubspot.com/products/marketing", pricing:"https://www.hubspot.com/pricing/marketing", mobbinLanding:{ image:"../design/shots/competition/mobbin-exact/hubspot-landing.jpg", url:"https://mobbin.com/sites/sections/2aabd81c-11b0-4d28-a242-38623abce4a1" }, mobbinPricing:{ image:"../design/shots/competition/mobbin-exact/hubspot-pricing.jpg", url:"https://mobbin.com/sites/sections/f4f8acbf-9dd7-4e6f-aa07-1c233cfe43bd" } },
+    { id:"activecampaign", name:"ActiveCampaign", category:"Marketing", landing:"https://www.activecampaign.com/", pricing:"https://www.activecampaign.com/pricing" },
+    { id:"klaviyo", name:"Klaviyo", category:"Marketing", landing:"https://www.klaviyo.com/", pricing:"https://www.klaviyo.com/pricing" },
+    { id:"salesforce", name:"Salesforce", category:"CRM", landing:"https://www.salesforce.com/sales/", pricing:"https://www.salesforce.com/sales/pricing/" },
+    { id:"hubspot-sales", name:"HubSpot Sales Hub", category:"CRM", landing:"https://www.hubspot.com/products/sales", pricing:"https://www.hubspot.com/pricing/sales", mobbinLanding:{ image:"../design/shots/competition/mobbin-exact/hubspot-landing.jpg", url:"https://mobbin.com/sites/sections/2aabd81c-11b0-4d28-a242-38623abce4a1" }, mobbinPricing:{ image:"../design/shots/competition/mobbin-exact/hubspot-pricing.jpg", url:"https://mobbin.com/sites/sections/f4f8acbf-9dd7-4e6f-aa07-1c233cfe43bd" } },
+    { id:"pipedrive", name:"Pipedrive", category:"CRM", landing:"https://www.pipedrive.com/", pricing:"https://www.pipedrive.com/en/pricing" },
+    { id:"close", name:"Close", category:"CRM", landing:"https://close.com/", pricing:"https://close.com/pricing" },
+    { id:"zoho", name:"Zoho CRM", category:"CRM", landing:"https://www.zoho.com/crm/", pricing:"https://www.zoho.com/crm/zohocrm-pricing.html" },
+    { id:"dynamics", name:"Microsoft Dynamics 365 Sales", category:"CRM", landing:"https://www.microsoft.com/en-us/dynamics-365/products/sales", pricing:"https://www.microsoft.com/en-us/dynamics-365/pricing" },
+    { id:"clickup", name:"ClickUp", category:"Work management", landing:"https://clickup.com/", pricing:"https://clickup.com/pricing", mobbinLanding:{ image:"../design/shots/competition/mobbin-exact/clickup-landing.jpg", url:"https://mobbin.com/sites/sections/1710867a-adf8-478e-ad5a-87b9c1f45a20" }, mobbinPricing:{ image:"../design/shots/competition/mobbin-exact/clickup-pricing.jpg", url:"https://mobbin.com/sites/sections/cff1f618-8adc-47f2-8e13-66ba1bc6b0e4" } },
+    { id:"asana", name:"Asana", category:"Work management", landing:"https://asana.com/", pricing:"https://asana.com/pricing" },
+    { id:"monday", name:"monday.com", category:"Work management", landing:"https://monday.com/", pricing:"https://monday.com/pricing/", mobbinLanding:{ image:"../design/shots/competition/mobbin-exact/monday-landing.jpg", url:"https://mobbin.com/sites/sections/8cac4970-afc8-406f-bc0f-67f72a0ff9f4" }, mobbinPricing:{ image:"../design/shots/competition/mobbin-exact/monday-pricing.jpg", url:"https://mobbin.com/sites/sections/a7cd7528-d793-4961-8392-3028f324ef0a" } },
+    { id:"jira", name:"Jira", category:"Work management", landing:"https://www.atlassian.com/software/jira", pricing:"https://www.atlassian.com/software/jira/pricing", mobbinLanding:{ image:"../design/shots/competition/mobbin-exact/jira-landing.jpg", url:"https://mobbin.com/sites/sections/401bdf04-eee4-4d8e-acab-4a0067741d7b" }, mobbinPricing:{ image:"../design/shots/competition/mobbin-exact/jira-pricing.jpg", url:"https://mobbin.com/sites/sections/6174db28-08ab-4f62-9304-9626ab4fe1a2" } },
+    { id:"notion", name:"Notion", category:"Work management", landing:"https://www.notion.com/", pricing:"https://www.notion.com/pricing", mobbinLanding:{ image:"../design/shots/competition/mobbin-exact/notion-landing.jpg", url:"https://mobbin.com/sites/sections/5508b377-93e6-49fc-8d7e-dcaee5203c63" }, mobbinPricing:{ image:"../design/shots/competition/mobbin-exact/notion-pricing.jpg", url:"https://mobbin.com/sites/sections/62c8c3cb-03c4-42c5-a5ee-3bad0564218f" } },
+    { id:"basecamp", name:"Basecamp", category:"Work management", landing:"https://basecamp.com/", pricing:"https://basecamp.com/pricing" },
+    { id:"teamwork", name:"Teamwork", category:"Work management", landing:"https://www.teamwork.com/", pricing:"https://www.teamwork.com/pricing/" }
+  ];
+})();
