@@ -98,10 +98,10 @@
     var mobbin = mobbinReference();
     var mobbinLink = document.getElementById("mobbinLink");
     var sourceStatus = document.getElementById("sourceStatus");
-    image.src = mobbin ? mobbin.image : capturePath();
-    image.alt = selected.name + " " + kind.toLowerCase() + " page " + (mobbin ? "from Mobbin" : "capture");
-    imageView.textContent = mobbin ? "Mobbin image" : "Page image";
-    sourceStatus.textContent = mobbin ? "Mobbin reference · click Mobbin ↗ to open the source" : "Saved live-page capture · no exact Mobbin match found";
+    image.src = capturePath();
+    image.alt = selected.name + " " + kind.toLowerCase() + " full-page capture";
+    imageView.textContent = "Full page";
+    sourceStatus.textContent = mobbin ? "Full-page capture · Mobbin source available ↗" : "Full-page capture · Mobbin search available ↗";
     mobbinLink.href = mobbin ? mobbin.url : "https://mobbin.com/browse/web/apps";
     mobbinLink.textContent = mobbin ? "Mobbin ↗" : "Search Mobbin ↗";
     document.getElementById("chatLink").href = "https://chatgpt.com/?q=" + encodeURIComponent("Help me analyse this " + kind.toLowerCase() + " page for " + selected.name + ": " + pageUrl());
