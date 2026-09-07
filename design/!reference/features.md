@@ -38,3 +38,9 @@ Each feature has a folder under this directory with `README.md` and `refs.md`.
 3. pages, meetings, reporting, todo
 4. enrichment, list-building, ai, search, targets
 5. delivery, integrations, files, admin, overview, sms
+
+## Prism image system
+
+- [`IMAGE-SYSTEM.md`](IMAGE-SYSTEM.md) — tokens, six-frame pack, plate, folder contract, priority
+- [`SHOT-MAP-TO-CATALOG.md`](SHOT-MAP-TO-CATALOG.md) — Catalyst groups → `ref` slugs (catalog: [`../!pricing/08-FEATURE-CATALOG.md`](../!pricing/08-FEATURE-CATALOG.md))
+- Shot-pack specs: [`inbox/SHOT-PACK.md`](inbox/SHOT-PACK.md), [`campaigns/SHOT-PACK.md`](campaigns/SHOT-PACK.md)

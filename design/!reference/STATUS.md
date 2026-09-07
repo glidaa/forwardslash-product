@@ -29,3 +29,14 @@
 **23 / 23** feature folders filled with Mobbin flows + screens.
 
 Note: Mobbin flows are the closest available video-like references via the connector (play on mobbin.com). Raw video files are not downloadable through the MCP.
+
+## Prism shot packs (specs)
+
+Image system + catalog shot map: [`IMAGE-SYSTEM.md`](IMAGE-SYSTEM.md), [`SHOT-MAP-TO-CATALOG.md`](SHOT-MAP-TO-CATALOG.md).
+
+| Surface | Spec | Frames folder |
+|---------|------|---------------|
+| inbox | [`inbox/SHOT-PACK.md`](inbox/SHOT-PACK.md) | `design/shots/inbox/` |
+| campaigns | [`campaigns/SHOT-PACK.md`](campaigns/SHOT-PACK.md) | `design/shots/campaigns/` |
+
+Next priority: dialler → crm → pages. Drop JPGs per IMAGE-SYSTEM folder contract; do not rewrite Catalyst catalog UI.
