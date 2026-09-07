@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Product · Suggestions</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="wrap hero">
+    <div class="eyebrow">Product · add or change</div>
+    <h1>Suggestions.</h1>
+    <p class="lede">Major clusters the 28 sell, in plain language — then how they sit against the Catalyst catalog (<code>design/!pricing/08-FEATURE-CATALOG.md</code>), then prioritized adds and changes. Not a row dump. Source: competition feature vs tables (~1.1k rows across 28).</p>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow">Clusters</div>
+      <h2>What the field is selling</h2>
+      <div class="grid2">
+        <article class="card"><h3>Phone system / dialler</h3><p>Numbers, click-to-call, power / parallel dial, recording, coaching, IVR and queues. Peers: Aircall, CloudTalk, JustCall, Ringover, Dialpad.</p></article>
+        <article class="card"><h3>Outbound email machine</h3><p>Sequences, warmup, unlimited mailboxes, master inbox, agents that write and reply. Peers: Instantly, Smartlead, lemlist, Woodpecker, Mailshake.</p></article>
+        <article class="card"><h3>Marketing automation hub</h3><p>Journeys, lists, ads, attribution, ecommerce triggers. Peers: Brevo, Mailchimp, HubSpot Marketing, ActiveCampaign, Klaviyo.</p></article>
+        <article class="card"><h3>Sales CRM suite</h3><p>Pipeline, forecasting, CPQ, seats, AI that updates records. Peers: Close, Pipedrive, HubSpot Sales, Salesforce, Zoho, Dynamics.</p></article>
+        <article class="card"><h3>Work OS / delivery</h3><p>Tasks, boards, docs, client portals. Peers: ClickUp, Asana, monday, Jira, Notion, Basecamp, Teamwork.</p></article>
+        <article class="card"><h3>AI agents layer</h3><p>Voice agents, reply agents, playbooks, CSAT bots — bolted onto phone or CRM. Appears across diallers and CRMs.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <div class="eyebrow">Vs Catalyst</div>
+      <h2>Where the catalog already stands</h2>
+      <p>Rough read of vs tags: many <strong>have</strong> / <strong>partial</strong>, far fewer true <strong>gap</strong>. Most “gaps” are contact-center routing, send-farm infra, marketing-suite sprawl, or enterprise CRM modules we are not building.</p>
+      <div class="tablewrap" style="min-width:0;margin-top:18px">
+        <table style="min-width:0">
+          <thead><tr><th>Cluster</th><th>Catalog coverage</th><th>Honest miss</th></tr></thead>
+          <tbody>
+            <tr><td>Dialler</td><td>Click-to-call, power, predictive, recording, notes, coaching, phone bot</td><td>Number reputation / branded CID; parallel dial as named add-on; we correctly skip IVR/ACD</td></tr>
+            <tr><td>Outbound email</td><td>Own-mailbox, sequences, campaigns, approval, tracking, deliverability care</td><td>Deliverability is thin in the story vs Instantly/Smartlead; we refuse mailbox farms</td></tr>
+            <tr><td>Marketing hub</td><td>Campaigns + pages + tracking slice</td><td>Ads managers, social, ecommerce — out of scope</td></tr>
+            <tr><td>Sales CRM</td><td>Contacts, stages, ownership, Free foothold, Close ladder</td><td>Forecasting / CPQ / custom-object platforms — refuse</td></tr>
+            <tr><td>Work / delivery</td><td>Tasks, overview, delivery projects</td><td>Almost none; keep thin</td></tr>
+            <tr><td>AI agents</td><td>Assistant, drafts, summaries, call notes, MCP, BYOK, phone bot</td><td>Named agent roles in UI/marketing; not a second Chloe clone race</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow">Priorities</div>
+      <h2>Add or change</h2>
+
+      <h3>P1 — do soon</h3>
+      <ol>
+        <li><strong>Make deliverability a first-class paid story.</strong> Catalog already has Deliverability care. Competitors win the sentence (“warmup / placement”). Spell the Free→Solo polish path without selling private IP farms or DFY mailboxes.</li>
+        <li><strong>Number reputation polish on dialler.</strong> Branded caller ID / number health show up as gaps vs CloudTalk/JustCall. Small surface; big trust for AU/UK/IE outbound. Not IVR.</li>
+        <li><strong>Name the AI jobs in product UI.</strong> We have the capabilities (draft, summarize, call notes, phone bot, MCP). Peers sell named agents. Keep “assist the work” — give plain job names, not a robot mascot.</li>
+        <li><strong>Shared / master inbox clarity.</strong> Essentials+ shared inbox exists. Outbound peers hang “one place for replies across domains.” Make that the team story next to own-mailbox send.</li>
+      </ol>
+
+      <h3>P2 — strengthen what we claim</h3>
+      <ol>
+        <li><strong>Parallel / multi-line dial as Scale language</strong> if usage economics allow — peers sell it as add-on; we already have predictive at Scale.</li>
+        <li><strong>Campaign experiment language</strong> — A/B (or A/Z) shows as gap vs Instantly/ActiveCampaign. Keep it simple: variants on one campaign, not a marketing suite.</li>
+        <li><strong>Agency shared workspace</strong> — Smartlead/Woodpecker white-label is a gap we map to shared workspace. Deepen client approval + workspace, refuse full white-label farms.</li>
+        <li><strong>Free proof that can be felt</strong> — doors already exist; keep them as concrete as CloudTalk’s “50 AI minutes / get a call” without copying support demos.</li>
+      </ol>
+
+      <h3>P3 — change / sharpen (not new modules)</h3>
+      <ol>
+        <li><strong>Refuse list stays visible</strong> — IVR/ACD, send farms, LinkedIn automation as core, CPQ/forecasting suites, ads managers. Do not let partial tags drag us into building them.</li>
+        <li><strong>Close custom objects / group numbers / funnel reports</strong> — treat as “enough with custom fields, round robin, stages, overview,” not a roadmap to Close clones.</li>
+        <li><strong>Work tools</strong> — no new boards; keep tasks on contacts and delivery projects.</li>
+      </ol>
+
+      <p class="note" style="margin-top:22px">Catalog SoT: <a href="md?src=design/!pricing/08-FEATURE-CATALOG.md">08-FEATURE-CATALOG.md</a>. Feature browser: <a href="features.html">Features</a>. Opinion on the 28: <a href="product-competitors.html">Competitors</a>. Tables: <a href="competition.html?view=landing">Landing</a> · <a href="competition.html?view=pricing">Pricing</a>.</p>
+    </div>
+  </section>
+</body>
+</html>
