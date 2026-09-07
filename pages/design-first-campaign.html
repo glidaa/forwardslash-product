@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>First campaign · UI</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .design-intro { max-width: 740px; }
+    .screen-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 42px;
+      margin-top: 28px;
+    }
+    .screen-block { display: grid; gap: 12px; }
+    .screen-meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .screen-meta h3 { font-size: 22px; }
+    .screen-meta .doing {
+      margin: 0;
+      color: #666;
+      font-size: 13px;
+      max-width: 520px;
+    }
+    /* Device frame — Swiss B&W app chrome */
+    .device {
+      border: 1px solid #111;
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,.06);
+    }
+    .device-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 44px;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+      background: #fafafa;
+      font-size: 11px;
+      color: #777;
+    }
+    .device-bar .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #d0d0cb; display: inline-block;
+    }
+    .device-bar .title {
+      margin-left: 4px;
+      color: #111;
+      font-weight: 600;
+      font-family: Space Grotesk, sans-serif;
+      letter-spacing: -0.02em;
+    }
+    .app {
+      display: grid;
+      grid-template-columns: 148px 1fr;
+      min-height: 360px;
+    }
+    .app-nav {
+      border-right: 1px solid var(--line);
+      background: #fafafa;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .app-nav .nav-item {
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #777;
+    }
+    .app-nav .nav-item.active {
+      background: #111;
+      color: #fff;
+      font-weight: 600;
+    }
+    .app-main { padding: 18px 20px 22px; min-width: 0; }
+    .app-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .app-head h4 {
+      margin: 0;
+      font: 600 18px/1.2 Space Grotesk, sans-serif;
+      letter-spacing: -0.03em;
+    }
+    .ui-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 12px;
+      border: 1px solid #111;
+      border-radius: 6px;
+      background: #fff;
+      color: #111;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .ui-btn.primary { background: #111; color: #fff; }
+    .ui-btn.ghost { border-color: var(--line); color: #555; }
+    .ui-btn.disabled { opacity: .35; pointer-events: none; }
+    .ui-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .empty-state {
+      margin-top: 36px;
+      padding: 36px 20px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .empty-state p {
+      margin: 0 0 14px;
+      color: #888;
+      font-size: 13px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fff;
+    }
+    .panel + .panel { margin-top: 10px; }
+    .panel-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #888;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .field {
+      width: 100%;
+      min-height: 34px;
+      margin-bottom: 8px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fafafa;
+      color: #555;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+    }
+    .field.tall {
+      min-height: 88px;
+      align-items: flex-start;
+      padding-top: 10px;
+      line-height: 1.45;
+    }
+    .chip {
+      display: inline-flex;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #444;
+      background: #f6f6f3;
+    }
+    .status-pill {
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      color: #777;
+    }
+    .status-pill.ok { background: #111; color: #fff; border-color: #111; }
+    .status-pill.warn { background: #f6f6f3; color: #444; }
+    .split2 {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 12px;
+    }
+    .split3 {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 12px;
+      min-height: 280px;
+    }
+    .people-list { display: flex; flex-direction: column; gap: 4px; }
+    .person {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 11px;
+    }
+    .person.active { border-color: #111; background: #fafafa; }
+    .person span { color: #888; }
+    .dropzone {
+      padding: 28px 16px;
+      border: 1px dashed #111;
+      border-radius: 8px;
+      text-align: center;
+      background: #fafafa;
+      color: #555;
+      font-size: 12px;
+    }
+    .map-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-top: 10px;
+    }
+    .map-table th, .map-table td {
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      text-align: left;
+    }
+    .map-table th {
+      background: #111;
+      color: #fff;
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .modal-overlay {
+      margin-top: 8px;
+      padding: 18px;
+      background: rgba(8,8,8,.04);
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+    }
+    .modal {
+      width: min(360px, 100%);
+      padding: 18px;
+      border: 1px solid #111;
+      border-radius: 9px;
+      background: #fff;
+    }
+    .modal h5 {
+      margin: 0 0 8px;
+      font: 600 16px Space Grotesk, sans-serif;
+      letter-spacing: -0.02em;
+    }
+    .modal p { margin: 0 0 14px; color: #666; font-size: 12px; }
+    .thread { display: flex; flex-direction: column; gap: 10px; }
+    .bubble {
+      max-width: 85%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 12px;
+      color: #444;
+      line-height: 1.45;
+    }
+    .bubble.out { align-self: flex-end; background: #111; color: #fff; border-color: #111; }
+    .bubble.in { align-self: flex-start; background: #fff; }
+    .inbox-list { display: flex; flex-direction: column; gap: 2px; }
+    .inbox-row {
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+    }
+    .inbox-row.active { background: #f6f6f3; }
+    .inbox-row strong { display: block; font-size: 12px; }
+    .inbox-row span { color: #888; }
+    .toast {
+      display: inline-flex;
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: 1px solid #111;
+      border-radius: 6px;
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .scope-list {
+      margin: 0 0 12px;
+      padding-left: 18px;
+      color: #555;
+      font-size: 12px;
+    }
+    .scope-list li { margin-bottom: 4px; }
+    .link-field {
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+    }
+    .link-field .field { flex: 1; margin: 0; font-family: ui-monospace, monospace; font-size: 11px; }
+    @media (max-width: 720px) {
+      .app { grid-template-columns: 1fr; }
+      .app-nav { display: none; }
+      .split2, .split3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap hero">
+    <div class="eyebrow">Product · First campaign UI</div>
+    <h1>First campaign screens.</h1>
+    <p class="lede design-intro">Swiss black &amp; white wireframes for the first email campaign. Each card is a readable app screen with real button labels — not a journey essay.</p>
+    <div class="actions">
+      <a class="btn dark" href="#pages/journey-campaign">Journey stories</a>
+      <a class="btn" href="journey-campaign.html">Open journey page</a>
+    </div>
+  </div>
+
+  <section class="section soft">
+    <div class="wrap">
+      <div class="eyebrow">Eight screens</div>
+      <h2>UI mocks</h2>
+      <p class="lede" style="margin-top:0;font-size:14px;max-width:740px">Drawn from the On screen blocks in <a href="journey-campaign.html">First campaign</a>. Build from these layouts.</p>
+
+      <div class="screen-grid">
+
+        <!-- 1. Campaigns empty -->
+        <div class="screen-block" id="campaigns-empty">
+          <div class="screen-meta">
+            <h3>1 · Campaigns empty</h3>
+            <p class="doing">User is doing: Opens Campaigns for the first time and starts a blank campaign.</p>
+          </div>
+          <div class="device">
+            <div class="device-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">forwardslash</span>
+              <span style="margin-left:auto">workspace</span>
+            </div>
+            <div class="app">
+              <aside class="app-nav">
+                <div class="nav-item active">Campaigns</div>
+                <div class="nav-item">Inbox</div>
+                <div class="nav-item">People</div>
+              </aside>
+              <div class="app-main">
+                <div class="app-head">
+                  <h4>Campaigns</h4>
+                  <button class="ui-btn primary" type="button">New campaign</button>
+                </div>
+                <div class="empty-state">
+                  <p>No campaigns yet. Start with one email to a list you already have.</p>
+                  <button class="ui-btn primary" type="button">New campaign</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Connect mailbox -->
+        <div class="screen-block" id="connect-mailbox">
+          <div class="screen-meta">
+            <h3>2 · Connect mailbox</h3>
+            <p class="doing">User is doing: Links Gmail or SMTP so mail leaves from their own mailbox.</p>
+          </div>
+          <div class="device">
+            <div class="device-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">Campaign · Connect mailbox</span>
+            </div>
+            <div class="app">
+              <aside class="app-nav">
+                <div class="nav-item active">Campaigns</div>
+                <div class="nav-item">Inbox</div>
+                <div class="nav-item">People</div>
+              </aside>
+              <div class="app-main">
+                <div class="app-head">
+                  <h4>From address</h4>
+                  <span class="status-pill warn">Not connected</span>
+                </div>
+                <div class="panel">
+                  <span class="panel-label">Mailbox</span>
+                  <p style="margin:0 0 14px;color:#666;font-size:13px">Send from your mailbox. Choose Google or your own SMTP server.</p>
+                  <div class="ui-row">
+                    <button class="ui-btn primary" type="button">Connect Gmail</button>
+                    <button class="ui-btn" type="button">Connect SMTP</button>
+                  </div>
+                </div>
+                <div class="panel" style="margin-top:10px;opacity:.85">
+                  <span class="panel-label">SMTP (if chosen)</span>
+                  <div class="field">Host · smtp.example.com</div>
+                  <div class="ui-row" style="margin-bottom:8px">
+                    <div class="field" style="flex:1;margin:0">Port · 587</div>
+                    <div class="field" style="flex:1;margin:0">User · you@example.com</div>
+                  </div>
+                  <div class="field">Password · ••••••••</div>
+                  <div class="ui-row">
+                    <button class="ui-btn primary" type="button">Save</button>
+                    <button class="ui-btn ghost" type="button">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. CSV upload -->
+        <div class="screen-block" id="csv-upload">
+          <div class="screen-meta">
+            <h3>3 · CSV upload</h3>
+            <p class="doing">User is doing: Loads a list onto this campaign and confirms the column map.</p>
+          </div>
+          <div class="device">
+            <div class="device-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">Campaign · People</span>
+            </div>
+            <div class="app">
+              <aside class="app-nav">
+                <div class="nav-item active">Campaigns</div>
+                <div class="nav-item">Inbox</div>
+                <div class="nav-item">People</div>
+              </aside>
+              <div class="app-main">
+                <div class="app-head">
+                  <h4>People</h4>
+                  <div class="ui-row">
+                    <button class="ui-btn" type="button">Add contact</button>
+                    <button class="ui-btn primary" type="button">Upload CSV</button>
+                  </div>
+                </div>
+                <div class="dropzone">Drop CSV here, or click Upload CSV<br><span style="color:#999;font-size:11px">email, firstName, company…</span></div>
+                <div class="panel" style="margin-top:12px">
+                  <span class="panel-label">Map columns · preview</span>
+                  <table class="map-table">
+                    <thead><tr><th>CSV column</th><th>Maps to</th><th>Sample</th></tr></thead>
+                    <tbody>
+                      <tr><td>Email</td><td>email</td><td>sam@acme.co</td></tr>
+                      <tr><td>First</td><td>firstName</td><td>Sam</td></tr>
+                      <tr><td>Company</td><td>company</td><td>Acme</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="ui-row" style="margin-top:12px">
+                    <button class="ui-btn primary" type="button">Confirm</button>
+                    <button class="ui-btn ghost" type="button">Cancel</button>
+                    <span style="margin-left:auto;color:#888;font-size:11px">42 people ready</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Campaign edit -->
+        <div class="screen-block" id="campaign-edit">
+          <div class="screen-meta">
+            <h3>4 · Campaign edit</h3>
+            <p class="doing">User is doing: Writes the first message and checks how it looks for one person.</p>
+          </div>
+          <div class="device">
+            <div class="device-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">Campaign · Edit</span>
+              <span style="margin-left:auto" class="status-pill ok">From you@firm.com</span>
+            </div>
+            <div class="app">
+              <aside class="app-nav">
+                <div class="nav-item active">Campaigns</div>
+                <div class="nav-item">Inbox</div>
+                <div class="nav-item">People</div>
+              </aside>
+              <div class="app-main">
+                <div class="app-head">
+                  <h4>First outreach</h4>
+                  <div class="ui-row">
+                    <button class="ui-btn" type="button">Preview</button>
+                    <button class="ui-btn" type="button">Send test</button>
+                    <button class="ui-btn primary" type="button">Send</button>
+                  </div>
+                </div>
+                <div class="split2">
+                  <div class="panel">
+                    <span class="panel-label">People · 42</span>
+                    <div class="people-list">
+                      <div class="person active"><strong>Sam Lee</strong><span>sam@acme.co</span></div>
+                      <div class="person"><strong>Jordan Kim</strong><span>j@north.io</span></div>
+                      <div class="person"><strong>Alex Ruiz</strong><span>a@plain.co</span></div>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <span class="panel-label">Message</span>
+                    <div class="field">Subject · Quick note for {{firstName}}</div>
+                    <div class="field tall">Hi {{firstName}},<br><br>Saw {{company}} and thought this might help…</div>
+                    <div class="ui-row" style="margin-bottom:8px">
+                      <span class="chip">{{firstName}}</span>
+                      <span class="chip">{{email}}</span>
+                      <span class="chip">{{company}}</span>
+                      <button class="ui-btn ghost" type="button">Insert field</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Send blocked -->
+        <div class="screen-block" id="send-blocked">
+          <div class="screen-meta">
+            <h3>5 · Send blocked</h3>
+            <p class="doing">User is doing: Tried to send without people — product stops them and points to upload.</p>
+          </div>
+          <div class="device">
+            <div class="device-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">Campaign · Edit</span>
+            </div>
+            <div class="app">
+              <aside class="app-nav">
+                <div class="nav-item active">Campaigns</div>
+                <div class="nav-item">Inbox</div>
+                <div class="nav-item">People</div>
+              </aside>
+              <div class="app-main">
+                <div class="app-head">
+                  <h4>First outreach</h4>
+                  <div class="ui-row">
+                    <button class="ui-btn disabled" type="button">Send test</button>
+                    <button class="ui-btn primary" type="button">Send</button>
+                  </div>
+                </div>
+                <div class="split2">
+                  <div class="panel" style="border-color:#111;outline:2px solid #111;outline-offset:2px">
+                    <span class="panel-label">People · 0</span>
+                    <p style="margin:8px 0 12px;color:#666;font-size:12px">No people yet.</p>
+                    <div class="ui-row">
+                      <button class="ui-btn primary" type="button">Upload CSV</button>
+                      <button class="ui-btn" type="button">Add contact</button>
+                    </div>
+                  </div>
+                  <div class="panel">
+                    <span class="panel-label">Message</span>
+                    <div class="field">Subject · Quick note for {{firstName}}</div>
+                    <div class="field tall">Hi {{firstName}}, draft ready…</div>
+                  </div>
+                </div>
+                <div class="modal-overlay">
+                  <div class="modal">
+                    <h5>Add people before you send</h5>
+                    <p>Upload a CSV or add one contact. Send stays off until there is someone to write to.</p>
+                    <div class="ui-row">
+                      <button class="ui-btn primary" type="button">Upload CSV</button>
+                      <button class="ui-btn" type="button">Add contact</button>
+                      <button class="ui-btn ghost" type="button">Dismiss</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Preview / test -->
+        <div class="screen-block" id="preview-test">
+          <div class="screen-meta">
+            <h3>6 · Preview / test</h3>
+            <p class="doing">User is doing: Sends one test to themselves before the list goes out.</p>
+          </div>
+          <div class="device">
+            <div class="device-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">Campaign · Preview</span>
+            </div>
+            <div class="app">
+              <aside class="app-nav">
+                <div class="nav-item active">Campaigns</div>
+                <div class="nav-item">Inbox</div>
+                <div class="nav-item">People</div>
+              </aside>
+              <div class="app-main">
+                <div class="app-head">
+                  <h4>Preview · Sam Lee</h4>
+                  <button class="ui-btn ghost" type="button">Back to edit</button>
+                </div>
+                <div class="panel">
+                  <span class="panel-label">Rendered</span>
+                  <div class="field">Subject · Quick note for Sam</div>
+                  <div class="field tall">Hi Sam,<br><br>Saw Acme and thought this might help…</div>
+                </div>
+                <div class="panel" style="margin-top:10px">
+                  <span class="panel-label">Send test to</span>
+                  <div class="field">you@firm.com</div>
+                  <div class="ui-row">
+                    <button class="ui-btn primary" type="button">Send test</button>
+                    <button class="ui-btn" type="button">Open Inbox</button>
+                  </div>
+                  <div class="toast">Test sent</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Inbox thread -->
+        <div class="screen-block" id="inbox-thread">
+          <div class="screen-meta">
+            <h3>7 · Inbox thread</h3>
+            <p class="doing">User is doing: Reads the first real reply and answers without leaving the book.</p>
+          </div>
+          <div class="device">
+            <div class="device-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">Inbox</span>
+            </div>
+            <div class="app">
+              <aside class="app-nav">
+                <div class="nav-item">Campaigns</div>
+                <div class="nav-item active">Inbox</div>
+                <div class="nav-item">People</div>
+              </aside>
+              <div class="app-main" style="padding:0">
+                <div class="split3" style="min-height:340px">
+                  <div style="border-right:1px solid var(--line);padding:12px 0">
+                    <div style="padding:0 12px 8px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#888">Unread</div>
+                    <div class="inbox-list">
+                      <div class="inbox-row active"><strong>Sam Lee</strong><span>Re: Quick note for Sam</span></div>
+                      <div class="inbox-row"><strong>Jordan Kim</strong><span>Thanks — next week?</span></div>
+                    </div>
+                  </div>
+                  <div style="padding:16px 18px">
+                    <div class="app-head" style="margin-bottom:12px">
+                      <div>
+                        <h4 style="font-size:16px">Sam Lee</h4>
+                        <span style="color:#888;font-size:11px">sam@acme.co · First outreach</span>
+                      </div>
+                      <button class="ui-btn primary" type="button">Reply</button>
+                    </div>
+                    <div class="thread">
+                      <div class="bubble out">Hi Sam, Saw Acme and thought this might help…</div>
+                      <div class="bubble in">Thanks — interested. Can we talk Thursday?</div>
+                    </div>
+                    <div class="panel" style="margin-top:12px">
+                      <span class="panel-label">Reply</span>
+                      <div class="field tall">Thursday works. Here’s a link…</div>
+                      <div class="ui-row">
+                        <button class="ui-btn primary" type="button">Send</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Share connect link -->
+        <div class="screen-block" id="share-connect">
+          <div class="screen-meta">
+            <h3>8 · Share connect link</h3>
+            <p class="doing">User is doing: Gives an assistant limited access to prepare the first campaign.</p>
+          </div>
+          <div class="device">
+            <div class="device-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="title">Share · Connect link</span>
+            </div>
+            <div class="app">
+              <aside class="app-nav">
+                <div class="nav-item active">Campaigns</div>
+                <div class="nav-item">Inbox</div>
+                <div class="nav-item">People</div>
+              </aside>
+              <div class="app-main">
+                <div class="app-head">
+                  <h4>Help from an assistant</h4>
+                  <button class="ui-btn ghost" type="button">Done</button>
+                </div>
+                <div class="panel">
+                  <span class="panel-label">Connect link</span>
+                  <div class="link-field">
+                    <div class="field">https://app.forwardslash.ch/connect/abc…</div>
+                    <button class="ui-btn primary" type="button">Copy link</button>
+                  </div>
+                </div>
+                <div class="panel" style="margin-top:10px">
+                  <span class="panel-label">What they can do</span>
+                  <ul class="scope-list">
+                    <li>Connect mailbox (with your approval)</li>
+                    <li>Upload a list</li>
+                    <li>Draft the email</li>
+                    <li>Queue send — you still click Send</li>
+                  </ul>
+                  <div class="ui-row">
+                    <button class="ui-btn" type="button">Revoke</button>
+                    <button class="ui-btn ghost" type="button">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow">Stories</div>
+      <h2>Back to the journey</h2>
+      <p>Paths A / B / C, Given–When–Then, and build notes live on the journey page.</p>
+      <div class="actions">
+        <a class="btn dark" href="journey-campaign.html">First campaign · journey</a>
+        <a class="btn" href="product-look.html">Look system</a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
