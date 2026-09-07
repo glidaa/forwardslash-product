@@ -25,12 +25,11 @@
           <span id="selectedKind">Landing</span>
           <strong id="selectedName">Aircall</strong>
         </div>
-        <button class="like" id="likeButton" type="button" aria-pressed="false" title="Mark as something we like"><span aria-hidden="true">☆</span><span>Like</span></button>
       </header>
 
-      <section class="note-field likes-field">
-        <label for="likes">Things we like</label>
-        <textarea id="likes" placeholder="Message, structure, proof, pricing mechanics…"></textarea>
+      <section class="feature-inventory" id="featureInventory" aria-label="Feature list vs Forwardslash">
+        <header class="feature-inventory-title">Features on this page · vs Forwardslash</header>
+        <div id="featureList" class="feature-list"></div>
       </section>
 
       <section class="note-field main-notes">
@@ -75,6 +74,7 @@
   </main>
 
   <script src="competition-data.js"></script>
+  <script src="competition-features.js"></script>
   <script src="competition.js"></script>
 </body>
 </html>

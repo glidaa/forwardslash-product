@@ -135,3 +135,57 @@ button, textarea { font:inherit; }
   .notes-column { height:54vh; }
   .live-column { height:78vh; }
 }
+
+
+.feature-inventory {
+  flex: 1.4;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #deded9;
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+}
+.feature-inventory-title {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #686864;
+  margin-bottom: 8px;
+}
+.feature-list {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}
+.feature-row {
+  border: 1px solid #deded9;
+  border-radius: 9px;
+  padding: 8px 10px;
+  background: #fff;
+}
+.feature-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #151515;
+}
+.feature-does {
+  font-size: 12px;
+  color: #151515;
+  margin-top: 3px;
+  line-height: 1.4;
+}
+.feature-vs {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #686864;
+  margin-top: 6px;
+}
+.feature-row.vs-have { border-color: #151515; }
+.feature-row.vs-partial { border-style: dashed; }
+.feature-row.vs-gap { background: #f6f6f3; }
+.feature-empty { font-size: 12px; color: #686864; }

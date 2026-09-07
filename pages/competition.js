@@ -11,9 +11,7 @@
 
   var browser = document.querySelector(".competition-browser");
   var list = document.getElementById("competitorList");
-  var likes = document.getElementById("likes");
   var notes = document.getElementById("notes");
-  var likeButton = document.getElementById("likeButton");
   var saveStatus = document.getElementById("saveStatus");
   var frame = document.getElementById("liveFrame");
   var stage = document.getElementById("viewerStage");
@@ -40,13 +38,10 @@
     catch (error) {}
   }
   function applyNote(record) {
-    likes.value = record.likes || "";
     notes.value = record.notes || "";
-    likeButton.setAttribute("aria-pressed", record.liked ? "true" : "false");
-    likeButton.querySelector("span:first-child").textContent = record.liked ? "★" : "☆";
   }
   function currentRecord() {
-    return { liked:likeButton.getAttribute("aria-pressed") === "true", likes:likes.value, notes:notes.value, updatedAt:new Date().toISOString() };
+    return { notes:notes.value, updatedAt:new Date().toISOString() };
   }
   async function loadNote() {
     var key = noteKey(), token = ++loadToken, local = readLocal(key);
@@ -108,7 +103,27 @@
     frame.title = selected.name + " " + kind.toLowerCase() + " page";
     frame.dataset.src = pageUrl();
     if (sourceMode === "iframe") frame.src = pageUrl();
+    renderFeatures();
     loadNote();
+  }
+  function renderFeatures() {
+    var el = document.getElementById("featureList");
+    if (!el) return;
+    var pack = (window.COMPETITION_FEATURES || {})[selected.id] || {};
+    var rows = pack[view] || [];
+    if (!rows.length) {
+      el.innerHTML = '<p class="feature-empty">Feature list loading…</p>';
+      return;
+    }
+    el.innerHTML = rows.map(function (r) {
+      var badge = r.vs || "n/a";
+      var fsMatch = r.fs ? (" · FS: " + r.fs) : "";
+      return '<article class="feature-row vs-' + badge + '">' +
+        '<div class="feature-name">' + (r.name || "") + '</div>' +
+        '<div class="feature-does">' + (r.does || "") + '</div>' +
+        '<div class="feature-vs">' + badge + fsMatch + '</div>' +
+      '</article>';
+    }).join("");
   }
 
   function choose(item) {
@@ -139,12 +154,7 @@
   iframeView.addEventListener("click", function () { setSource("iframe"); });
   desktop.addEventListener("click", function () { setDevice("desktop"); });
   mobile.addEventListener("click", function () { setDevice("mobile"); });
-  likes.addEventListener("input", save); notes.addEventListener("input", save);
-  likeButton.addEventListener("click", function () {
-    var next = likeButton.getAttribute("aria-pressed") !== "true";
-    likeButton.setAttribute("aria-pressed", String(next)); likeButton.querySelector("span:first-child").textContent = next ? "★" : "☆"; save(); notes.focus();
-  });
-
+  notes.addEventListener("input", save);
   function setWidth(name, value) {
     var minimum = name === "list" ? 180 : 220;
     var maximum = name === "list" ? 390 : 440;
