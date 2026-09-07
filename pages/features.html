@@ -1,1 +1,148 @@
-PLACEHOLDER_LOAD_FROM_FILE
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Features</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root { --feature-line: #deded9; }
+    body { overflow: hidden; }
+    .feature-browser { --feature-list-width:280px; --feature-reference-width:300px; display:grid; grid-template-columns:var(--feature-list-width) 8px minmax(360px,1fr) 8px var(--feature-reference-width); height:100vh; background:#fff; }
+    .feature-col { min-width:0; border-right:1px solid var(--feature-line); overflow:auto; }
+    .feature-col:last-child { border-right:0; }
+    .feature-title { position:sticky; top:0; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:8px; min-height:56px; padding:0 16px; border-bottom:1px solid var(--feature-line); background:rgba(255,255,255,.96); backdrop-filter:blur(8px); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+    .feature-collapse { width:28px; height:28px; border:0; border-radius:4px; background:#fff; color:#111; cursor:pointer; font-size:15px; }
+    .feature-collapse:hover, .feature-collapse:focus-visible { background:#111; color:#fff; outline:0; }
+    .feature-divider { position:relative; cursor:col-resize; background:#fff; border-right:1px solid var(--feature-line); }
+    .feature-divider::after { content:""; position:absolute; inset:0 -3px; }
+    .feature-divider:hover, .feature-divider:focus-visible { background:#111; outline:0; }
+    .feature-browser.is-resizing { user-select:none; cursor:col-resize; }
+    .feature-browser.is-resizing iframe { pointer-events:none; }
+    .feature-browser.is-list-collapsed { --feature-list-width:44px; }
+    .feature-browser.is-list-collapsed .feature-list, .feature-browser.is-list-collapsed .feature-title > span { display:none; }
+    .feature-browser.is-list-collapsed .feature-title { padding:0 8px; justify-content:center; }
+    .feature-list { padding:8px 10px 24px; }
+    .feature-group { margin:14px 0 6px; padding:0 4px; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#888; }
+    .feature-list button { width:100%; border:0; border-radius:4px; background:#fff; color:#4e4e49; text-align:left; cursor:pointer; display:block; padding:10px 11px; border-bottom:1px solid #eee; }
+    .feature-list button:hover, .feature-list button:focus-visible { background:#111; color:#fff; outline:0; border-bottom-color:#111; }
+    .feature-list button[aria-selected="true"] { background:#111; color:#fff; border-bottom-color:#111; }
+    .feature-list b, .feature-list span, .feature-list em { display:block; font-style:normal; }
+    .feature-list b { font-size:12px; font-weight:600; }
+    .feature-list span { margin-top:3px; font-size:10px; opacity:.72; }
+    .feature-list em { margin-top:4px; font-size:9px; letter-spacing:.04em; text-transform:uppercase; opacity:.55; }
+    .feature-document { display:flex; flex-direction:column; min-width:0; }
+    .feature-meta { min-height:56px; display:flex; align-items:center; gap:9px; padding:0 16px; border-bottom:1px solid var(--feature-line); font-size:11px; flex-wrap:wrap; }
+    .feature-meta span { color:#777; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .feature-meta a { margin-left:auto; white-space:nowrap; color:#111; font-weight:600; }
+    .feature-tag { display:inline-block; padding:2px 7px; border:1px solid var(--feature-line); border-radius:999px; font-size:9px; letter-spacing:.04em; text-transform:uppercase; }
+    .feature-document iframe { width:100%; flex:1; border:0; }
+    .feature-reference { background:#fafaf8; }
+    .reference-body { padding:14px; }
+    .reference-note { margin:0 0 14px; color:#666; font-size:12px; }
+    .reference-links { display:grid; gap:7px; }
+    .reference-links a { padding:10px; border:1px solid var(--feature-line); border-radius:4px; background:#fff; text-decoration:none; font-size:11px; }
+    .reference-links a:hover, .reference-links a:focus-visible { background:#111; color:#fff; outline:0; }
+    .reference-shots { display:grid; gap:10px; margin-top:16px; }
+    .reference-shots figure { margin:0; border:1px solid var(--feature-line); background:#fff; }
+    .reference-shots a { display:block; color:inherit; text-decoration:none; }
+    .reference-shots img { display:block; width:100%; height:auto; }
+    .reference-shots figcaption { padding:8px 9px; color:#666; font-size:10px; }
+    .reference-empty { padding:15px 0; color:#777; font-size:12px; }
+    @media (max-width:1050px) { .feature-browser { grid-template-columns:240px 8px minmax(340px,1fr); } .feature-reference, .feature-divider:last-of-type { display:none; } }
+    @media (max-width:720px) { body { overflow:auto; } .feature-browser { display:block; height:auto; } .feature-col { overflow:visible; border-right:0; border-bottom:1px solid var(--feature-line); } .feature-divider { display:none; } .feature-document { height:70vh; } }
+  </style>
+</head>
+<body>
+  <main class="feature-browser" aria-label="Feature reference browser">
+    <section class="feature-col" aria-label="Features">
+      <div class="feature-title"><span>Features</span><span id="feature-count"></span><button class="feature-collapse" id="feature-collapse" type="button" aria-label="Collapse features" aria-expanded="true">‹</button></div>
+      <div class="feature-list" id="feature-list"></div>
+    </section>
+    <div class="feature-divider" data-divider="list" role="separator" aria-orientation="vertical" tabindex="0"></div>
+    <section class="feature-col feature-document" aria-label="Feature document">
+      <div class="feature-meta"><strong id="feature-name"></strong><span class="feature-tag" id="feature-tag"></span><span id="feature-path"></span><a id="open-document" target="_blank" rel="noopener">Open page ↗</a></div>
+      <iframe id="feature-document" title="Selected feature document"></iframe>
+    </section>
+    <div class="feature-divider" data-divider="reference" role="separator" aria-orientation="vertical" tabindex="0"></div>
+    <aside class="feature-col feature-reference" aria-label="Feature references">
+      <div class="feature-title"><span>References</span></div>
+      <div class="reference-body"><p class="reference-note">Visual and product references for the selected capability. Full catalog: design/!pricing/08-FEATURE-CATALOG.md</p><div class="reference-links" id="reference-links"></div><div class="reference-shots" id="reference-shots"></div></div>
+    </aside>
+  </main>
+  <script>
+    (function () {
+      var groups = [{name:'Contacts',items:[['contact-book','Contact book','People and companies in one book.','Free','crm'],['company-records','Company records','Firm records next to the people.','Free','crm'],['contact-fields','Custom fields','Fields that match how you sell.','Solo+','crm'],['contact-merge','Merge duplicates','Keep one person, lose the mess.','Solo+','crm'],['contact-timeline','Activity timeline','Every send, dial, and note on the contact.','Free','crm'],['contact-tags','Tags & segments','Slice the book without a second CRM.','Free','crm'],['contact-import','Import contacts','Bring people in carefully.','Free list ≤500 · files Solo+','list-building'],['contact-export','Export','Take your book with you.','Solo+','crm'],['contact-ownership','Owner & team','Who owns the relationship.','Essentials+','crm'],['contact-permissions','Visibility rules','Who can see which people.','Scale / Enterprise','admin']]},{name:'Leads',items:[['lead-lists','Lists','Named lists you can work.','Free 1 × ≤500','list-building'],['lead-upload','CSV upload','Load a list in about ten minutes.','Free capped · big CSV Solo+','list-building'],['lead-dedupe','List dedupe','One row per person.','Solo+','list-building'],['lead-enrich','Enrich a list','Fill gaps without losing control.','Tiny demo · paid pool','enrichment'],['lead-score','Lead scoring','Who is warm enough to call.','Growth+','targets'],['lead-stages','Lead stages','From new to ready.','Solo+','pipeline'],['lead-assignment','Assign leads','Hand names to the right person.','Essentials+','crm'],['lead-smart-views','Smart views','Saved cuts of the list.','Solo+','search'],['lead-bulk-edit','Bulk edit','Fix many rows at once.','Growth+','list-building'],['lead-suppression','Suppression','Do not contact again.','Solo+','list-building']]},{name:'Calling',items:[['click-to-call','Click to call','Call from the contact, from your number.','Usage · Solo+','dialler'],['power-dial','Power dialler','A queue when the list is long.','Growth+ · usage','power-dialler'],['predictive-dial','Predictive dialler','High-volume dialling with control.','Scale · usage','power-dialler'],['call-recording','Call recording','Keep what was said.','Usage · retention by plan','dialler'],['call-notes','Call notes','Notes land on the contact.','Free with call','dialler'],['call-dispositions','Dispositions','Outcomes you can report.','Solo+','dialler'],['local-numbers','Local numbers','Numbers that look local.','Usage ~$1/mo','dialler'],['phone-bot','Phone bot','Try a bot on one number.','Tiny taste · usage / BYOK','ai'],['voicemail-drop','Voicemail drop','Leave a message without waiting.','Growth+ · usage','dialler'],['call-coaching','Live coaching','Listen and coach on the call.','Scale','power-dialler']]},{name:'AI',items:[['ai-assistant','AI assistant','Assist the work. It does not run the firm.','Tiny Free · Solo+ pool','ai'],['ai-summaries','Thread summaries','Catch up without reading everything.','AI credits','ai'],['ai-draft','Draft replies','A first draft in your voice.','AI credits','ai'],['ai-research','Research briefs','Short briefs on a company or person.','AI credits','enrichment'],['ai-sequence','Sequence suggestions','Steps that fit the job.','Growth+ · AI','sequences'],['ai-call-notes','Call note assist','Turn a call into a clean note.','AI + usage','dialler'],['ai-mcp','MCP tools','Agents that use your stack carefully.','Solo+','ai'],['ai-byok','Bring your own key','Your model, your bill.','BYOK','ai']]},{name:'Pages',items:[['public-page','Public page','Build a page. Share the link.','Free: 1 · ads · no attachments','pages'],['booking-page','Booking page','A page that books a slot.','Free: 1 · ads','meetings'],['landing-blocks','Page blocks','Compose without a site builder.','Solo+','pages'],['page-forms','Forms on pages','Capture without leaving the page.','Solo+','pages'],['page-analytics','Page views','Who opened it. Soft Free cap.','Free ≤1–2k views · then throttle','pages'],['custom-domain','Custom domain','Your domain on the page.','Solo+','pages'],['page-ads-off','Ads off','Clean pages for clients.','Paid','pages'],['page-files','Page attachments','Files on the page when you pay.','Solo+','files']]},{name:'Connectors',items:[['gmail-sync','Gmail sync','Send from your mailbox.','Solo+','inbox'],['outlook-sync','Outlook / Microsoft sync','Same book, Microsoft mail.','Solo+','inbox'],['calendar-sync','Calendar sync','Slots from the calendar you already use.','Solo+','meetings'],['webhook-out','Webhooks out','Push events to the rest of the stack.','Essentials+','integrations'],['webhook-in','Webhooks in','Catch events from elsewhere.','Essentials+','integrations'],['zapier-like','Automation hooks','Connect without rebuilding.','Essentials+','integrations'],['crm-import','CRM import','Bring people from another CRM.','Solo+ files','integrations'],['api-access','API access','Programmatic access when you need it.','Scale / Enterprise','integrations'],['sso','SSO','Sign-in the way procurement wants.','Enterprise','admin'],['scim','SCIM / provisioning','Seats that match your directory.','Enterprise','admin']]},{name:'Calendar',items:[['booking-links','Booking links','Share a link. Get a meeting.','Free door','meetings'],['availability','Availability','Hours that are actually free.','Solo+','meetings'],['round-robin','Round robin','Spread meetings across the team.','Essentials+','meetings'],['event-page','Event page','Put on an event. Email on signup.','Free door · send paid polish','meetings'],['reminders','Reminders','Email before the slot.','Usage / Free light','meetings'],['timezone','Timezone care','Sydney to London without the mess.','Free','meetings'],['buffer','Buffers','Space between meetings.','Solo+','meetings'],['cancel-reschedule','Cancel & reschedule','Change without a thread of chaos.','Solo+','meetings']]},{name:'Email',items:[['own-mailbox','Own-mailbox send','Send from channels you own.','Free w/ ads · clean Solo+','inbox'],['shared-inbox','Shared inbox','One queue for the firm.','Essentials+','inbox'],['templates','Templates','Reuse what works.','Solo+','inbox'],['sequences','Sequences','Steps that send, dial, and book.','Growth+','sequences'],['bulk-email','Bulk email','Volume when the list is ready.','Growth+','campaigns'],['open-track','Open & click tracking','See what landed.','Essentials+','campaigns'],['campaigns','Campaigns','One campaign, properly run.','Solo+ · bulk Growth','campaigns'],['approval-desk','Campaign approval','Check before it leaves.','Essentials+','campaign-approval'],['unsubscribe','Unsubscribe & compliance','Stay on the right side of the rules.','Solo+','inbox'],['warmup','Deliverability care','Reputation is part of the product.','Paid','inbox'],['scheduled-send','Scheduled send','Send when they will read it.','Solo+','inbox'],['snippets','Snippets','Short inserts, not a novel.','Solo+','inbox']]},{name:'Chat',items:[['sms-send','SMS send','Text from the same contact history.','No Free · usage','sms'],['sms-inbox','SMS in the inbox','Texts next to email.','Paid · usage','sms'],['sms-templates','SMS templates','Short, reusable.','Paid','sms'],['whatsapp-ready','WhatsApp-ready path','When the channel is approved.','Later / Enterprise','sms'],['chat-handoff','Handoff to human','Bot to person without losing context.','Growth+','inbox'],['internal-notes','Internal notes','Talk about the contact without them seeing.','Free','inbox'],['mentions','@ mentions','Pull a teammate into the thread.','Essentials+','inbox'],['presence','Team presence','Who is on it.','Essentials+','inbox']]},{name:'Research',items:[['name-search','Name search','Find the people you already have in mind.','Free soft rate','search'],['company-lookup','Company lookup','Firm context before you write.','Tiny demo · paid','enrichment'],['email-find','Find email','Fill the address carefully.','Paid credits','enrichment'],['phone-find','Find phone','A number worth dialling.','Paid credits','enrichment'],['smart-search','⌘K search','Jump anywhere in the book.','Free light · Solo+','search'],['saved-searches','Saved searches','Come back to the same cut.','Solo+','search'],['market-lists','Market lists','Build from research, not a dump.','Solo+','list-building'],['investor-tracker','Investor / client tracker','A simple list + tasks for who matters.','Free door','targets']]},{name:'Tasks',items:[['personal-tasks','Tasks','Next actions on the people that matter.','Free unlimited light','todo'],['task-due','Due dates','When it should be done.','Free','todo'],['task-assign','Assign tasks','Hand work to a teammate.','Essentials+','todo'],['today-view','Today / Overview','What needs attention now.','Free','overview'],['reminders-tasks','Task reminders','Nudge without another app.','Solo+','todo'],['linked-tasks','Tasks on contacts','Work sits on the person.','Free','todo'],['checklist','Checklists','A short list inside the job.','Solo+','todo'],['done-log','Done log','What you finished.','Free','todo']]},{name:'Pricing',items:[['plan-free','Free membership','One job. No signup. Caps that keep Free cheap.','$0','admin'],['plan-solo','Solo','One operator. Close $19 / $9 yearly ($108).','Solo','admin'],['plan-essentials','Essentials','Team CRM. Close $49 / $35 yearly.','Essentials','admin'],['plan-growth','Growth','Sequences + Power Dialer. Close $109 / $99.','Growth','admin'],['plan-scale','Scale','Predictive + control. Close $149 / $139.','Scale','admin'],['plan-enterprise','Enterprise','$5k–$20k/yr. Invoice, DPA, SSO.','Enterprise','admin'],['metering','Usage metering','Minutes, SMS, AI, numbers — shown before spend.','Usage','admin'],['founding','Founding 24-for-14','Team carts only. 72h. Not in ads.','Essentials/Growth teams','admin'],['annual-default','Annual default','Checkout prefers prepaid. Monthly is the tax.','All paid','admin']]},{name:'Project',items:[['delivery-projects','Projects / delivery','Carry the promise through.','Free fair use','delivery'],['client-approval','Client approval','Agency-shaped five can check before send.','Essentials+','campaign-approval'],['files','Files','Link-share free. Serious uploads when you pay.','Paywall Free · Solo+','files'],['handoff','Handoff packs','Pass the work without losing context.','Essentials+','delivery'],['milestones','Milestones','What done looks like.','Solo+','delivery'],['time-notes','Work notes','What happened on the job.','Free','delivery'],['shared-workspace','Shared workspace','One book for the five.','Essentials+','admin'],['audit','Audit trail','Who changed what.','Scale / Enterprise','admin']]}];
+      var flat = [];
+      groups.forEach(function (g) { g.items.forEach(function (item) { flat.push({ group: g.name, id: item[0], name: item[1], take: item[2], tag: item[3], ref: item[4] }); }); });
+      var browser = document.querySelector(".feature-browser"), list = document.getElementById("feature-list");
+      var current = new URLSearchParams(location.search).get("feature") || flat[0].id, manifest = {};
+      document.getElementById("feature-count").textContent = flat.length;
+      function pathFor(ref) { return "design/!reference/" + ref + "/README.md"; }
+      function refsFor(ref) { return "design/!reference/" + ref + "/refs.md"; }
+      function find(id) { return flat.filter(function (f) { return f.id === id; })[0] || flat[0]; }
+      function renderReferences(ref) {
+        var links = document.getElementById("reference-links"), shots = document.getElementById("reference-shots");
+        links.innerHTML = ""; shots.innerHTML = "";
+        [["Surface brief ↗", "md?src=" + encodeURIComponent(pathFor(ref))], ["Surface refs ↗", "md?src=" + encodeURIComponent(refsFor(ref))], ["Full catalog ↗", "md?src=" + encodeURIComponent("design/!pricing/08-FEATURE-CATALOG.md")]].forEach(function (item) {
+          var a = document.createElement("a"); a.href = item[1]; a.target = "_blank"; a.rel = "noopener"; a.textContent = item[0]; links.appendChild(a);
+        });
+        var items = manifest[ref] || [];
+        if (!items.length) { shots.innerHTML = '<p class="reference-empty">No saved screenshots yet for this surface.</p>'; return; }
+        items.slice(0, 4).forEach(function (shot) {
+          if (!/\.(png|jpe?g|webp)$/i.test(shot.file || "")) return;
+          var figure = document.createElement("figure"), image = document.createElement("img"), caption = document.createElement("figcaption"), link = document.createElement("a");
+          image.src = "../design/shots/" + shot.file; image.alt = shot.title || shot.app || "Feature reference";
+          caption.textContent = ([shot.app, shot.title].filter(Boolean).join(" — ") || shot.file) + (shot.url ? " ↗" : "");
+          figure.appendChild(image); figure.appendChild(caption);
+          link.href = shot.url || image.src; link.target = "_blank"; link.rel = "noopener"; link.appendChild(figure); shots.appendChild(link);
+        });
+      }
+      function render(id) {
+        var feature = find(id), path = pathFor(feature.ref); current = feature.id;
+        document.getElementById("feature-name").textContent = feature.name;
+        document.getElementById("feature-tag").textContent = feature.tag;
+        document.getElementById("feature-path").textContent = feature.group + " · " + path;
+        document.getElementById("feature-document").src = "md?src=" + encodeURIComponent(path);
+        document.getElementById("open-document").href = "md?src=" + encodeURIComponent(path);
+        history.replaceState(null, "", "?feature=" + encodeURIComponent(current));
+        Array.prototype.forEach.call(list.querySelectorAll("button"), function (button) { button.setAttribute("aria-selected", button.dataset.id === current ? "true" : "false"); });
+        renderReferences(feature.ref);
+      }
+      groups.forEach(function (g) {
+        var h = document.createElement("div"); h.className = "feature-group"; h.textContent = g.name + " · " + g.items.length; list.appendChild(h);
+        g.items.forEach(function (item) {
+          var button = document.createElement("button"); button.type = "button"; button.dataset.id = item[0];
+          button.innerHTML = "<b>" + item[1] + "</b><span>" + item[2] + "</span><em>" + item[3] + "</em>";
+          button.addEventListener("click", function () { render(item[0]); });
+          list.appendChild(button);
+        });
+      });
+      var collapse = document.getElementById("feature-collapse");
+      collapse.addEventListener("click", function () {
+        var collapsed = browser.classList.toggle("is-list-collapsed");
+        collapse.setAttribute("aria-expanded", String(!collapsed));
+        collapse.textContent = collapsed ? "›" : "‹";
+      });
+      function setWidth(name, value) {
+        var minimum = name === "list" ? 200 : 220;
+        var maximum = name === "list" ? 480 : Math.max(280, window.innerWidth - 620);
+        var width = Math.max(minimum, Math.min(maximum, value));
+        browser.style.setProperty(name === "list" ? "--feature-list-width" : "--feature-reference-width", width + "px");
+        try { localStorage.setItem("forwardslash-feature-" + name + "-width", String(width)); } catch (e) {}
+      }
+      ["list", "reference"].forEach(function (name) { try { var stored = Number(localStorage.getItem("forwardslash-feature-" + name + "-width")); if (stored) setWidth(name, stored); } catch (e) {} });
+      Array.prototype.forEach.call(document.querySelectorAll(".feature-divider"), function (divider) {
+        divider.addEventListener("pointerdown", function (event) {
+          if (window.matchMedia("(max-width: 1050px)").matches && divider.dataset.divider === "reference") return;
+          event.preventDefault(); browser.classList.add("is-resizing"); divider.setPointerCapture(event.pointerId);
+          function move(next) { var rect = browser.getBoundingClientRect(); setWidth(divider.dataset.divider, divider.dataset.divider === "list" ? next.clientX - rect.left : rect.right - next.clientX); }
+          function end() { browser.classList.remove("is-resizing"); divider.removeEventListener("pointermove", move); divider.removeEventListener("pointerup", end); divider.removeEventListener("pointercancel", end); }
+          divider.addEventListener("pointermove", move); divider.addEventListener("pointerup", end); divider.addEventListener("pointercancel", end);
+        });
+      });
+      fetch("../design/shots/manifest.json").then(function (r) { return r.ok ? r.json() : {}; }).then(function (data) { manifest = data || {}; render(current); }).catch(function () { render(current); });
+    })();
+  </script>
+</body>
+</html>
