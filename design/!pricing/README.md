@@ -1,10 +1,11 @@
 # design/!pricing
 
-> **Status: IN FLIGHT — 7 Sep 2026.**  
-> **Canonical target:** `glidaa/forwardslash-product` (not email-manager).  
-> Close stickers for self-serve. Free = anonymous craft (tasks/page/search) + list/link share; pay for email-send polish + file uploads.  
-> **Free pages tightly capped** (1 page · view soft-cap · no attachments) — see 07.  
-> **Feature catalog:** ~117 capabilities by group — see 08.  
+> **Status: LIVE PACKAGE STORY — 7 Sep 2026.**  
+> **Canonical SoT for bible/pricing:** `glidaa/task1000` `design/bible/pricing` (not this Vercel repo alone).  
+> Close stickers for self-serve. **Product = outreach**.  
+> **Free doors:** branded email + multi-page branded + Agent/MCP taste + jobs on contacts.  
+> **Free email hard cap:** **300 sends/day** (decision #27).  
+> **Feature catalog:** Free First retier in **08** (mirror of task1000).  
 > **Enterprise = $5k–$20k/yr.** Managed ~$1,950 outbound = rejected.  
 > Bootstrap: $1–2k CAC → annual teams + enterprise.
 
@@ -21,6 +22,6 @@
 | [06-FREE-BURN-AND-COGS.md](./06-FREE-BURN-AND-COGS.md) | Prism: Free burn by feature + risk 1–5 + Twilio/ESP refs |
 | [06-FEATURE-UNIT-COSTS.md](./06-FEATURE-UNIT-COSTS.md) | Catalyst: unit COGS → package allowances + margin vignettes |
 | [07-FEATURE-RISK.md](./07-FEATURE-RISK.md) | Risk / abuse controls — Free pages + uploads first |
-| [08-FEATURE-CATALOG.md](./08-FEATURE-CATALOG.md) | ~117 capabilities by group (Contacts…Project) |
+| [08-FEATURE-CATALOG.md](./08-FEATURE-CATALOG.md) | **Free First** ~100 capabilities (SoT mirror → task1000 bible/pricing) |
 | [FEATURES-USAGE-AND-COSTS.md](./FEATURES-USAGE-AND-COSTS.md) | Pointer to full meter catalogue (email-manager) |
 | [pricing.html](./pricing.html) | Visual menu |

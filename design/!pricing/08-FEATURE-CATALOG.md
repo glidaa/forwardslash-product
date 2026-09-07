@@ -1,5 +1,7 @@
 # Feature catalog — ~100 capabilities by group
 **Catalyst · 7 Sep 2026.** Hang: Start free. Do one job.
+**Free First retier** (decisions #21–#25, #27): Gmail/Outlook sync Free · campaigns Free one-rail · own-mailbox Free branded / Solo brand off · pages multi branded Free / brand off Solo · templates/schedule/snippets Free light. Free email **300/day hard** · own-mailbox near-zero COGS.
+**SoT:** `glidaa/task1000` `design/bible/pricing/08-FEATURE-CATALOG.md` — this file is a mirror for design/!pricing shots.
 Tags: **Free** · **Solo+** · **Essentials+** · **Growth+** · **Scale** · **Enterprise** · **Usage** (minutes/SMS/AI/numbers).
 Maps to existing `design/!reference` surfaces for briefs/shots.
 
@@ -50,18 +52,18 @@ Maps to existing `design/!reference` surfaces for briefs/shots.
 - **Bring your own key** — Your model, your bill. · _BYOK_ · ref `ai`
 
 ## Pages
-- **Public page** — Build a page. Share the link. · _Free: 1 · ads · no attachments_ · ref `pages`
-- **Booking page** — A page that books a slot. · _Free: 1 · ads_ · ref `meetings`
+- **Public page** — Build a page. Share the link. · _Free: multi · branded · Solo: brand off_ · ref `pages`
+- **Booking page** — A page that books a slot. · _Free: multi · branded · Solo: brand off_ · ref `meetings`
 - **Page blocks** — Compose without a site builder. · _Solo+_ · ref `pages`
 - **Forms on pages** — Capture without leaving the page. · _Solo+_ · ref `pages`
 - **Page views** — Who opened it. Soft Free cap. · _Free ≤1–2k views · then throttle_ · ref `pages`
 - **Custom domain** — Your domain on the page. · _Solo+_ · ref `pages`
-- **Ads off** — Clean pages for clients. · _Paid_ · ref `pages`
+- **Ads off** — Brand off · clean pages for clients. · _Solo+_ · ref `pages`
 - **Page attachments** — Files on the page when you pay. · _Solo+_ · ref `files`
 
 ## Connectors
-- **Gmail sync** — Send from your mailbox. · _Solo+_ · ref `inbox`
-- **Outlook / Microsoft sync** — Same book, Microsoft mail. · _Solo+_ · ref `inbox`
+- **Gmail sync** — Send from your mailbox. · _Free_ · ref `inbox`
+- **Outlook / Microsoft sync** — Same book, Microsoft mail. · _Free_ · ref `inbox`
 - **Calendar sync** — Slots from the calendar you already use. · _Solo+_ · ref `meetings`
 - **Webhooks out** — Push events to the rest of the stack. · _Essentials+_ · ref `integrations`
 - **Webhooks in** — Catch events from elsewhere. · _Essentials+_ · ref `integrations`
@@ -82,18 +84,18 @@ Maps to existing `design/!reference` surfaces for briefs/shots.
 - **Cancel & reschedule** — Change without a thread of chaos. · _Solo+_ · ref `meetings`
 
 ## Email
-- **Own-mailbox send** — Send from channels you own. · _Free w/ ads · clean Solo+_ · ref `inbox`
+- **Own-mailbox send** — Send from channels you own. · _Free branded · Solo brand off · Free 300/day hard_ · ref `inbox`
 - **Shared inbox** — One queue for the firm. · _Essentials+_ · ref `inbox`
-- **Templates** — Reuse what works. · _Solo+_ · ref `inbox`
+- **Templates** — Reuse what works. · _Free light_ · ref `inbox`
 - **Sequences** — Steps that send, dial, and book. · _Growth+_ · ref `sequences`
 - **Bulk email** — Volume when the list is ready. · _Growth+_ · ref `campaigns`
 - **Open & click tracking** — See what landed. · _Essentials+_ · ref `campaigns`
-- **Campaigns** — One campaign, properly run. · _Solo+ · bulk Growth_ · ref `campaigns`
+- **Campaigns** — One campaign, properly run. · _Free one-rail · bulk Growth_ · ref `campaigns`
 - **Campaign approval** — Check before it leaves. · _Essentials+_ · ref `campaign-approval`
 - **Unsubscribe & compliance** — Stay on the right side of the rules. · _Solo+_ · ref `inbox`
 - **Deliverability care** — Reputation is part of the product. · _Paid_ · ref `inbox`
-- **Scheduled send** — Send when they will read it. · _Solo+_ · ref `inbox`
-- **Snippets** — Short inserts, not a novel. · _Solo+_ · ref `inbox`
+- **Scheduled send** — Send when they will read it. · _Free light_ · ref `inbox`
+- **Snippets** — Short inserts, not a novel. · _Free light_ · ref `inbox`
 
 ## Chat
 - **SMS send** — Text from the same contact history. · _No Free · usage_ · ref `sms`
