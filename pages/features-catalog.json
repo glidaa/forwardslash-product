@@ -1,1 +1,938 @@
-PLACEHOLDER2
+[
+  {
+    "group": "Contacts",
+    "id": "contact-book",
+    "name": "Contact book",
+    "take": "People and companies in one book.",
+    "tag": "Free",
+    "ref": "crm"
+  },
+  {
+    "group": "Contacts",
+    "id": "company-records",
+    "name": "Company records",
+    "take": "Firm records next to the people.",
+    "tag": "Free",
+    "ref": "crm"
+  },
+  {
+    "group": "Contacts",
+    "id": "contact-fields",
+    "name": "Custom fields",
+    "take": "Fields that match how you sell.",
+    "tag": "Solo+",
+    "ref": "crm"
+  },
+  {
+    "group": "Contacts",
+    "id": "contact-merge",
+    "name": "Merge duplicates",
+    "take": "Keep one person, lose the mess.",
+    "tag": "Solo+",
+    "ref": "crm"
+  },
+  {
+    "group": "Contacts",
+    "id": "contact-timeline",
+    "name": "Activity timeline",
+    "take": "Every send, dial, and note on the contact.",
+    "tag": "Free",
+    "ref": "crm"
+  },
+  {
+    "group": "Contacts",
+    "id": "contact-tags",
+    "name": "Tags & segments",
+    "take": "Slice the book without a second CRM.",
+    "tag": "Free",
+    "ref": "crm"
+  },
+  {
+    "group": "Contacts",
+    "id": "contact-import",
+    "name": "Import contacts",
+    "take": "Bring people in carefully.",
+    "tag": "Free list ≤500 · files Solo+",
+    "ref": "list-building"
+  },
+  {
+    "group": "Contacts",
+    "id": "contact-export",
+    "name": "Export",
+    "take": "Take your book with you.",
+    "tag": "Solo+",
+    "ref": "crm"
+  },
+  {
+    "group": "Contacts",
+    "id": "contact-ownership",
+    "name": "Owner & team",
+    "take": "Who owns the relationship.",
+    "tag": "Essentials+",
+    "ref": "crm"
+  },
+  {
+    "group": "Contacts",
+    "id": "contact-permissions",
+    "name": "Visibility rules",
+    "take": "Who can see which people.",
+    "tag": "Scale / Enterprise",
+    "ref": "admin"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-lists",
+    "name": "Lists",
+    "take": "Named lists you can work.",
+    "tag": "Free 1 × ≤500",
+    "ref": "list-building"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-upload",
+    "name": "CSV upload",
+    "take": "Load a list in about ten minutes.",
+    "tag": "Free capped · big CSV Solo+",
+    "ref": "list-building"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-dedupe",
+    "name": "List dedupe",
+    "take": "One row per person.",
+    "tag": "Solo+",
+    "ref": "list-building"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-enrich",
+    "name": "Enrich a list",
+    "take": "Fill gaps without losing control.",
+    "tag": "Tiny demo · paid pool",
+    "ref": "enrichment"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-score",
+    "name": "Lead scoring",
+    "take": "Who is warm enough to call.",
+    "tag": "Growth+",
+    "ref": "targets"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-stages",
+    "name": "Lead stages",
+    "take": "From new to ready.",
+    "tag": "Solo+",
+    "ref": "pipeline"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-assignment",
+    "name": "Assign leads",
+    "take": "Hand names to the right person.",
+    "tag": "Essentials+",
+    "ref": "crm"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-smart-views",
+    "name": "Smart views",
+    "take": "Saved cuts of the list.",
+    "tag": "Solo+",
+    "ref": "search"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-bulk-edit",
+    "name": "Bulk edit",
+    "take": "Fix many rows at once.",
+    "tag": "Growth+",
+    "ref": "list-building"
+  },
+  {
+    "group": "Leads",
+    "id": "lead-suppression",
+    "name": "Suppression",
+    "take": "Do not contact again.",
+    "tag": "Solo+",
+    "ref": "list-building"
+  },
+  {
+    "group": "Calling",
+    "id": "click-to-call",
+    "name": "Click to call",
+    "take": "Call from the contact, from your number.",
+    "tag": "Usage · Solo+",
+    "ref": "dialler"
+  },
+  {
+    "group": "Calling",
+    "id": "power-dial",
+    "name": "Power dialler",
+    "take": "A queue when the list is long.",
+    "tag": "Growth+ · usage",
+    "ref": "power-dialler"
+  },
+  {
+    "group": "Calling",
+    "id": "predictive-dial",
+    "name": "Predictive dialler",
+    "take": "High-volume dialling with control.",
+    "tag": "Scale · usage",
+    "ref": "power-dialler"
+  },
+  {
+    "group": "Calling",
+    "id": "call-recording",
+    "name": "Call recording",
+    "take": "Keep what was said.",
+    "tag": "Usage · retention by plan",
+    "ref": "dialler"
+  },
+  {
+    "group": "Calling",
+    "id": "call-notes",
+    "name": "Call notes",
+    "take": "Notes land on the contact.",
+    "tag": "Free with call",
+    "ref": "dialler"
+  },
+  {
+    "group": "Calling",
+    "id": "call-dispositions",
+    "name": "Dispositions",
+    "take": "Outcomes you can report.",
+    "tag": "Solo+",
+    "ref": "dialler"
+  },
+  {
+    "group": "Calling",
+    "id": "local-numbers",
+    "name": "Local numbers",
+    "take": "Numbers that look local.",
+    "tag": "Usage ~$1/mo",
+    "ref": "dialler"
+  },
+  {
+    "group": "Calling",
+    "id": "phone-bot",
+    "name": "Phone bot",
+    "take": "Try a bot on one number.",
+    "tag": "Tiny taste · usage / BYOK",
+    "ref": "ai"
+  },
+  {
+    "group": "Calling",
+    "id": "voicemail-drop",
+    "name": "Voicemail drop",
+    "take": "Leave a message without waiting.",
+    "tag": "Growth+ · usage",
+    "ref": "dialler"
+  },
+  {
+    "group": "Calling",
+    "id": "call-coaching",
+    "name": "Live coaching",
+    "take": "Listen and coach on the call.",
+    "tag": "Scale",
+    "ref": "power-dialler"
+  },
+  {
+    "group": "AI",
+    "id": "ai-assistant",
+    "name": "AI assistant",
+    "take": "Assist the work. It does not run the firm.",
+    "tag": "Tiny Free · Solo+ pool",
+    "ref": "ai"
+  },
+  {
+    "group": "AI",
+    "id": "ai-summaries",
+    "name": "Thread summaries",
+    "take": "Catch up without reading everything.",
+    "tag": "AI credits",
+    "ref": "ai"
+  },
+  {
+    "group": "AI",
+    "id": "ai-draft",
+    "name": "Draft replies",
+    "take": "A first draft in your voice.",
+    "tag": "AI credits",
+    "ref": "ai"
+  },
+  {
+    "group": "AI",
+    "id": "ai-research",
+    "name": "Research briefs",
+    "take": "Short briefs on a company or person.",
+    "tag": "AI credits",
+    "ref": "enrichment"
+  },
+  {
+    "group": "AI",
+    "id": "ai-sequence",
+    "name": "Sequence suggestions",
+    "take": "Steps that fit the job.",
+    "tag": "Growth+ · AI",
+    "ref": "sequences"
+  },
+  {
+    "group": "AI",
+    "id": "ai-call-notes",
+    "name": "Call note assist",
+    "take": "Turn a call into a clean note.",
+    "tag": "AI + usage",
+    "ref": "dialler"
+  },
+  {
+    "group": "AI",
+    "id": "ai-mcp",
+    "name": "MCP tools",
+    "take": "Agents that use your stack carefully.",
+    "tag": "Solo+",
+    "ref": "ai"
+  },
+  {
+    "group": "AI",
+    "id": "ai-byok",
+    "name": "Bring your own key",
+    "take": "Your model, your bill.",
+    "tag": "BYOK",
+    "ref": "ai"
+  },
+  {
+    "group": "Pages",
+    "id": "public-page",
+    "name": "Public page",
+    "take": "Build a page. Share the link.",
+    "tag": "Free: 1 · ads · no attachments",
+    "ref": "pages"
+  },
+  {
+    "group": "Pages",
+    "id": "booking-page",
+    "name": "Booking page",
+    "take": "A page that books a slot.",
+    "tag": "Free: 1 · ads",
+    "ref": "meetings"
+  },
+  {
+    "group": "Pages",
+    "id": "landing-blocks",
+    "name": "Page blocks",
+    "take": "Compose without a site builder.",
+    "tag": "Solo+",
+    "ref": "pages"
+  },
+  {
+    "group": "Pages",
+    "id": "page-forms",
+    "name": "Forms on pages",
+    "take": "Capture without leaving the page.",
+    "tag": "Solo+",
+    "ref": "pages"
+  },
+  {
+    "group": "Pages",
+    "id": "page-analytics",
+    "name": "Page views",
+    "take": "Who opened it. Soft Free cap.",
+    "tag": "Free ≤1–2k views · then throttle",
+    "ref": "pages"
+  },
+  {
+    "group": "Pages",
+    "id": "custom-domain",
+    "name": "Custom domain",
+    "take": "Your domain on the page.",
+    "tag": "Solo+",
+    "ref": "pages"
+  },
+  {
+    "group": "Pages",
+    "id": "page-ads-off",
+    "name": "Ads off",
+    "take": "Clean pages for clients.",
+    "tag": "Paid",
+    "ref": "pages"
+  },
+  {
+    "group": "Pages",
+    "id": "page-files",
+    "name": "Page attachments",
+    "take": "Files on the page when you pay.",
+    "tag": "Solo+",
+    "ref": "files"
+  },
+  {
+    "group": "Connectors",
+    "id": "gmail-sync",
+    "name": "Gmail sync",
+    "take": "Send from your mailbox.",
+    "tag": "Solo+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Connectors",
+    "id": "outlook-sync",
+    "name": "Outlook / Microsoft sync",
+    "take": "Same book, Microsoft mail.",
+    "tag": "Solo+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Connectors",
+    "id": "calendar-sync",
+    "name": "Calendar sync",
+    "take": "Slots from the calendar you already use.",
+    "tag": "Solo+",
+    "ref": "meetings"
+  },
+  {
+    "group": "Connectors",
+    "id": "webhook-out",
+    "name": "Webhooks out",
+    "take": "Push events to the rest of the stack.",
+    "tag": "Essentials+",
+    "ref": "integrations"
+  },
+  {
+    "group": "Connectors",
+    "id": "webhook-in",
+    "name": "Webhooks in",
+    "take": "Catch events from elsewhere.",
+    "tag": "Essentials+",
+    "ref": "integrations"
+  },
+  {
+    "group": "Connectors",
+    "id": "zapier-like",
+    "name": "Automation hooks",
+    "take": "Connect without rebuilding.",
+    "tag": "Essentials+",
+    "ref": "integrations"
+  },
+  {
+    "group": "Connectors",
+    "id": "crm-import",
+    "name": "CRM import",
+    "take": "Bring people from another CRM.",
+    "tag": "Solo+ files",
+    "ref": "integrations"
+  },
+  {
+    "group": "Connectors",
+    "id": "api-access",
+    "name": "API access",
+    "take": "Programmatic access when you need it.",
+    "tag": "Scale / Enterprise",
+    "ref": "integrations"
+  },
+  {
+    "group": "Connectors",
+    "id": "sso",
+    "name": "SSO",
+    "take": "Sign-in the way procurement wants.",
+    "tag": "Enterprise",
+    "ref": "admin"
+  },
+  {
+    "group": "Connectors",
+    "id": "scim",
+    "name": "SCIM / provisioning",
+    "take": "Seats that match your directory.",
+    "tag": "Enterprise",
+    "ref": "admin"
+  },
+  {
+    "group": "Calendar",
+    "id": "booking-links",
+    "name": "Booking links",
+    "take": "Share a link. Get a meeting.",
+    "tag": "Free door",
+    "ref": "meetings"
+  },
+  {
+    "group": "Calendar",
+    "id": "availability",
+    "name": "Availability",
+    "take": "Hours that are actually free.",
+    "tag": "Solo+",
+    "ref": "meetings"
+  },
+  {
+    "group": "Calendar",
+    "id": "round-robin",
+    "name": "Round robin",
+    "take": "Spread meetings across the team.",
+    "tag": "Essentials+",
+    "ref": "meetings"
+  },
+  {
+    "group": "Calendar",
+    "id": "event-page",
+    "name": "Event page",
+    "take": "Put on an event. Email on signup.",
+    "tag": "Free door · send paid polish",
+    "ref": "meetings"
+  },
+  {
+    "group": "Calendar",
+    "id": "reminders",
+    "name": "Reminders",
+    "take": "Email before the slot.",
+    "tag": "Usage / Free light",
+    "ref": "meetings"
+  },
+  {
+    "group": "Calendar",
+    "id": "timezone",
+    "name": "Timezone care",
+    "take": "Sydney to London without the mess.",
+    "tag": "Free",
+    "ref": "meetings"
+  },
+  {
+    "group": "Calendar",
+    "id": "buffer",
+    "name": "Buffers",
+    "take": "Space between meetings.",
+    "tag": "Solo+",
+    "ref": "meetings"
+  },
+  {
+    "group": "Calendar",
+    "id": "cancel-reschedule",
+    "name": "Cancel & reschedule",
+    "take": "Change without a thread of chaos.",
+    "tag": "Solo+",
+    "ref": "meetings"
+  },
+  {
+    "group": "Email",
+    "id": "own-mailbox",
+    "name": "Own-mailbox send",
+    "take": "Send from channels you own.",
+    "tag": "Free w/ ads · clean Solo+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Email",
+    "id": "shared-inbox",
+    "name": "Shared inbox",
+    "take": "One queue for the firm.",
+    "tag": "Essentials+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Email",
+    "id": "templates",
+    "name": "Templates",
+    "take": "Reuse what works.",
+    "tag": "Solo+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Email",
+    "id": "sequences",
+    "name": "Sequences",
+    "take": "Steps that send, dial, and book.",
+    "tag": "Growth+",
+    "ref": "sequences"
+  },
+  {
+    "group": "Email",
+    "id": "bulk-email",
+    "name": "Bulk email",
+    "take": "Volume when the list is ready.",
+    "tag": "Growth+",
+    "ref": "campaigns"
+  },
+  {
+    "group": "Email",
+    "id": "open-track",
+    "name": "Open & click tracking",
+    "take": "See what landed.",
+    "tag": "Essentials+",
+    "ref": "campaigns"
+  },
+  {
+    "group": "Email",
+    "id": "campaigns",
+    "name": "Campaigns",
+    "take": "One campaign, properly run.",
+    "tag": "Solo+ · bulk Growth",
+    "ref": "campaigns"
+  },
+  {
+    "group": "Email",
+    "id": "approval-desk",
+    "name": "Campaign approval",
+    "take": "Check before it leaves.",
+    "tag": "Essentials+",
+    "ref": "campaign-approval"
+  },
+  {
+    "group": "Email",
+    "id": "unsubscribe",
+    "name": "Unsubscribe & compliance",
+    "take": "Stay on the right side of the rules.",
+    "tag": "Solo+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Email",
+    "id": "warmup",
+    "name": "Deliverability care",
+    "take": "Reputation is part of the product.",
+    "tag": "Paid",
+    "ref": "inbox"
+  },
+  {
+    "group": "Email",
+    "id": "scheduled-send",
+    "name": "Scheduled send",
+    "take": "Send when they will read it.",
+    "tag": "Solo+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Email",
+    "id": "snippets",
+    "name": "Snippets",
+    "take": "Short inserts, not a novel.",
+    "tag": "Solo+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Chat",
+    "id": "sms-send",
+    "name": "SMS send",
+    "take": "Text from the same contact history.",
+    "tag": "No Free · usage",
+    "ref": "sms"
+  },
+  {
+    "group": "Chat",
+    "id": "sms-inbox",
+    "name": "SMS in the inbox",
+    "take": "Texts next to email.",
+    "tag": "Paid · usage",
+    "ref": "sms"
+  },
+  {
+    "group": "Chat",
+    "id": "sms-templates",
+    "name": "SMS templates",
+    "take": "Short, reusable.",
+    "tag": "Paid",
+    "ref": "sms"
+  },
+  {
+    "group": "Chat",
+    "id": "whatsapp-ready",
+    "name": "WhatsApp-ready path",
+    "take": "When the channel is approved.",
+    "tag": "Later / Enterprise",
+    "ref": "sms"
+  },
+  {
+    "group": "Chat",
+    "id": "chat-handoff",
+    "name": "Handoff to human",
+    "take": "Bot to person without losing context.",
+    "tag": "Growth+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Chat",
+    "id": "internal-notes",
+    "name": "Internal notes",
+    "take": "Talk about the contact without them seeing.",
+    "tag": "Free",
+    "ref": "inbox"
+  },
+  {
+    "group": "Chat",
+    "id": "mentions",
+    "name": "@ mentions",
+    "take": "Pull a teammate into the thread.",
+    "tag": "Essentials+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Chat",
+    "id": "presence",
+    "name": "Team presence",
+    "take": "Who is on it.",
+    "tag": "Essentials+",
+    "ref": "inbox"
+  },
+  {
+    "group": "Research",
+    "id": "name-search",
+    "name": "Name search",
+    "take": "Find the people you already have in mind.",
+    "tag": "Free soft rate",
+    "ref": "search"
+  },
+  {
+    "group": "Research",
+    "id": "company-lookup",
+    "name": "Company lookup",
+    "take": "Firm context before you write.",
+    "tag": "Tiny demo · paid",
+    "ref": "enrichment"
+  },
+  {
+    "group": "Research",
+    "id": "email-find",
+    "name": "Find email",
+    "take": "Fill the address carefully.",
+    "tag": "Paid credits",
+    "ref": "enrichment"
+  },
+  {
+    "group": "Research",
+    "id": "phone-find",
+    "name": "Find phone",
+    "take": "A number worth dialling.",
+    "tag": "Paid credits",
+    "ref": "enrichment"
+  },
+  {
+    "group": "Research",
+    "id": "smart-search",
+    "name": "⌘K search",
+    "take": "Jump anywhere in the book.",
+    "tag": "Free light · Solo+",
+    "ref": "search"
+  },
+  {
+    "group": "Research",
+    "id": "saved-searches",
+    "name": "Saved searches",
+    "take": "Come back to the same cut.",
+    "tag": "Solo+",
+    "ref": "search"
+  },
+  {
+    "group": "Research",
+    "id": "market-lists",
+    "name": "Market lists",
+    "take": "Build from research, not a dump.",
+    "tag": "Solo+",
+    "ref": "list-building"
+  },
+  {
+    "group": "Research",
+    "id": "investor-tracker",
+    "name": "Investor / client tracker",
+    "take": "A simple list + tasks for who matters.",
+    "tag": "Free door",
+    "ref": "targets"
+  },
+  {
+    "group": "Tasks",
+    "id": "personal-tasks",
+    "name": "Tasks",
+    "take": "Next actions on the people that matter.",
+    "tag": "Free unlimited light",
+    "ref": "todo"
+  },
+  {
+    "group": "Tasks",
+    "id": "task-due",
+    "name": "Due dates",
+    "take": "When it should be done.",
+    "tag": "Free",
+    "ref": "todo"
+  },
+  {
+    "group": "Tasks",
+    "id": "task-assign",
+    "name": "Assign tasks",
+    "take": "Hand work to a teammate.",
+    "tag": "Essentials+",
+    "ref": "todo"
+  },
+  {
+    "group": "Tasks",
+    "id": "today-view",
+    "name": "Today / Overview",
+    "take": "What needs attention now.",
+    "tag": "Free",
+    "ref": "overview"
+  },
+  {
+    "group": "Tasks",
+    "id": "reminders-tasks",
+    "name": "Task reminders",
+    "take": "Nudge without another app.",
+    "tag": "Solo+",
+    "ref": "todo"
+  },
+  {
+    "group": "Tasks",
+    "id": "linked-tasks",
+    "name": "Tasks on contacts",
+    "take": "Work sits on the person.",
+    "tag": "Free",
+    "ref": "todo"
+  },
+  {
+    "group": "Tasks",
+    "id": "checklist",
+    "name": "Checklists",
+    "take": "A short list inside the job.",
+    "tag": "Solo+",
+    "ref": "todo"
+  },
+  {
+    "group": "Tasks",
+    "id": "done-log",
+    "name": "Done log",
+    "take": "What you finished.",
+    "tag": "Free",
+    "ref": "todo"
+  },
+  {
+    "group": "Pricing",
+    "id": "plan-free",
+    "name": "Free membership",
+    "take": "One job. No signup. Caps that keep Free cheap.",
+    "tag": "$0",
+    "ref": "admin"
+  },
+  {
+    "group": "Pricing",
+    "id": "plan-solo",
+    "name": "Solo",
+    "take": "One operator. Close $19 / $9 yearly ($108).",
+    "tag": "Solo",
+    "ref": "admin"
+  },
+  {
+    "group": "Pricing",
+    "id": "plan-essentials",
+    "name": "Essentials",
+    "take": "Team CRM. Close $49 / $35 yearly.",
+    "tag": "Essentials",
+    "ref": "admin"
+  },
+  {
+    "group": "Pricing",
+    "id": "plan-growth",
+    "name": "Growth",
+    "take": "Sequences + Power Dialer. Close $109 / $99.",
+    "tag": "Growth",
+    "ref": "admin"
+  },
+  {
+    "group": "Pricing",
+    "id": "plan-scale",
+    "name": "Scale",
+    "take": "Predictive + control. Close $149 / $139.",
+    "tag": "Scale",
+    "ref": "admin"
+  },
+  {
+    "group": "Pricing",
+    "id": "plan-enterprise",
+    "name": "Enterprise",
+    "take": "$5k–$20k/yr. Invoice, DPA, SSO.",
+    "tag": "Enterprise",
+    "ref": "admin"
+  },
+  {
+    "group": "Pricing",
+    "id": "metering",
+    "name": "Usage metering",
+    "take": "Minutes, SMS, AI, numbers — shown before spend.",
+    "tag": "Usage",
+    "ref": "admin"
+  },
+  {
+    "group": "Pricing",
+    "id": "founding",
+    "name": "Founding 24-for-14",
+    "take": "Team carts only. 72h. Not in ads.",
+    "tag": "Essentials/Growth teams",
+    "ref": "admin"
+  },
+  {
+    "group": "Pricing",
+    "id": "annual-default",
+    "name": "Annual default",
+    "take": "Checkout prefers prepaid. Monthly is the tax.",
+    "tag": "All paid",
+    "ref": "admin"
+  },
+  {
+    "group": "Project",
+    "id": "delivery-projects",
+    "name": "Projects / delivery",
+    "take": "Carry the promise through.",
+    "tag": "Free fair use",
+    "ref": "delivery"
+  },
+  {
+    "group": "Project",
+    "id": "client-approval",
+    "name": "Client approval",
+    "take": "Agency-shaped five can check before send.",
+    "tag": "Essentials+",
+    "ref": "campaign-approval"
+  },
+  {
+    "group": "Project",
+    "id": "files",
+    "name": "Files",
+    "take": "Link-share free. Serious uploads when you pay.",
+    "tag": "Paywall Free · Solo+",
+    "ref": "files"
+  },
+  {
+    "group": "Project",
+    "id": "handoff",
+    "name": "Handoff packs",
+    "take": "Pass the work without losing context.",
+    "tag": "Essentials+",
+    "ref": "delivery"
+  },
+  {
+    "group": "Project",
+    "id": "milestones",
+    "name": "Milestones",
+    "take": "What done looks like.",
+    "tag": "Solo+",
+    "ref": "delivery"
+  },
+  {
+    "group": "Project",
+    "id": "time-notes",
+    "name": "Work notes",
+    "take": "What happened on the job.",
+    "tag": "Free",
+    "ref": "delivery"
+  },
+  {
+    "group": "Project",
+    "id": "shared-workspace",
+    "name": "Shared workspace",
+    "take": "One book for the five.",
+    "tag": "Essentials+",
+    "ref": "admin"
+  },
+  {
+    "group": "Project",
+    "id": "audit",
+    "name": "Audit trail",
+    "take": "Who changed what.",
+    "tag": "Scale / Enterprise",
+    "ref": "admin"
+  }
+]
