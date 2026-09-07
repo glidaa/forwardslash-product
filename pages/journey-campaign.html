@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Journey · Campaign</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="wrap hero">
+    <div class="eyebrow">Journey · Campaign</div>
+    <h1>Journey · Campaign</h1>
+    <p class="lede">Upload a list. Build the send. Replies in one inbox.</p>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow">Click path</div>
+      <h2>As a user — click path</h2>
+      <ol>
+        <li>I open <strong>Campaigns</strong> (empty) → I click <strong>New campaign</strong> → a blank campaign opens.</li>
+        <li>I upload a <strong>CSV</strong> or pick an existing <strong>list</strong> → contacts load into the audience side; merge fields appear.</li>
+        <li>I work one rail: <strong>audience left</strong>, <strong>message right</strong> → I insert <code>{{firstName}}</code> (and other fields) in the draft; preview shows the row.</li>
+        <li>I send from a <strong>connected mailbox</strong> — or send <strong>one test to myself</strong> → the campaign queues; status moves toward sent.</li>
+        <li>I open <strong>Inbox</strong> → a reply arrives on the <strong>contact</strong>; I answer in the thread without leaving the book.</li>
+        <li>Optional: from the contact I open a <strong>booking link</strong> or start a <strong>call</strong> → meeting or dial lands on the same person.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <div class="eyebrow">Field</div>
+      <h2>How competitors do this step</h2>
+      <p class="lede" style="margin-top:0;margin-bottom:18px;font-size:14px;max-width:740px">Plain read of list → draft → send → replies. Sources: <a href="competition.html?view=landing">competition-features</a> (Instantly, Smartlead, lemlist) plus known Clay / Customer.io flows from design refs. Not our product letter.</p>
+      <div class="tablewrap" style="min-width:0">
+        <table style="min-width:0">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>List</th>
+              <th>Draft</th>
+              <th>Send</th>
+              <th>Replies</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Instantly</td>
+              <td>Upload contacts (plan caps) or pull from Lead Database / enrichment; verify before send.</td>
+              <td>AI writer + community templates; sequences / WARP-style campaign build; A/Z testing on higher plans.</td>
+              <td>Connect many mailboxes; warmup + placement tools; schedule and scale campaigns.</td>
+              <td>Unibox across campaigns/accounts; optional AI Reply Agent on Scale+.</td>
+            </tr>
+            <tr>
+              <td>Smartlead</td>
+              <td>Unlimited lead storage; SmartProspect verified leads; verification add-ons.</td>
+              <td>Spintax + personalisation; SmartAI persona copy; follow-ups and intent subsequences.</td>
+              <td>Unlimited mailboxes; built-in warmup / rotation; optional DFY mailboxes &amp; SmartInfra (their farm path).</td>
+              <td>Master Inbox with intent categories, notes, bulk assign; dialler steps can sit in the sequence.</td>
+            </tr>
+            <tr>
+              <td>lemlist</td>
+              <td>Upload CRM/CSV; enrich email/phone from large DB; ICP / account filters.</td>
+              <td>Multichannel steps (email, LinkedIn, call, SMS/WhatsApp); liquid / conditioned steps; AI agents assist copy.</td>
+              <td>Google / Microsoft / SMTP senders; lemwarm + Deliverability Hub; schedule, auto-launch/stop, inbox rotation.</td>
+              <td>Unified inbox for multichannel replies; shared campaigns / review on team plans.</td>
+            </tr>
+            <tr>
+              <td>Clay</td>
+              <td>Research table: find people, enrich columns, filter the sheet (Mobbin list-building refs).</td>
+              <td>Not a mail composer — enrichment + formulas; copy lives downstream or via integrations.</td>
+              <td>Export / push to Instantly, Smartlead, lemlist, CRM, Zapier-class tools — Clay does not own the send.</td>
+              <td>No native reply inbox; replies stay in the outreach tool you sent from.</td>
+            </tr>
+            <tr>
+              <td>Customer.io</td>
+              <td>People table with filter chips / segments (Mobbin People screen).</td>
+              <td>Campaign / broadcast draft; delivery queue; Approve / Change review on email preview (Mobbin approval flows).</td>
+              <td>Lifecycle / journey sends to known people — triggered and broadcast, not cold-farm volume.</td>
+              <td>Replies and deliveries tracked in their messaging stack; review rounds before go-live, not a cold Unibox.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:18px">We refuse Instantly/Smartlead send-farm and DFY-mailbox identity. We keep own-mailbox send + one book. Clay is list/enrich only. Customer.io is lifecycle approval — useful for review rails, not our cold-outbound category.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="eyebrow">Frames</div>
+      <h2>What we show on screen</h2>
+      <p>Four frames only. Surfaces: <code>campaigns</code> + <code>inbox</code>.</p>
+      <div class="grid2" style="margin-top:18px">
+        <article class="card">
+          <span class="tag">empty · campaigns</span>
+          <h3>Empty</h3>
+          <p>Campaigns with nothing yet. Primary control: <strong>New campaign</strong>. No sample tour, no fake rows.</p>
+        </article>
+        <article class="card">
+          <span class="tag">work · campaigns</span>
+          <h3>Work (table)</h3>
+          <p>Campaign list as a table — name, audience count, status, last activity. Click a row to open setup or results.</p>
+        </article>
+        <article class="card">
+          <span class="tag">setup · campaigns</span>
+          <h3>Setup (list + draft rail)</h3>
+          <p>One rail: audience / list left, message right. Merge fields like <code>{{firstName}}</code>. Connect mailbox or send one test to myself before full send.</p>
+        </article>
+        <article class="card">
+          <span class="tag">done · inbox</span>
+          <h3>Done (sent + reply)</h3>
+          <p>Campaign marked sent. Inbox shows the reply on the contact thread. Optional booking link or call from that contact.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap">
+      <div class="eyebrow">Catalog</div>
+      <h2>Features this journey needs</h2>
+      <p>Tied to Features catalog. Have / Partial / Gap brief from <a href="product-suggestions.html">Suggestions P1</a> (and shot-ideas framing).</p>
+      <ul>
+        <li><strong>Mailbox sync</strong> (Gmail / Outlook / own-mailbox send) — <strong>Have</strong>. P1: deliverability care is Partial in the story (health next to send, not farm warmup).</li>
+        <li><strong>Lists / CSV upload</strong> — <strong>Have</strong> (Free capped; big CSV Solo+).</li>
+        <li><strong>Campaigns / sequences</strong> — <strong>Have</strong> (campaigns Solo+; sequences Growth+). P2 later: A/B variants language is still a <strong>Gap</strong> vs Instantly — not required for this path.</li>
+        <li><strong>Shared inbox</strong> — <strong>Have</strong> (Essentials+). P1: master-inbox clarity is <strong>Partial</strong> — make “replies across the send in one place” obvious next to own-mailbox send.</li>
+        <li><strong>Later: dialler / pages</strong> — click-to-call and booking links <strong>Have</strong> in catalog; optional step 6 only. Number reputation remains a <strong>Gap</strong> polish item (Suggestions P1) — out of this campaign frame set.</li>
+      </ul>
+      <div class="actions">
+        <a class="btn dark" href="features.html">Features</a>
+        <a class="btn" href="product-surfaces.html">Surfaces</a>
+        <a class="btn" href="product-shot-ideas.html">Shot ideas</a>
+        <a class="btn" href="product-suggestions.html">Suggestions</a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
